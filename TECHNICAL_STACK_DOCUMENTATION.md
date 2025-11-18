@@ -2235,4 +2235,1569 @@ This stack provides a modern, performant, and scalable foundation for your premi
 *Document created: 2025-11-17*
 *Stack Version: Next.js 15, Payload CMS 3.0, Vercel*
 *Target: Production-ready catering website*
-*Version: 1.0*
+*Version: 2.0 - Updated with Production Best Practices*
+
+---
+
+# PART 2: PRODUCTION BEST PRACTICES (2025)
+
+## Table of Contents - Best Practices
+
+15. [Next.js 15 Production Best Practices](#nextjs-15-production-best-practices)
+16. [PostgreSQL Best Practices](#postgresql-best-practices)
+17. [Payload CMS Production Patterns](#payload-cms-production-patterns)
+18. [Tailwind CSS Best Practices](#tailwind-css-best-practices)
+19. [Vercel Production Deployment](#vercel-production-deployment)
+20. [TypeScript Strict Mode & Type Safety](#typescript-strict-mode--type-safety)
+21. [Testing Strategy](#testing-strategy)
+22. [Security Best Practices](#security-best-practices)
+23. [Error Handling & Logging](#error-handling--logging)
+24. [Monitoring & Observability](#monitoring--observability)
+25. [API Routes Best Practices](#api-routes-best-practices)
+
+---
+
+## Next.js 15 Production Best Practices
+
+### Modern Features for 2025
+
+#### **1. Turbopack (Production Ready)**
+
+Next.js 15 features Turbopack as the default bundler—no longer experimental—and is production-ready, already used by major companies.
+
+**Enable in Development:**
+```json
+// package.json
+{
+  "scripts": {
+    "dev": "next dev --turbo",
+    "build": "next build",
+    "start": "next start"
+  }
+}
+```
+
+**Benefits:**
+- Faster builds (up to 30% faster refresh times)
+- Rust-based tooling for better performance
+- Improved tree-shaking
+- Better development experience
+
+---
+
+#### **2. Server vs Client Component Patterns**
+
+**When to Use Server Components:**
+- Fetching data from databases/APIs
+- Using API keys, tokens, secrets
+- Reducing JavaScript sent to browser
+- Improving First Contentful Paint (FCP)
+- Static content rendering
+
+**When to Use Client Components:**
+- State and event handlers (onClick, onChange)
+- Lifecycle hooks (useEffect, useState)
+- Browser-only APIs (localStorage, window)
+- Custom hooks
+- Interactive elements
+
+**Composing Pattern:**
+```typescript
+// ✅ CORRECT: Pass Server Component as children to Client Component
+// layout.tsx (Server Component)
+import ClientNav from './ClientNav'
+import ServerSidebar from './ServerSidebar'
+
+export default function Layout({ children }) {
+  return (
+    <div>
+      <ClientNav>
+        <ServerSidebar /> {/* Server Component as children */}
+      </ClientNav>
+      {children}
+    </div>
+  )
+}
+
+// ClientNav.tsx (Client Component)
+'use client'
+
+export default function ClientNav({ children }) {
+  return (
+    <nav>
+      {children} {/* Server Component rendered here */}
+    </nav>
+  )
+}
+```
+
+**❌ INCORRECT Pattern:**
+```typescript
+// ClientComponent.tsx
+'use client'
+import ServerComponent from './ServerComponent' // ❌ Can't import Server into Client
+
+export default function ClientComponent() {
+  return <ServerComponent /> // ❌ Won't work
+}
+```
+
+---
+
+#### **3. React 19 Integration**
+
+Next.js 15 has React 19 fully integrated with streaming capabilities.
+
+**Use the `use()` Hook:**
+```typescript
+import { use } from 'react'
+
+async function getData() {
+  const res = await fetch('https://api.example.com/data')
+  return res.json()
+}
+
+function Component() {
+  const data = use(getData()) // Await promises directly in components
+  return <div>{data.title}</div>
+}
+```
+
+---
+
+#### **4. Production Checklist**
+
+**Before Deployment:**
+
+**Security:**
+- [ ] Environment variables in `.gitignore`
+- [ ] Only `NEXT_PUBLIC_` vars exposed to client
+- [ ] Content Security Policy configured
+- [ ] CORS properly set up
+
+**Performance:**
+- [ ] Run Lighthouse audit (90+ score)
+- [ ] Check Core Web Vitals (LCP, INP, CLS)
+- [ ] Enable caching where appropriate
+- [ ] Use ISR for semi-dynamic pages
+
+**SEO:**
+- [ ] Metadata on all pages
+- [ ] Sitemap generated
+- [ ] Robots.txt configured
+- [ ] Schema.org structured data
+
+**Example CSP Configuration:**
+```typescript
+// next.config.js
+const securityHeaders = [
+  {
+    key: 'Content-Security-Policy',
+    value: `
+      default-src 'self';
+      script-src 'self' 'unsafe-eval' 'unsafe-inline' *.google-analytics.com;
+      style-src 'self' 'unsafe-inline';
+      img-src * blob: data:;
+      media-src 'none';
+      connect-src *;
+      font-src 'self';
+    `.replace(/\s{2,}/g, ' ').trim()
+  },
+  {
+    key: 'X-Frame-Options',
+    value: 'DENY'
+  },
+  {
+    key: 'X-Content-Type-Options',
+    value: 'nosniff'
+  },
+  {
+    key: 'Referrer-Policy',
+    value: 'strict-origin-when-cross-origin'
+  }
+]
+
+module.exports = {
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: securityHeaders,
+      },
+    ]
+  },
+}
+```
+
+---
+
+#### **5. Rendering Strategies in Detail**
+
+**Static Site Generation (SSG):**
+```typescript
+// Best for: Marketing pages, blogs, documentation
+// Builds at build time, served as static HTML
+
+export default async function Page() {
+  const data = await fetch('https://api.example.com/data')
+  return <div>{/* content */}</div>
+}
+```
+
+**Server-Side Rendering (SSR):**
+```typescript
+// Best for: Dashboards, user-specific pages
+// Rendered on each request
+
+export const dynamic = 'force-dynamic'
+
+export default async function UserDashboard() {
+  const user = await getCurrentUser()
+  return <div>{user.name}</div>
+}
+```
+
+**Incremental Static Regeneration (ISR):**
+```typescript
+// Best for: Product pages, blogs with occasional updates
+// Combines benefits of SSG and SSR
+
+export const revalidate = 3600 // Revalidate every hour
+
+export default async function ProductPage({ params }) {
+  const product = await getProduct(params.id)
+  return <div>{product.name}</div>
+}
+```
+
+**Game Detail Pages Example:**
+```typescript
+// Game detail pages use SSR for fresh data
+export const dynamic = 'force-dynamic'
+
+export default async function GamePage({ params }) {
+  const game = await fetchGameData(params.id)
+  return <GameDetails game={game} />
+}
+
+// Category listings use ISR
+export const revalidate = 3600
+
+export default async function CategoryPage() {
+  const games = await fetchGames()
+  return <GameList games={games} />
+}
+```
+
+---
+
+## PostgreSQL Best Practices
+
+### Why PostgreSQL for This Project
+
+Since you're using PostgreSQL, here are production-ready practices:
+
+#### **1. Connection Pooling**
+
+**Critical for Serverless:** Each function invocation can create new connections, quickly exhausting PostgreSQL's connection limit (typically 100-500).
+
+**Solution: Use a Connection Pooler**
+
+**Option A: Neon (Recommended for Vercel)**
+```typescript
+// lib/db.ts
+import { neon } from '@neondatabase/serverless'
+
+const sql = neon(process.env.DATABASE_URL!)
+
+export default sql
+```
+
+**Option B: PgBouncer**
+```bash
+# Connection string with pgBouncer
+DATABASE_URL="postgresql://user:pass@pgbouncer-host:6432/dbname?pgbouncer=true"
+```
+
+**Prisma with Connection Pooling:**
+```typescript
+// prisma/schema.prisma
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL") // For migrations
+}
+
+// Use connection pooling URL for queries
+// Use direct URL for migrations
+```
+
+**Connection Limits:**
+```typescript
+// payload.config.ts
+import { postgresAdapter } from '@payloadcms/db-postgres'
+
+export default buildConfig({
+  db: postgresAdapter({
+    pool: {
+      connectionString: process.env.DATABASE_URI,
+      max: 20, // Maximum connections
+      min: 2,  // Minimum connections
+      idleTimeoutMillis: 30000,
+      connectionTimeoutMillis: 2000,
+    },
+  }),
+})
+```
+
+---
+
+#### **2. Database Indexing**
+
+**Single Query Optimization Can Boost Performance by 100x**
+
+**Identify Slow Queries:**
+```sql
+-- Enable query logging (in PostgreSQL config)
+log_min_duration_statement = 1000  -- Log queries > 1 second
+
+-- Or use EXPLAIN
+EXPLAIN ANALYZE SELECT * FROM menu_items WHERE category = 'appetizers';
+```
+
+**Create Indexes:**
+```sql
+-- Index on frequently queried columns
+CREATE INDEX idx_menu_items_category ON menu_items(category);
+
+-- Multi-column index for date range queries
+CREATE INDEX idx_events_date_range ON events(start_date, end_date);
+
+-- Text search index
+CREATE INDEX idx_menu_items_search ON menu_items USING GIN(to_tsvector('english', name || ' ' || description));
+```
+
+**Payload CMS Migration Example:**
+```typescript
+// migrations/2025-11-17-add-indexes.ts
+import { MigrateUpArgs, MigrateDownArgs } from '@payloadcms/db-postgres'
+
+export async function up({ payload }: MigrateUpArgs): Promise<void> {
+  await payload.db.drizzle.execute(`
+    CREATE INDEX IF NOT EXISTS idx_menu_items_category
+    ON menu_items(category);
+
+    CREATE INDEX IF NOT EXISTS idx_menu_items_featured
+    ON menu_items(featured);
+  `)
+}
+
+export async function down({ payload }: MigrateDownArgs): Promise<void> {
+  await payload.db.drizzle.execute(`
+    DROP INDEX IF EXISTS idx_menu_items_category;
+    DROP INDEX IF EXISTS idx_menu_items_featured;
+  `)
+}
+```
+
+**Best Practices:**
+- Create one index per unique query pattern
+- Index foreign keys
+- Index columns used in WHERE, ORDER BY, JOIN
+- Don't over-index (slows down writes)
+- PostgreSQL creates B-tree indexes by default
+
+---
+
+#### **3. Query Optimization**
+
+**Use EXPLAIN to Analyze:**
+```typescript
+// In development, log query plans
+const result = await payload.db.drizzle.execute(`
+  EXPLAIN ANALYZE
+  SELECT * FROM menu_items
+  WHERE category = 'appetizers'
+  AND is_vegetarian = true
+`)
+console.log(result)
+```
+
+**Optimize N+1 Queries:**
+```typescript
+// ❌ BAD: N+1 queries
+const services = await payload.find({ collection: 'services' })
+for (const service of services.docs) {
+  const images = await payload.find({
+    collection: 'media',
+    where: { service: { equals: service.id } }
+  })
+}
+
+// ✅ GOOD: Single query with joins
+const services = await payload.find({
+  collection: 'services',
+  depth: 2, // Populate relationships in single query
+})
+```
+
+---
+
+## Payload CMS Production Patterns
+
+### PostgreSQL Migration Workflow
+
+#### **1. Development vs Production**
+
+**Development:** Can use "db push" for rapid iteration
+```bash
+# Automatically pushes schema changes (dev only)
+npm run payload db:push
+```
+
+**Production:** MUST use migrations
+
+**Why?**
+- Control and auditability of schema changes
+- Safer deployments
+- No uncontrolled schema drift
+- Rollback capability
+
+---
+
+#### **2. Disable Push in Production**
+
+**Critical:** Turn off database push before going to production.
+
+```typescript
+// payload.config.ts
+export default buildConfig({
+  db: postgresAdapter({
+    pool: {
+      connectionString: process.env.DATABASE_URI,
+    },
+    push: process.env.NODE_ENV === 'development', // Only in dev
+  }),
+})
+```
+
+---
+
+#### **3. Migration Workflow**
+
+**Create Migration:**
+```bash
+npm run payload migrate:create
+```
+
+This creates a file like: `migrations/2025-11-17_143022_add_menu_categories.ts`
+
+**Run Migrations:**
+
+**Option A: In CI/CD Before Build**
+```json
+// package.json
+{
+  "scripts": {
+    "build": "payload migrate && next build"
+  }
+}
+```
+
+**Option B: At Runtime (Long-running servers)**
+```typescript
+// payload.config.ts
+import * as migrations from './migrations'
+
+export default buildConfig({
+  db: postgresAdapter({
+    pool: {
+      connectionString: process.env.DATABASE_URI,
+    },
+    prodMigrations: migrations, // Run on server startup
+  }),
+})
+```
+
+**Best Practice: CI/CD Approach**
+- Ensures database is ready before deployment
+- Fails fast if migration has issues
+- No runtime performance impact
+
+---
+
+#### **4. Custom Admin UI Components**
+
+**Performance Considerations:**
+
+```typescript
+// ❌ BAD: Heavy component without optimization
+'use client'
+import React from 'react'
+
+export default function CustomField() {
+  const [data, setData] = React.useState([])
+
+  // Fetches on every render
+  React.useEffect(() => {
+    fetch('/api/heavy-data').then(r => r.json()).then(setData)
+  }, [])
+
+  return <div>{/* render */}</div>
+}
+
+// ✅ GOOD: Optimized with memoization
+'use client'
+import React from 'react'
+
+export default React.memo(function CustomField() {
+  const [data, setData] = React.useState([])
+
+  React.useEffect(() => {
+    let cancelled = false
+    fetch('/api/heavy-data')
+      .then(r => r.json())
+      .then(d => !cancelled && setData(d))
+    return () => { cancelled = true }
+  }, [])
+
+  return <div>{/* render */}</div>
+})
+```
+
+**Use Payload's Native Components:**
+```typescript
+// Reuse Payload's UI components for consistency
+import { Button, Label } from '@payloadcms/ui'
+
+export function CustomField() {
+  return (
+    <div>
+      <Label>Custom Field</Label>
+      <Button>Click Me</Button>
+    </div>
+  )
+}
+```
+
+**React Best Practices for Custom Components:**
+- Use memoization (`React.memo`, `useMemo`, `useCallback`)
+- Proper cleanup in `useEffect`
+- Lazy load heavy components
+- Use Payload's built-in hooks (`useField`, `useForm`)
+
+---
+
+#### **5. Payload Hooks**
+
+```typescript
+// Use hooks in client components
+'use client'
+import { useField, useForm } from '@payloadcms/ui'
+
+export function CustomPriceField() {
+  const { value, setValue } = useField<number>({ path: 'price' })
+  const { getFields } = useForm()
+
+  const category = getFields().category?.value
+
+  // Auto-adjust price based on category
+  React.useEffect(() => {
+    if (category === 'premium') {
+      setValue(value * 1.2)
+    }
+  }, [category])
+
+  return <input type="number" value={value} onChange={(e) => setValue(+e.target.value)} />
+}
+```
+
+---
+
+## Tailwind CSS Best Practices
+
+### Design System Configuration
+
+#### **1. Centralized Theme Configuration**
+
+```typescript
+// tailwind.config.ts
+import type { Config } from 'tailwindcss'
+
+const config: Config = {
+  content: [
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './payload/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  theme: {
+    extend: {
+      colors: {
+        // Indian color palette
+        saffron: {
+          DEFAULT: '#FF9933',
+          light: '#FFB366',
+          dark: '#CC7700',
+        },
+        gold: {
+          DEFAULT: '#D4AF37',
+          light: '#E6C966',
+          dark: '#B8941F',
+        },
+        maroon: {
+          DEFAULT: '#800000',
+          light: '#A62929',
+          dark: '#5C0000',
+        },
+      },
+      fontFamily: {
+        sans: ['var(--font-inter)'],
+        serif: ['var(--font-playfair)'],
+        hindi: ['var(--font-hind)'],
+      },
+      spacing: {
+        '18': '4.5rem',
+        '88': '22rem',
+      },
+    },
+  },
+  plugins: [],
+}
+
+export default config
+```
+
+---
+
+#### **2. Class Organization**
+
+**Use Prettier Plugin for Auto-Sorting:**
+```bash
+npm install -D prettier prettier-plugin-tailwindcss
+```
+
+```json
+// .prettierrc
+{
+  "plugins": ["prettier-plugin-tailwindcss"]
+}
+```
+
+**Before:**
+```tsx
+<div className="text-white bg-saffron p-4 rounded-lg hover:bg-saffron-dark transition-colors">
+```
+
+**After (Auto-sorted):**
+```tsx
+<div className="rounded-lg bg-saffron p-4 text-white transition-colors hover:bg-saffron-dark">
+```
+
+---
+
+#### **3. Component Abstraction**
+
+**When to Use @apply:**
+
+```css
+/* ✅ GOOD: For complex, reused patterns */
+.btn-primary {
+  @apply rounded-lg bg-saffron px-6 py-3 text-white transition-all hover:bg-saffron-dark hover:shadow-lg;
+}
+
+/* ❌ AVOID: For simple, one-off styles */
+.my-div {
+  @apply p-4; /* Just use className="p-4" */
+}
+```
+
+**Better: Create React Components:**
+```typescript
+// components/ui/Button.tsx
+import { cva, type VariantProps } from 'class-variance-authority'
+
+const buttonVariants = cva(
+  'inline-flex items-center justify-center rounded-lg font-medium transition-all',
+  {
+    variants: {
+      variant: {
+        primary: 'bg-saffron text-white hover:bg-saffron-dark',
+        secondary: 'bg-gray-200 text-gray-900 hover:bg-gray-300',
+        outline: 'border-2 border-saffron text-saffron hover:bg-saffron hover:text-white',
+      },
+      size: {
+        sm: 'px-3 py-1.5 text-sm',
+        md: 'px-4 py-2',
+        lg: 'px-6 py-3 text-lg',
+      },
+    },
+    defaultVariants: {
+      variant: 'primary',
+      size: 'md',
+    },
+  }
+)
+
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {}
+
+export function Button({ className, variant, size, ...props }: ButtonProps) {
+  return (
+    <button
+      className={buttonVariants({ variant, size, className })}
+      {...props}
+    />
+  )
+}
+```
+
+---
+
+#### **4. JIT Mode & Tree-Shaking**
+
+Modern Tailwind (v3+) uses JIT by default—no manual purging needed.
+
+**How it Works:**
+- Generates only used classes
+- No "purge" step required
+- Smaller CSS bundles automatically
+- Faster build times
+
+**Verify Tree-Shaking:**
+```bash
+npm run build
+
+# Check output CSS size
+ls -lh .next/static/css/
+```
+
+**Typical Production CSS:** 10-30KB compressed
+
+---
+
+#### **5. Custom Utilities via Plugins**
+
+```typescript
+// tailwind.config.ts
+import plugin from 'tailwindcss/plugin'
+
+export default {
+  // ... config
+  plugins: [
+    plugin(function({ addUtilities, theme }) {
+      addUtilities({
+        '.text-balance': {
+          'text-wrap': 'balance',
+        },
+        '.text-shadow-sm': {
+          'text-shadow': '0 1px 2px rgba(0, 0, 0, 0.1)',
+        },
+      })
+    }),
+  ],
+}
+```
+
+**Usage:**
+```tsx
+<h1 className="text-balance text-shadow-sm">
+  Premium North Indian Catering
+</h1>
+```
+
+---
+
+## Vercel Production Deployment
+
+### Edge Functions & Optimization
+
+#### **1. Edge Runtime**
+
+**When to Use Edge:**
+- Geographically distributed users
+- Low-latency requirements
+- Simple compute operations
+- No Node.js-specific dependencies
+
+```typescript
+// app/api/availability/route.ts
+export const runtime = 'edge'
+
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url)
+  const date = searchParams.get('date')
+
+  // Check availability from database
+  const available = await checkAvailability(date)
+
+  return Response.json({ available })
+}
+```
+
+**Limitations:**
+- No Node.js APIs (`fs`, `path`, `__dirname`)
+- Environment is closer to browser than Node.js
+- 4MB response limit
+- No streaming responses > 30 seconds
+
+---
+
+#### **2. Middleware for Edge**
+
+```typescript
+// middleware.ts
+import { NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
+
+export function middleware(request: NextRequest) {
+  // A/B testing
+  const bucket = Math.random() < 0.5 ? 'a' : 'b'
+  const response = NextResponse.next()
+  response.cookies.set('bucket', bucket)
+
+  // Regional personalization
+  const country = request.geo?.country || 'US'
+  response.headers.set('x-user-country', country)
+
+  return response
+}
+
+export const config = {
+  matcher: [
+    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+  ],
+}
+```
+
+---
+
+#### **3. Fluid Compute (Auto-Optimization)**
+
+Enable in Vercel project settings:
+
+- Automatically optimizes functions for performance and cost
+- Zero configuration required
+- Can reduce serverless costs by 20-30%
+
+```typescript
+// Automatically handled by Vercel when Fluid is enabled
+// No code changes needed
+```
+
+---
+
+#### **4. Caching Strategies**
+
+```typescript
+// Public, cached for 1 hour, stale-while-revalidate
+export async function GET() {
+  return Response.json(
+    { data: 'menu items' },
+    {
+      headers: {
+        'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
+      },
+    }
+  )
+}
+
+// Private, never cached
+export async function GET() {
+  return Response.json(
+    { user: 'data' },
+    {
+      headers: {
+        'Cache-Control': 'private, no-cache, no-store, must-revalidate',
+      },
+    }
+  )
+}
+```
+
+---
+
+#### **5. Environment Variables Best Practices**
+
+**Dashboard Management:**
+```
+1. Vercel Dashboard > Project > Settings > Environment Variables
+2. Add variables for Production, Preview, Development
+3. Encrypted by default
+```
+
+**Local Development:**
+```bash
+# Pull env vars from Vercel
+vercel env pull .env.local
+```
+
+**Naming Convention:**
+```env
+# Good naming pattern
+DATABASE_URL=...
+NEXT_PUBLIC_API_URL=...
+STRIPE_SECRET_KEY=...
+STRIPE_PUBLISHABLE_KEY=...
+
+# Use SERVICE_PURPOSE_KEY pattern
+EMAIL_SMTP_HOST=...
+EMAIL_SMTP_PORT=...
+STORAGE_S3_BUCKET=...
+STORAGE_S3_REGION=...
+```
+
+**Critical:**
+- NEVER commit `.env.local` to git
+- Use `NEXT_PUBLIC_` prefix only for client-exposed vars
+- Rotate secrets regularly
+- Use Vercel's "Sensitive" flag for passwords/keys
+
+---
+
+## TypeScript Strict Mode & Type Safety
+
+### Strict Configuration
+
+#### **1. Enable Strict Mode**
+
+```json
+// tsconfig.json
+{
+  "compilerOptions": {
+    "strict": true,  // Enable ALL strict checks
+    "noUncheckedIndexedAccess": true,  // Extra safety
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [{ "name": "next" }],
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}
+```
+
+---
+
+#### **2. Avoid `any` Type**
+
+```typescript
+// ❌ BAD
+function processData(data: any) {
+  return data.value
+}
+
+// ✅ GOOD: Use unknown for truly unknown types
+function processData(data: unknown) {
+  if (typeof data === 'object' && data !== null && 'value' in data) {
+    return (data as { value: string }).value
+  }
+  throw new Error('Invalid data')
+}
+
+// ✅ BETTER: Use generic types
+function processData<T extends { value: string }>(data: T) {
+  return data.value
+}
+```
+
+---
+
+#### **3. Next.js Typed Routes (15.5+)**
+
+```typescript
+// next.config.ts
+const config = {
+  experimental: {
+    typedRoutes: true,  // Enable typed routes
+  },
+}
+
+export default config
+```
+
+**Usage:**
+```typescript
+import Link from 'next/link'
+
+// ✅ TypeScript knows all valid routes
+<Link href="/services/wedding-catering">  // Valid
+<Link href="/invalid-route">  // ❌ TypeScript error!
+
+// Auto-completion for dynamic routes
+<Link href={{
+  pathname: '/services/[slug]',
+  params: { slug: 'wedding-catering' }
+}}>
+```
+
+---
+
+#### **4. Type-Safe Environment Variables**
+
+```typescript
+// lib/env.ts
+import { z } from 'zod'
+
+const envSchema = z.object({
+  // Server-only
+  DATABASE_URI: z.string().url(),
+  PAYLOAD_SECRET: z.string().min(32),
+  BLOB_READ_WRITE_TOKEN: z.string(),
+
+  // Client-exposed
+  NEXT_PUBLIC_GA_ID: z.string().startsWith('G-'),
+  NEXT_PUBLIC_API_URL: z.string().url(),
+})
+
+const env = envSchema.parse({
+  DATABASE_URI: process.env.DATABASE_URI,
+  PAYLOAD_SECRET: process.env.PAYLOAD_SECRET,
+  BLOB_READ_WRITE_TOKEN: process.env.BLOB_READ_WRITE_TOKEN,
+  NEXT_PUBLIC_GA_ID: process.env.NEXT_PUBLIC_GA_ID,
+  NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+})
+
+export default env
+
+// Usage:
+import env from '@/lib/env'
+const db = connectDB(env.DATABASE_URI)  // ✅ Type-safe!
+```
+
+---
+
+#### **5. Modern TypeScript Patterns**
+
+**`satisfies` Operator:**
+```typescript
+// Enforce type constraints while maintaining flexibility
+const config = {
+  colors: {
+    primary: '#FF9933',
+    secondary: '#D4AF37',
+  },
+  spacing: {
+    small: 8,
+    medium: 16,
+  }
+} satisfies Record<string, Record<string, string | number>>
+
+// TypeScript knows exact types
+config.colors.primary  // string
+config.spacing.small   // number
+```
+
+**Template Literal Types:**
+```typescript
+type EventType = 'wedding' | 'corporate' | 'private'
+type EventStatus = 'pending' | 'confirmed' | 'completed'
+
+// Dynamic string type
+type EventKey = `${EventType}_${EventStatus}`
+// Results in: "wedding_pending" | "wedding_confirmed" | "wedding_completed" | ...
+
+const event: EventKey = 'wedding_confirmed'  // ✅
+const invalid: EventKey = 'invalid_status'   // ❌ Error
+```
+
+---
+
+## Testing Strategy
+
+### Vitest for Unit & Integration Tests
+
+#### **1. Setup Vitest**
+
+```bash
+npm install -D vitest @vitejs/plugin-react @testing-library/react @testing-library/jest-dom
+```
+
+```typescript
+// vitest.config.ts
+import { defineConfig } from 'vitest/config'
+import react from '@vitejs/plugin-react'
+import path from 'path'
+
+export default defineConfig({
+  plugins: [react()],
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: './vitest.setup.ts',
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './'),
+    },
+  },
+})
+```
+
+```typescript
+// vitest.setup.ts
+import '@testing-library/jest-dom'
+```
+
+---
+
+#### **2. Example Unit Tests**
+
+```typescript
+// components/ui/Button.test.tsx
+import { render, screen } from '@testing-library/react'
+import { describe, it, expect } from 'vitest'
+import { Button } from './Button'
+
+describe('Button', () => {
+  it('renders with correct text', () => {
+    render(<Button>Click me</Button>)
+    expect(screen.getByText('Click me')).toBeInTheDocument()
+  })
+
+  it('applies correct variant classes', () => {
+    render(<Button variant="primary">Primary</Button>)
+    const button = screen.getByRole('button')
+    expect(button).toHaveClass('bg-saffron')
+  })
+
+  it('handles click events', async () => {
+    const onClick = vi.fn()
+    render(<Button onClick={onClick}>Click</Button>)
+
+    await userEvent.click(screen.getByRole('button'))
+    expect(onClick).toHaveBeenCalledOnce()
+  })
+})
+```
+
+---
+
+### Playwright for E2E Tests
+
+#### **1. Setup Playwright**
+
+```bash
+npm install -D @playwright/test
+npx playwright install
+```
+
+```typescript
+// playwright.config.ts
+import { defineConfig, devices } from '@playwright/test'
+
+export default defineConfig({
+  testDir: './e2e',
+  fullyParallel: true,
+  forbidOnly: !!process.env.CI,
+  retries: process.env.CI ? 2 : 0,
+  workers: process.env.CI ? 1 : undefined,
+  reporter: 'html',
+  use: {
+    baseURL: 'http://localhost:3000',
+    trace: 'on-first-retry',
+  },
+  projects: [
+    {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
+    },
+    {
+      name: 'Mobile Chrome',
+      use: { ...devices['Pixel 5'] },
+    },
+  ],
+  webServer: {
+    command: 'npm run dev',
+    url: 'http://localhost:3000',
+    reuseExistingServer: !process.env.CI,
+  },
+})
+```
+
+---
+
+#### **2. Example E2E Tests**
+
+```typescript
+// e2e/contact-form.spec.ts
+import { test, expect } from '@playwright/test'
+
+test.describe('Contact Form', () => {
+  test('should submit inquiry successfully', async ({ page }) => {
+    await page.goto('/contact')
+
+    // Fill form
+    await page.fill('[name="name"]', 'John Doe')
+    await page.fill('[name="email"]', 'john@example.com')
+    await page.fill('[name="phone"]', '9876543210')
+    await page.selectOption('[name="eventType"]', 'wedding')
+    await page.fill('[name="message"]', 'Need catering for 200 guests')
+
+    // Submit
+    await page.click('button[type="submit"]')
+
+    // Verify success message
+    await expect(page.locator('text=Thank you for your inquiry')).toBeVisible()
+  })
+
+  test('should validate required fields', async ({ page }) => {
+    await page.goto('/contact')
+    await page.click('button[type="submit"]')
+
+    // Check for validation errors
+    await expect(page.locator('text=Name is required')).toBeVisible()
+    await expect(page.locator('text=Email is required')).toBeVisible()
+  })
+})
+```
+
+---
+
+#### **3. Testing Best Practices**
+
+**Run Tests in CI:**
+```yaml
+# .github/workflows/test.yml
+name: Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run unit tests
+        run: npm run test:unit
+
+      - name: Run E2E tests
+        run: npm run test:e2e
+```
+
+**Test Organization:**
+```
+project/
+├── __tests__/           # Unit tests
+│   ├── components/
+│   ├── lib/
+│   └── utils/
+├── e2e/                 # E2E tests
+│   ├── contact.spec.ts
+│   ├── booking.spec.ts
+│   └── menu.spec.ts
+```
+
+---
+
+## Security Best Practices
+
+### CSRF Protection
+
+#### **1. Server Actions (Built-in Protection)**
+
+Server Actions have built-in CSRF protection:
+- Same-Site cookies by default
+- Origin header checked against Host header
+
+```typescript
+// app/actions.ts
+'use server'
+
+export async function submitInquiry(formData: FormData) {
+  // ✅ Automatically protected against CSRF
+  const name = formData.get('name')
+  // Process form...
+}
+```
+
+---
+
+#### **2. Custom API Routes Need Protection**
+
+```bash
+npm install @edge-csrf/nextjs
+```
+
+```typescript
+// middleware.ts
+import { createCsrfMiddleware } from '@edge-csrf/nextjs'
+
+const csrfMiddleware = createCsrfMiddleware({
+  cookie: {
+    name: '_csrf',
+    secure: process.env.NODE_ENV === 'production',
+  },
+})
+
+export async function middleware(request: NextRequest) {
+  const response = await csrfMiddleware(request)
+  return response
+}
+```
+
+---
+
+### XSS Prevention
+
+```typescript
+// ✅ GOOD: Sanitize user input
+import DOMPurify from 'isomorphic-dompurify'
+
+export async function saveReview(data: { review: string }) {
+  const sanitized = DOMPurify.sanitize(data.review)
+  await db.reviews.create({ content: sanitized })
+}
+
+// ✅ GOOD: Next.js automatically escapes in JSX
+<div>{userInput}</div>  // Safe!
+
+// ❌ DANGEROUS: dangerouslySetInnerHTML
+<div dangerouslySetInnerHTML={{ __html: userInput }} />  // XSS risk!
+
+// ✅ SAFE: Sanitize first
+<div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(userInput) }} />
+```
+
+---
+
+### Authentication & Authorization
+
+```typescript
+// lib/auth.ts
+import { cookies } from 'next/headers'
+
+export async function getCurrentUser() {
+  const session = cookies().get('session')
+  if (!session) return null
+
+  // Verify session
+  const user = await verifySession(session.value)
+  return user
+}
+
+// Protect API routes
+export async function requireAuth() {
+  const user = await getCurrentUser()
+  if (!user) {
+    throw new Error('Unauthorized')
+  }
+  return user
+}
+```
+
+**Use in Server Components:**
+```typescript
+export default async function Dashboard() {
+  const user = await requireAuth()
+
+  return <div>Welcome {user.name}</div>
+}
+```
+
+---
+
+## Error Handling & Logging
+
+### Error Boundaries
+
+```typescript
+// app/error.tsx
+'use client'
+
+export default function Error({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string }
+  reset: () => void
+}) {
+  useEffect(() => {
+    // Log to error service
+    console.error('Error:', error)
+  }, [error])
+
+  return (
+    <div className="flex min-h-screen items-center justify-center">
+      <div className="text-center">
+        <h2 className="text-2xl font-bold">Something went wrong!</h2>
+        <button onClick={reset} className="btn-primary mt-4">
+          Try again
+        </button>
+      </div>
+    </div>
+  )
+}
+```
+
+**Global Error Handler:**
+```typescript
+// app/global-error.tsx
+'use client'
+
+export default function GlobalError({
+  error,
+}: {
+  error: Error & { digest?: string }
+}) {
+  return (
+    <html>
+      <body>
+        <h2>Application Error</h2>
+        <p>{error.digest}</p>
+      </body>
+    </html>
+  )
+}
+```
+
+---
+
+### Production Error Logging
+
+**Security Note:** Error details are sanitized in production:
+
+```typescript
+// Production error object
+{
+  message: "An error occurred",  // Generic message
+  digest: "a1b2c3d4"  // Hash for server-side logs
+}
+
+// Development error object
+{
+  message: "Database connection failed: invalid credentials",  // Full details
+  stack: "Error: Database connection...\n  at..."
+}
+```
+
+---
+
+## Monitoring & Observability
+
+### Sentry Integration
+
+```bash
+npm install @sentry/nextjs
+```
+
+```typescript
+// sentry.client.config.ts
+import * as Sentry from '@sentry/nextjs'
+
+Sentry.init({
+  dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
+  tracesSampleRate: 1.0,
+  environment: process.env.NODE_ENV,
+})
+```
+
+```typescript
+// sentry.server.config.ts
+import * as Sentry from '@sentry/nextjs'
+
+Sentry.init({
+  dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
+  tracesSampleRate: 1.0,
+  environment: process.env.NODE_ENV,
+})
+```
+
+---
+
+## API Routes Best Practices
+
+### Validation & Error Handling
+
+```typescript
+// app/api/contact/route.ts
+import { NextResponse } from 'next/server'
+import { z } from 'zod'
+
+const contactSchema = z.object({
+  name: z.string().min(2).max(100),
+  email: z.string().email(),
+  phone: z.string().regex(/^[0-9]{10}$/),
+  message: z.string().max(1000),
+})
+
+export async function POST(request: Request) {
+  try {
+    const body = await request.json()
+
+    // Validate
+    const result = contactSchema.safeParse(body)
+    if (!result.success) {
+      return NextResponse.json(
+        { error: 'Validation failed', details: result.error.errors },
+        { status: 400 }
+      )
+    }
+
+    // Process
+    await sendEmail(result.data)
+
+    return NextResponse.json({ success: true })
+
+  } catch (error) {
+    console.error('Contact form error:', error)
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    )
+  }
+}
+```
+
+---
+
+## Final Production Checklist
+
+### Pre-Launch
+
+- [ ] TypeScript strict mode enabled
+- [ ] All tests passing (unit + E2E)
+- [ ] Lighthouse score 90+ on all metrics
+- [ ] Core Web Vitals all green
+- [ ] Security headers configured
+- [ ] CSRF protection implemented
+- [ ] XSS sanitization in place
+- [ ] Rate limiting on forms
+- [ ] Error tracking (Sentry) configured
+- [ ] Analytics integrated (GA4 + Vercel)
+- [ ] Environment variables secured
+- [ ] Database migrations tested
+- [ ] PostgreSQL indexes created
+- [ ] Connection pooling configured
+- [ ] Image optimization verified
+- [ ] SEO metadata complete
+- [ ] Sitemap generated
+- [ ] Robots.txt configured
+- [ ] Schema.org markup added
+- [ ] Mobile experience tested
+- [ ] Cross-browser tested
+- [ ] SSL certificate active
+- [ ] Domain configured
+- [ ] Backup strategy in place
+
+---
+
+*Updated: 2025-11-17*
+*Version: 2.0 - Production Best Practices Added*
