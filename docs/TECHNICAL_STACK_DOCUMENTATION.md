@@ -1,4 +1,5 @@
 # Technical Stack Documentation
+
 ## Next.js 15 + Payload CMS + Vercel Deployment
 
 **Date:** 2025-11-17
@@ -34,6 +35,7 @@ This document provides comprehensive technical guidance for building a premium c
 ### Why This Stack?
 
 **Next.js 15:**
+
 - ✅ React Server Components for optimal performance
 - ✅ Built-in image optimization crucial for food photography
 - ✅ Excellent SEO capabilities
@@ -41,6 +43,7 @@ This document provides comprehensive technical guidance for building a premium c
 - ✅ TypeScript support for type safety
 
 **Payload CMS 3.0:**
+
 - ✅ Code-first, TypeScript-native
 - ✅ Installs directly into Next.js app
 - ✅ Fully customizable admin panel
@@ -48,6 +51,7 @@ This document provides comprehensive technical guidance for building a premium c
 - ✅ Perfect for developer control
 
 **Vercel:**
+
 - ✅ Built by Next.js creators (seamless integration)
 - ✅ Global CDN for fast delivery
 - ✅ Automatic optimization
@@ -110,6 +114,7 @@ Testing: Vitest, Playwright (optional)
 The App Router is the future of Next.js and is built around React Server Components.
 
 **Benefits:**
+
 - Server Components by default (zero client JS)
 - Simplified data fetching
 - Layouts that persist across navigation
@@ -117,6 +122,7 @@ The App Router is the future of Next.js and is built around React Server Compone
 - Better TypeScript support
 
 **Structure:**
+
 ```
 app/
   ├── layout.tsx          # Root layout (persistent)
@@ -137,6 +143,7 @@ app/
 Components in App Router are Server Components unless you add `"use client"`.
 
 **Server Components:**
+
 ```typescript
 // app/components/MenuSection.tsx
 // This is a Server Component (default)
@@ -159,6 +166,7 @@ export default MenuSection
 ```
 
 **Client Components:**
+
 ```typescript
 // app/components/ContactForm.tsx
 "use client" // Needed for interactivity
@@ -180,6 +188,7 @@ export default function ContactForm() {
 ```
 
 **Golden Rule:**
+
 - Keep most UI as Server Components
 - Only use `"use client"` when you need:
   - useState, useEffect, other React hooks
@@ -191,6 +200,7 @@ export default function ContactForm() {
 Next.js `<Image>` component is critical for food photography websites.
 
 **Features:**
+
 - Automatic format optimization (WebP, AVIF)
 - Lazy loading by default
 - Responsive images
@@ -198,6 +208,7 @@ Next.js `<Image>` component is critical for food photography websites.
 - Prevents layout shift
 
 **Example:**
+
 ```typescript
 import Image from 'next/image'
 
@@ -220,6 +231,7 @@ export default function HeroSection() {
 ```
 
 **Best Practices:**
+
 - Use `priority` on hero images
 - Use `loading="lazy"` (default) for below-fold images
 - Optimize source images before upload (max 3000px width)
@@ -230,6 +242,7 @@ export default function HeroSection() {
 Next.js 15 provides excellent SEO capabilities through the Metadata API.
 
 **Static Metadata:**
+
 ```typescript
 // app/layout.tsx
 import { Metadata } from 'next'
@@ -237,9 +250,10 @@ import { Metadata } from 'next'
 export const metadata: Metadata = {
   title: {
     default: 'Premium North Indian Catering | Delhi NCR',
-    template: '%s | Your Brand Name'
+    template: '%s | Your Brand Name',
   },
-  description: 'Authentic North Indian catering services for weddings, corporate events, and private celebrations in Delhi NCR',
+  description:
+    'Authentic North Indian catering services for weddings, corporate events, and private celebrations in Delhi NCR',
   keywords: ['catering Delhi', 'North Indian catering', 'wedding catering', 'corporate catering'],
   openGraph: {
     title: 'Premium North Indian Catering',
@@ -250,13 +264,16 @@ export const metadata: Metadata = {
 ```
 
 **Dynamic Metadata:**
+
 ```typescript
 // app/services/[slug]/page.tsx
 import { Metadata } from 'next'
 
-export async function generateMetadata(
-  { params }: { params: { slug: string } }
-): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string }
+}): Promise<Metadata> {
   const service = await getService(params.slug)
 
   return {
@@ -274,6 +291,7 @@ export async function generateMetadata(
 Next.js 15 offers flexible rendering options:
 
 **Static Generation (SSG) - Default & Recommended:**
+
 ```typescript
 // app/about/page.tsx
 // Automatically static when no dynamic data
@@ -284,6 +302,7 @@ export default function AboutPage() {
 ```
 
 **Server-Side Rendering (SSR):**
+
 ```typescript
 // app/dashboard/page.tsx
 export const dynamic = 'force-dynamic' // Force SSR
@@ -295,6 +314,7 @@ export default async function Dashboard() {
 ```
 
 **Incremental Static Regeneration (ISR):**
+
 ```typescript
 // app/blog/[slug]/page.tsx
 export const revalidate = 3600 // Revalidate every hour
@@ -359,6 +379,7 @@ async function MenuList() {
 ### Why Payload CMS?
 
 **Key Advantages:**
+
 1. **Code-First:** Define everything in TypeScript
 2. **Next.js Native:** Installs directly into your Next.js app
 3. **Local API:** Query database directly without HTTP requests
@@ -380,6 +401,7 @@ npm install payload @payloadcms/next @payloadcms/richtext-lexical sharp graphql 
 Collections are groups of documents (like posts, menus, services).
 
 **Example Collection:**
+
 ```typescript
 // payload/collections/MenuItems.ts
 import { CollectionConfig } from 'payload/types'
@@ -625,6 +647,7 @@ export default async function FeaturedMenus() {
 ```
 
 **REST API Alternative:**
+
 ```typescript
 // For client components or external apps
 const response = await fetch('https://yoursite.com/api/menu-items')
@@ -744,6 +767,7 @@ RAZORPAY_KEY_SECRET=xxx
 ```
 
 **Accessing in Code:**
+
 ```typescript
 // Server-side (safe)
 const dbUri = process.env.DATABASE_URI
@@ -781,6 +805,7 @@ Vercel auto-detects Next.js. Override if needed:
 #### **Preview Deployments**
 
 Every pull request gets a unique URL:
+
 ```
 https://catering-website-git-feature-menu-yourusername.vercel.app
 ```
@@ -827,10 +852,12 @@ export default function RootLayout({ children }) {
 Vercel automatically optimizes images via Next.js Image component.
 
 **Limits on Free Plan:**
+
 - 1,000 source images optimized per month
 - 1GB bandwidth
 
 **For high-traffic sites:**
+
 - Upgrade Vercel plan
 - Or use external service (Cloudinary, Vercel Blob)
 
@@ -843,22 +870,26 @@ Vercel automatically optimizes images via Next.js Image component.
 #### **MongoDB (Document Database)**
 
 **Best For:**
+
 - Flexible, evolving schemas
 - Nested/embedded documents
 - Rapid development
 - Projects with dynamic fields
 
 **Pros:**
+
 - ✅ Closer match to Payload's data structure
 - ✅ One document per collection item (simple)
 - ✅ No migrations needed for schema changes
 - ✅ Great for localization (Hindi + English)
 
 **Cons:**
+
 - ❌ Less rigid data integrity
 - ❌ Not ideal for complex relational data
 
 **Setup:**
+
 ```bash
 # MongoDB Atlas (free tier available)
 1. Create account at mongodb.com/cloud/atlas
@@ -869,6 +900,7 @@ Vercel automatically optimizes images via Next.js Image component.
 ```
 
 **Connection:**
+
 ```typescript
 // payload.config.ts
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
@@ -885,23 +917,27 @@ export default buildConfig({
 #### **PostgreSQL (Relational Database)**
 
 **Best For:**
+
 - Structured, relational data
 - Projects requiring strict schemas
 - Complex queries and joins
 - Long-term data integrity
 
 **Pros:**
+
 - ✅ Strong ACID compliance
 - ✅ Excellent for complex queries
 - ✅ Better for reporting
 - ✅ Scales well for large datasets
 
 **Cons:**
+
 - ❌ Requires migrations
 - ❌ More complex setup with Payload
 - ❌ Less flexible for schema changes
 
 **Setup:**
+
 ```bash
 # Neon (PostgreSQL for Vercel)
 1. Go to neon.tech
@@ -910,6 +946,7 @@ export default buildConfig({
 ```
 
 **Connection:**
+
 ```typescript
 // payload.config.ts
 import { postgresAdapter } from '@payloadcms/db-postgres'
@@ -924,6 +961,7 @@ export default buildConfig({
 ```
 
 **Migrations:**
+
 ```bash
 # Generate migration after schema changes
 npm run payload migrate:create
@@ -935,12 +973,14 @@ npm run payload migrate
 ### **Recommendation for Catering Website:**
 
 **Use MongoDB** if:
+
 - You want rapid development
 - Schema might evolve
 - Localization is important (Hindi + English)
 - You prefer simpler setup
 
 **Use PostgreSQL** if:
+
 - You have strict data requirements
 - You need complex reporting
 - You're comfortable with migrations
@@ -1036,6 +1076,7 @@ catering-website/
 ### Key Files Explained
 
 #### **app/layout.tsx** (Root Layout)
+
 ```typescript
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
@@ -1064,6 +1105,7 @@ export default function RootLayout({
 ```
 
 #### **next.config.js**
+
 ```javascript
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -1093,6 +1135,7 @@ Vercel is serverless - files uploaded during runtime don't persist across deploy
 #### **1. Vercel Blob Storage (Recommended)**
 
 **Pros:**
+
 - ✅ Official Vercel solution
 - ✅ Zero configuration
 - ✅ Automatic optimization
@@ -1100,6 +1143,7 @@ Vercel is serverless - files uploaded during runtime don't persist across deploy
 - ✅ Simple pricing
 
 **Setup:**
+
 ```bash
 # Install
 npm install @payloadcms/storage-vercel-blob
@@ -1110,6 +1154,7 @@ vercel blob add
 ```
 
 **Configuration:**
+
 ```typescript
 // payload.config.ts
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
@@ -1128,6 +1173,7 @@ export default buildConfig({
 ```
 
 **Pricing:**
+
 - Free: 1GB storage, 100GB bandwidth
 - Pro: $20/month for more
 
@@ -1136,12 +1182,14 @@ export default buildConfig({
 #### **2. Cloudinary (Alternative)**
 
 **Pros:**
+
 - ✅ Generous free tier (25GB storage, 25GB bandwidth)
 - ✅ Powerful transformations
 - ✅ Great for food photography
 - ✅ Automatic format optimization
 
 **Setup:**
+
 ```bash
 npm install @payloadcms/plugin-cloud-storage cloudinary
 
@@ -1149,6 +1197,7 @@ npm install @payloadcms/plugin-cloud-storage cloudinary
 ```
 
 **Configuration:**
+
 ```typescript
 // payload.config.ts
 import { cloudinaryAdapter } from '@payloadcms/plugin-cloud-storage/cloudinary'
@@ -1187,6 +1236,7 @@ npm install @payloadcms/plugin-cloud-storage @aws-sdk/client-s3
 ### Image Optimization Best Practices
 
 **1. Source Images:**
+
 ```
 - Max width: 3000px
 - Format: JPEG for photos, PNG for graphics
@@ -1194,6 +1244,7 @@ npm install @payloadcms/plugin-cloud-storage @aws-sdk/client-s3
 ```
 
 **2. Next.js Image Component:**
+
 ```typescript
 import Image from 'next/image'
 
@@ -1211,11 +1262,13 @@ import Image from 'next/image'
 ```
 
 **3. Lazy Loading:**
+
 - Next.js does this automatically
 - Only images in viewport load initially
 - Crucial for gallery pages with many images
 
 **4. WebP/AVIF:**
+
 - Next.js automatically serves modern formats
 - Falls back to JPEG/PNG for older browsers
 - 25-35% smaller file sizes
@@ -1234,8 +1287,14 @@ import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Premium North Indian Catering | Delhi NCR',
-  description: 'Authentic tandoori, biryani, and Mughlai cuisine for weddings and corporate events in Delhi',
-  keywords: ['catering Delhi', 'North Indian catering', 'wedding catering', 'corporate catering NCR'],
+  description:
+    'Authentic tandoori, biryani, and Mughlai cuisine for weddings and corporate events in Delhi',
+  keywords: [
+    'catering Delhi',
+    'North Indian catering',
+    'wedding catering',
+    'corporate catering NCR',
+  ],
 
   openGraph: {
     title: 'Premium North Indian Catering',
@@ -1651,10 +1710,7 @@ export async function POST(req: Request) {
     await rateLimit()
     // Handle request
   } catch (error) {
-    return Response.json(
-      { error: 'Too many requests' },
-      { status: 429 }
-    )
+    return Response.json({ error: 'Too many requests' }, { status: 429 })
   }
 }
 ```
@@ -1695,10 +1751,7 @@ export async function POST(req: Request) {
   const result = contactFormSchema.safeParse(body)
 
   if (!result.success) {
-    return Response.json(
-      { error: 'Invalid input', details: result.error },
-      { status: 400 }
-    )
+    return Response.json({ error: 'Invalid input', details: result.error }, { status: 400 })
   }
 
   // Process valid data
@@ -1739,6 +1792,7 @@ import Image from 'next/image'
 ```
 
 **Image Checklist:**
+
 - ✅ All images through `<Image>` component
 - ✅ WebP/AVIF automatic conversion
 - ✅ Lazy loading (default)
@@ -1807,7 +1861,7 @@ const services = await payload.find({ collection: 'services' })
 for (const service of services.docs) {
   const images = await payload.find({
     collection: 'media',
-    where: { service: { equals: service.id } }
+    where: { service: { equals: service.id } },
   })
 }
 
@@ -1832,6 +1886,7 @@ export default async function ServicesPage() {
 ```
 
 **Different Caching Strategies:**
+
 ```typescript
 // Static (default)
 export const dynamic = 'force-static'
@@ -1914,12 +1969,14 @@ npm run dev
 ```
 
 **Access:**
+
 - Frontend: http://localhost:3000
 - Admin Panel: http://localhost:3000/admin
 
 ### Git Workflow
 
 **Branch Strategy:**
+
 ```bash
 main          # Production
 ├── develop   # Development
@@ -1927,6 +1984,7 @@ main          # Production
 ```
 
 **Feature Development:**
+
 ```bash
 # Create feature branch
 git checkout -b feature/wedding-packages
@@ -1947,10 +2005,7 @@ git push origin feature/wedding-packages
 ```json
 // .eslintrc.json
 {
-  "extends": [
-    "next/core-web-vitals",
-    "plugin:@typescript-eslint/recommended"
-  ],
+  "extends": ["next/core-web-vitals", "plugin:@typescript-eslint/recommended"],
   "rules": {
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/no-explicit-any": "warn"
@@ -1983,10 +2038,7 @@ npx husky install
 // package.json
 {
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ]
+    "*.{js,jsx,ts,tsx}": ["eslint --fix", "prettier --write"]
   }
 }
 ```
@@ -2039,6 +2091,7 @@ jobs:
 ### Deployment Checklist
 
 **Before First Deployment:**
+
 - [ ] Environment variables set in Vercel
 - [ ] Database created and accessible
 - [ ] Domain configured
@@ -2046,6 +2099,7 @@ jobs:
 - [ ] Error tracking configured (Sentry, etc.)
 
 **Before Each Deployment:**
+
 - [ ] All tests passing
 - [ ] Lint checks passing
 - [ ] Type checks passing
@@ -2054,6 +2108,7 @@ jobs:
 - [ ] Environment variables updated (if changed)
 
 **After Deployment:**
+
 - [ ] Smoke test critical paths
 - [ ] Check Vercel deployment logs
 - [ ] Verify images loading
@@ -2140,14 +2195,12 @@ jobs:
 **Problem:** Images show broken after deployment
 
 **Solution:**
+
 ```typescript
 // next.config.js
 module.exports = {
   images: {
-    domains: [
-      'your-blob-storage.vercel-storage.com',
-      'res.cloudinary.com',
-    ],
+    domains: ['your-blob-storage.vercel-storage.com', 'res.cloudinary.com'],
   },
 }
 ```
@@ -2157,6 +2210,7 @@ module.exports = {
 **Problem:** Works locally, fails on Vercel
 
 **Solutions:**
+
 1. Check environment variables in Vercel dashboard
 2. Ensure database is accessible from Vercel IPs
 3. Check build logs for specific error
@@ -2168,6 +2222,7 @@ module.exports = {
 **Problem:** Pages load slowly, especially in India
 
 **Solutions:**
+
 1. Optimize images (most common cause)
 2. Reduce JavaScript bundle size
 3. Enable ISR caching
@@ -2180,6 +2235,7 @@ module.exports = {
 **Problem:** /admin returns 404 or blank
 
 **Solutions:**
+
 1. Verify Payload config is correct
 2. Check admin route setup
 3. Ensure database connection works
@@ -2223,6 +2279,7 @@ This stack provides a modern, performant, and scalable foundation for your premi
 ✅ **Optimized** - Fast loading even on slower connections
 
 **Next Steps:**
+
 1. Set up development environment
 2. Configure Payload collections for catering content
 3. Build out pages using research from design docs
@@ -2232,10 +2289,10 @@ This stack provides a modern, performant, and scalable foundation for your premi
 
 ---
 
-*Document created: 2025-11-17*
-*Stack Version: Next.js 15, Payload CMS 3.0, Vercel*
-*Target: Production-ready catering website*
-*Version: 2.0 - Updated with Production Best Practices*
+_Document created: 2025-11-17_
+_Stack Version: Next.js 15, Payload CMS 3.0, Vercel_
+_Target: Production-ready catering website_
+_Version: 2.0 - Updated with Production Best Practices_
 
 ---
 
@@ -2266,6 +2323,7 @@ This stack provides a modern, performant, and scalable foundation for your premi
 Next.js 15 features Turbopack as the default bundler—no longer experimental—and is production-ready, already used by major companies.
 
 **Enable in Development:**
+
 ```json
 // package.json
 {
@@ -2278,6 +2336,7 @@ Next.js 15 features Turbopack as the default bundler—no longer experimental—
 ```
 
 **Benefits:**
+
 - Faster builds (up to 30% faster refresh times)
 - Rust-based tooling for better performance
 - Improved tree-shaking
@@ -2288,6 +2347,7 @@ Next.js 15 features Turbopack as the default bundler—no longer experimental—
 #### **2. Server vs Client Component Patterns**
 
 **When to Use Server Components:**
+
 - Fetching data from databases/APIs
 - Using API keys, tokens, secrets
 - Reducing JavaScript sent to browser
@@ -2295,6 +2355,7 @@ Next.js 15 features Turbopack as the default bundler—no longer experimental—
 - Static content rendering
 
 **When to Use Client Components:**
+
 - State and event handlers (onClick, onChange)
 - Lifecycle hooks (useEffect, useState)
 - Browser-only APIs (localStorage, window)
@@ -2302,6 +2363,7 @@ Next.js 15 features Turbopack as the default bundler—no longer experimental—
 - Interactive elements
 
 **Composing Pattern:**
+
 ```typescript
 // ✅ CORRECT: Pass Server Component as children to Client Component
 // layout.tsx (Server Component)
@@ -2332,6 +2394,7 @@ export default function ClientNav({ children }) {
 ```
 
 **❌ INCORRECT Pattern:**
+
 ```typescript
 // ClientComponent.tsx
 'use client'
@@ -2349,6 +2412,7 @@ export default function ClientComponent() {
 Next.js 15 has React 19 fully integrated with streaming capabilities.
 
 **Use the `use()` Hook:**
+
 ```typescript
 import { use } from 'react'
 
@@ -2370,24 +2434,28 @@ function Component() {
 **Before Deployment:**
 
 **Security:**
+
 - [ ] Environment variables in `.gitignore`
 - [ ] Only `NEXT_PUBLIC_` vars exposed to client
 - [ ] Content Security Policy configured
 - [ ] CORS properly set up
 
 **Performance:**
+
 - [ ] Run Lighthouse audit (90+ score)
 - [ ] Check Core Web Vitals (LCP, INP, CLS)
 - [ ] Enable caching where appropriate
 - [ ] Use ISR for semi-dynamic pages
 
 **SEO:**
+
 - [ ] Metadata on all pages
 - [ ] Sitemap generated
 - [ ] Robots.txt configured
 - [ ] Schema.org structured data
 
 **Example CSP Configuration:**
+
 ```typescript
 // next.config.js
 const securityHeaders = [
@@ -2401,20 +2469,22 @@ const securityHeaders = [
       media-src 'none';
       connect-src *;
       font-src 'self';
-    `.replace(/\s{2,}/g, ' ').trim()
+    `
+      .replace(/\s{2,}/g, ' ')
+      .trim(),
   },
   {
     key: 'X-Frame-Options',
-    value: 'DENY'
+    value: 'DENY',
   },
   {
     key: 'X-Content-Type-Options',
-    value: 'nosniff'
+    value: 'nosniff',
   },
   {
     key: 'Referrer-Policy',
-    value: 'strict-origin-when-cross-origin'
-  }
+    value: 'strict-origin-when-cross-origin',
+  },
 ]
 
 module.exports = {
@@ -2434,6 +2504,7 @@ module.exports = {
 #### **5. Rendering Strategies in Detail**
 
 **Static Site Generation (SSG):**
+
 ```typescript
 // Best for: Marketing pages, blogs, documentation
 // Builds at build time, served as static HTML
@@ -2445,6 +2516,7 @@ export default async function Page() {
 ```
 
 **Server-Side Rendering (SSR):**
+
 ```typescript
 // Best for: Dashboards, user-specific pages
 // Rendered on each request
@@ -2458,6 +2530,7 @@ export default async function UserDashboard() {
 ```
 
 **Incremental Static Regeneration (ISR):**
+
 ```typescript
 // Best for: Product pages, blogs with occasional updates
 // Combines benefits of SSG and SSR
@@ -2471,6 +2544,7 @@ export default async function ProductPage({ params }) {
 ```
 
 **Game Detail Pages Example:**
+
 ```typescript
 // Game detail pages use SSR for fresh data
 export const dynamic = 'force-dynamic'
@@ -2504,6 +2578,7 @@ Since you're using PostgreSQL, here are production-ready practices:
 **Solution: Use a Connection Pooler**
 
 **Option A: Neon (Recommended for Vercel)**
+
 ```typescript
 // lib/db.ts
 import { neon } from '@neondatabase/serverless'
@@ -2514,12 +2589,14 @@ export default sql
 ```
 
 **Option B: PgBouncer**
+
 ```bash
 # Connection string with pgBouncer
 DATABASE_URL="postgresql://user:pass@pgbouncer-host:6432/dbname?pgbouncer=true"
 ```
 
 **Prisma with Connection Pooling:**
+
 ```typescript
 // prisma/schema.prisma
 datasource db {
@@ -2533,6 +2610,7 @@ datasource db {
 ```
 
 **Connection Limits:**
+
 ```typescript
 // payload.config.ts
 import { postgresAdapter } from '@payloadcms/db-postgres'
@@ -2542,7 +2620,7 @@ export default buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URI,
       max: 20, // Maximum connections
-      min: 2,  // Minimum connections
+      min: 2, // Minimum connections
       idleTimeoutMillis: 30000,
       connectionTimeoutMillis: 2000,
     },
@@ -2557,6 +2635,7 @@ export default buildConfig({
 **Single Query Optimization Can Boost Performance by 100x**
 
 **Identify Slow Queries:**
+
 ```sql
 -- Enable query logging (in PostgreSQL config)
 log_min_duration_statement = 1000  -- Log queries > 1 second
@@ -2566,6 +2645,7 @@ EXPLAIN ANALYZE SELECT * FROM menu_items WHERE category = 'appetizers';
 ```
 
 **Create Indexes:**
+
 ```sql
 -- Index on frequently queried columns
 CREATE INDEX idx_menu_items_category ON menu_items(category);
@@ -2578,6 +2658,7 @@ CREATE INDEX idx_menu_items_search ON menu_items USING GIN(to_tsvector('english'
 ```
 
 **Payload CMS Migration Example:**
+
 ```typescript
 // migrations/2025-11-17-add-indexes.ts
 import { MigrateUpArgs, MigrateDownArgs } from '@payloadcms/db-postgres'
@@ -2601,6 +2682,7 @@ export async function down({ payload }: MigrateDownArgs): Promise<void> {
 ```
 
 **Best Practices:**
+
 - Create one index per unique query pattern
 - Index foreign keys
 - Index columns used in WHERE, ORDER BY, JOIN
@@ -2612,6 +2694,7 @@ export async function down({ payload }: MigrateDownArgs): Promise<void> {
 #### **3. Query Optimization**
 
 **Use EXPLAIN to Analyze:**
+
 ```typescript
 // In development, log query plans
 const result = await payload.db.drizzle.execute(`
@@ -2624,13 +2707,14 @@ console.log(result)
 ```
 
 **Optimize N+1 Queries:**
+
 ```typescript
 // ❌ BAD: N+1 queries
 const services = await payload.find({ collection: 'services' })
 for (const service of services.docs) {
   const images = await payload.find({
     collection: 'media',
-    where: { service: { equals: service.id } }
+    where: { service: { equals: service.id } },
   })
 }
 
@@ -2650,6 +2734,7 @@ const services = await payload.find({
 #### **1. Development vs Production**
 
 **Development:** Can use "db push" for rapid iteration
+
 ```bash
 # Automatically pushes schema changes (dev only)
 npm run payload db:push
@@ -2658,6 +2743,7 @@ npm run payload db:push
 **Production:** MUST use migrations
 
 **Why?**
+
 - Control and auditability of schema changes
 - Safer deployments
 - No uncontrolled schema drift
@@ -2686,6 +2772,7 @@ export default buildConfig({
 #### **3. Migration Workflow**
 
 **Create Migration:**
+
 ```bash
 npm run payload migrate:create
 ```
@@ -2695,6 +2782,7 @@ This creates a file like: `migrations/2025-11-17_143022_add_menu_categories.ts`
 **Run Migrations:**
 
 **Option A: In CI/CD Before Build**
+
 ```json
 // package.json
 {
@@ -2705,6 +2793,7 @@ This creates a file like: `migrations/2025-11-17_143022_add_menu_categories.ts`
 ```
 
 **Option B: At Runtime (Long-running servers)**
+
 ```typescript
 // payload.config.ts
 import * as migrations from './migrations'
@@ -2720,6 +2809,7 @@ export default buildConfig({
 ```
 
 **Best Practice: CI/CD Approach**
+
 - Ensures database is ready before deployment
 - Fails fast if migration has issues
 - No runtime performance impact
@@ -2766,6 +2856,7 @@ export default React.memo(function CustomField() {
 ```
 
 **Use Payload's Native Components:**
+
 ```typescript
 // Reuse Payload's UI components for consistency
 import { Button, Label } from '@payloadcms/ui'
@@ -2781,6 +2872,7 @@ export function CustomField() {
 ```
 
 **React Best Practices for Custom Components:**
+
 - Use memoization (`React.memo`, `useMemo`, `useCallback`)
 - Proper cleanup in `useEffect`
 - Lazy load heavy components
@@ -2872,6 +2964,7 @@ export default config
 #### **2. Class Organization**
 
 **Use Prettier Plugin for Auto-Sorting:**
+
 ```bash
 npm install -D prettier prettier-plugin-tailwindcss
 ```
@@ -2884,11 +2977,13 @@ npm install -D prettier prettier-plugin-tailwindcss
 ```
 
 **Before:**
+
 ```tsx
 <div className="text-white bg-saffron p-4 rounded-lg hover:bg-saffron-dark transition-colors">
 ```
 
 **After (Auto-sorted):**
+
 ```tsx
 <div className="rounded-lg bg-saffron p-4 text-white transition-colors hover:bg-saffron-dark">
 ```
@@ -2902,7 +2997,7 @@ npm install -D prettier prettier-plugin-tailwindcss
 ```css
 /* ✅ GOOD: For complex, reused patterns */
 .btn-primary {
-  @apply rounded-lg bg-saffron px-6 py-3 text-white transition-all hover:bg-saffron-dark hover:shadow-lg;
+  @apply bg-saffron hover:bg-saffron-dark rounded-lg px-6 py-3 text-white transition-all hover:shadow-lg;
 }
 
 /* ❌ AVOID: For simple, one-off styles */
@@ -2912,6 +3007,7 @@ npm install -D prettier prettier-plugin-tailwindcss
 ```
 
 **Better: Create React Components:**
+
 ```typescript
 // components/ui/Button.tsx
 import { cva, type VariantProps } from 'class-variance-authority'
@@ -2959,12 +3055,14 @@ export function Button({ className, variant, size, ...props }: ButtonProps) {
 Modern Tailwind (v3+) uses JIT by default—no manual purging needed.
 
 **How it Works:**
+
 - Generates only used classes
 - No "purge" step required
 - Smaller CSS bundles automatically
 - Faster build times
 
 **Verify Tree-Shaking:**
+
 ```bash
 npm run build
 
@@ -2985,7 +3083,7 @@ import plugin from 'tailwindcss/plugin'
 export default {
   // ... config
   plugins: [
-    plugin(function({ addUtilities, theme }) {
+    plugin(function ({ addUtilities, theme }) {
       addUtilities({
         '.text-balance': {
           'text-wrap': 'balance',
@@ -3000,10 +3098,9 @@ export default {
 ```
 
 **Usage:**
+
 ```tsx
-<h1 className="text-balance text-shadow-sm">
-  Premium North Indian Catering
-</h1>
+<h1 className="text-balance text-shadow-sm">Premium North Indian Catering</h1>
 ```
 
 ---
@@ -3015,6 +3112,7 @@ export default {
 #### **1. Edge Runtime**
 
 **When to Use Edge:**
+
 - Geographically distributed users
 - Low-latency requirements
 - Simple compute operations
@@ -3036,6 +3134,7 @@ export async function GET(request: Request) {
 ```
 
 **Limitations:**
+
 - No Node.js APIs (`fs`, `path`, `__dirname`)
 - Environment is closer to browser than Node.js
 - 4MB response limit
@@ -3064,9 +3163,7 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    '/((?!api|_next/static|_next/image|favicon.ico).*)',
-  ],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 }
 ```
 
@@ -3120,6 +3217,7 @@ export async function GET() {
 #### **5. Environment Variables Best Practices**
 
 **Dashboard Management:**
+
 ```
 1. Vercel Dashboard > Project > Settings > Environment Variables
 2. Add variables for Production, Preview, Development
@@ -3127,12 +3225,14 @@ export async function GET() {
 ```
 
 **Local Development:**
+
 ```bash
 # Pull env vars from Vercel
 vercel env pull .env.local
 ```
 
 **Naming Convention:**
+
 ```env
 # Good naming pattern
 DATABASE_URL=...
@@ -3148,6 +3248,7 @@ STORAGE_S3_REGION=...
 ```
 
 **Critical:**
+
 - NEVER commit `.env.local` to git
 - Use `NEXT_PUBLIC_` prefix only for client-exposed vars
 - Rotate secrets regularly
@@ -3165,8 +3266,8 @@ STORAGE_S3_REGION=...
 // tsconfig.json
 {
   "compilerOptions": {
-    "strict": true,  // Enable ALL strict checks
-    "noUncheckedIndexedAccess": true,  // Extra safety
+    "strict": true, // Enable ALL strict checks
+    "noUncheckedIndexedAccess": true, // Extra safety
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
@@ -3219,7 +3320,7 @@ function processData<T extends { value: string }>(data: T) {
 // next.config.ts
 const config = {
   experimental: {
-    typedRoutes: true,  // Enable typed routes
+    typedRoutes: true, // Enable typed routes
   },
 }
 
@@ -3227,6 +3328,7 @@ export default config
 ```
 
 **Usage:**
+
 ```typescript
 import Link from 'next/link'
 
@@ -3272,7 +3374,7 @@ export default env
 
 // Usage:
 import env from '@/lib/env'
-const db = connectDB(env.DATABASE_URI)  // ✅ Type-safe!
+const db = connectDB(env.DATABASE_URI) // ✅ Type-safe!
 ```
 
 ---
@@ -3280,6 +3382,7 @@ const db = connectDB(env.DATABASE_URI)  // ✅ Type-safe!
 #### **5. Modern TypeScript Patterns**
 
 **`satisfies` Operator:**
+
 ```typescript
 // Enforce type constraints while maintaining flexibility
 const config = {
@@ -3290,15 +3393,16 @@ const config = {
   spacing: {
     small: 8,
     medium: 16,
-  }
+  },
 } satisfies Record<string, Record<string, string | number>>
 
 // TypeScript knows exact types
-config.colors.primary  // string
-config.spacing.small   // number
+config.colors.primary // string
+config.spacing.small // number
 ```
 
 **Template Literal Types:**
+
 ```typescript
 type EventType = 'wedding' | 'corporate' | 'private'
 type EventStatus = 'pending' | 'confirmed' | 'completed'
@@ -3307,8 +3411,8 @@ type EventStatus = 'pending' | 'confirmed' | 'completed'
 type EventKey = `${EventType}_${EventStatus}`
 // Results in: "wedding_pending" | "wedding_confirmed" | "wedding_completed" | ...
 
-const event: EventKey = 'wedding_confirmed'  // ✅
-const invalid: EventKey = 'invalid_status'   // ❌ Error
+const event: EventKey = 'wedding_confirmed' // ✅
+const invalid: EventKey = 'invalid_status' // ❌ Error
 ```
 
 ---
@@ -3467,6 +3571,7 @@ test.describe('Contact Form', () => {
 #### **3. Testing Best Practices**
 
 **Run Tests in CI:**
+
 ```yaml
 # .github/workflows/test.yml
 name: Tests
@@ -3493,6 +3598,7 @@ jobs:
 ```
 
 **Test Organization:**
+
 ```
 project/
 ├── __tests__/           # Unit tests
@@ -3514,6 +3620,7 @@ project/
 #### **1. Server Actions (Built-in Protection)**
 
 Server Actions have built-in CSRF protection:
+
 - Same-Site cookies by default
 - Origin header checked against Host header
 
@@ -3604,6 +3711,7 @@ export async function requireAuth() {
 ```
 
 **Use in Server Components:**
+
 ```typescript
 export default async function Dashboard() {
   const user = await requireAuth()
@@ -3648,6 +3756,7 @@ export default function Error({
 ```
 
 **Global Error Handler:**
+
 ```typescript
 // app/global-error.tsx
 'use client'
@@ -3755,13 +3864,9 @@ export async function POST(request: Request) {
     await sendEmail(result.data)
 
     return NextResponse.json({ success: true })
-
   } catch (error) {
     console.error('Contact form error:', error)
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    )
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }
 ```
@@ -3799,5 +3904,5 @@ export async function POST(request: Request) {
 
 ---
 
-*Updated: 2025-11-17*
-*Version: 2.0 - Production Best Practices Added*
+_Updated: 2025-11-17_
+_Version: 2.0 - Production Best Practices Added_

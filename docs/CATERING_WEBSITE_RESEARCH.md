@@ -6,6 +6,7 @@
 ---
 
 ## Table of Contents
+
 1. [Executive Summary](#executive-summary)
 2. [Design Philosophy](#design-philosophy)
 3. [Color Schemes - Deep Dive](#color-schemes---deep-dive)
@@ -23,6 +24,7 @@
 Premium minimalist food catering websites balance sophistication with simplicity. The key is to let high-quality photography shine while maintaining clean layouts, strategic use of white space, and carefully curated color palettes that convey luxury without overwhelming the visitor.
 
 **Core Principles:**
+
 - Minimalism with purpose - every element serves a function
 - Professional photography as the hero element
 - Strategic use of white space to create luxury feel
@@ -39,6 +41,7 @@ Premium minimalist food catering websites balance sophistication with simplicity
 **Definition:** Break things down to the barest elements necessary for the design to function. Nothing can be removed without interfering with the purpose.
 
 **Key Principles:**
+
 - **Four Determining Factors:** Visuals, focus, typography, and space
 - **Essential Elements Only:** If it doesn't serve a purpose, remove it
 - **Functional Minimalism:** Every design choice must enhance the user experience
@@ -47,6 +50,7 @@ Premium minimalist food catering websites balance sophistication with simplicity
 ### 2. White Space Philosophy
 
 **Why White Space Matters:**
+
 - Negative space is as important as content itself
 - Enhances users' focus on displayed content
 - Creates a luxurious, breathable feel
@@ -54,6 +58,7 @@ Premium minimalist food catering websites balance sophistication with simplicity
 - Signals premium quality and sophistication
 
 **Implementation:**
+
 - Generous margins around all elements
 - Space between sections (minimum 80-120px)
 - Breathing room around text blocks
@@ -62,6 +67,7 @@ Premium minimalist food catering websites balance sophistication with simplicity
 ### 3. Visual Hierarchy
 
 **Priority Order:**
+
 1. **Hero Image/Video** - First impression, largest visual element
 2. **Primary Headline** - Value proposition, what you offer
 3. **Call-to-Action** - Clear next step for visitors
@@ -79,6 +85,7 @@ Colors play a crucial psychological role in luxury food branding. The right pale
 #### Core Luxury Colors & Their Psychology
 
 **BLACK**
+
 - **Psychological Impact:** Luxury, premium quality, sophistication, power, elegance, formality
 - **Usage in Food Industry:** Suggests high-end quality, creates chic ambiance
 - **Best Applications:** Backgrounds, typography, accent elements
@@ -86,6 +93,7 @@ Colors play a crucial psychological role in luxury food branding. The right pale
 - **Examples:** Upscale restaurants, gourmet food brands
 
 **GOLD**
+
 - **Psychological Impact:** Prestige, exclusivity, opulence, wealth, celebration
 - **Usage:** Enhances premium feel, suggests luxury and special occasions
 - **Best Applications:** Accents, borders, icons, metallic overlays on photos
@@ -93,6 +101,7 @@ Colors play a crucial psychological role in luxury food branding. The right pale
 - **Examples:** High-end catering, wedding services, corporate events
 
 **WHITE & CREAM**
+
 - **Psychological Impact:** Purity, simplicity, elegance, cleanliness, minimalism
 - **Usage:** Creates breathing room, signals sophistication through simplicity
 - **Best Applications:** Backgrounds, negative space, text on dark backgrounds
@@ -100,6 +109,7 @@ Colors play a crucial psychological role in luxury food branding. The right pale
 - **Benefits:** Allows food photography to shine, creates gallery-like feel
 
 **PURPLE & DEEP PLUM**
+
 - **Psychological Impact:** Royalty, nobility, luxury, sophistication, mystery
 - **Historical Context:** Historically difficult to produce, associated with royalty
 - **Usage:** Use sparingly as accent color for maximum impact
@@ -107,18 +117,21 @@ Colors play a crucial psychological role in luxury food branding. The right pale
 - **Caution:** Can suppress appetite if overused - use strategically
 
 **DEEP NAVY BLUE**
+
 - **Psychological Impact:** Trust, stability, sophistication, professionalism
 - **Usage:** Creates sense of reliability and high-end positioning
 - **Best Applications:** Backgrounds, text, section dividers
 - **Combinations:** Pairs with gold, cream, white for nautical luxury feel
 
 **BURGUNDY & DEEP RED**
+
 - **Psychological Impact:** Richness, warmth, appetite stimulation, passion
 - **Usage:** Appetite enhancer while maintaining sophistication
 - **Best Applications:** Accent color, CTAs, featured elements
 - **Caution:** Use deep, muted tones rather than bright red for luxury feel
 
 **EARTHY NEUTRALS** (Beige, Taupe, Warm Grays)
+
 - **Psychological Impact:** Natural, organic, warmth, reliability, calm
 - **Usage:** Farm-to-table, organic, sustainable catering services
 - **Best Applications:** Backgrounds, supporting elements
@@ -131,6 +144,7 @@ Colors play a crucial psychological role in luxury food branding. The right pale
 #### 1. **Classic Luxury - Black, White & Gold**
 
 **Palette:**
+
 ```
 Primary Background: #FFFFFF (Pure White)
 Secondary Background: #161B2F (Charcoal Black)
@@ -140,6 +154,7 @@ Text Dark: #080808 (Near Black)
 ```
 
 **Characteristics:**
+
 - Timeless elegance
 - High contrast creates drama
 - Gold accents add opulence
@@ -148,6 +163,7 @@ Text Dark: #080808 (Near Black)
 **Psychology:** Signals exclusivity, premium quality, formal elegance
 
 **Usage Recommendations:**
+
 - White backgrounds for main content areas
 - Black for hero sections, headers, footers
 - Gold for buttons, icons, accents, borders
@@ -158,6 +174,7 @@ Text Dark: #080808 (Near Black)
 #### 2. **Champagne Elegance - Cream, Beige & Gold**
 
 **Palette:**
+
 ```
 Primary: #F7E6CA (Champagne)
 Secondary: #FFFDD0 (Cream)
@@ -167,6 +184,7 @@ Dark Contrast: #422941 (Deep Plum)
 ```
 
 **Characteristics:**
+
 - Warm and inviting
 - Sophisticated without being stark
 - Romantic and celebratory
@@ -175,6 +193,7 @@ Dark Contrast: #422941 (Deep Plum)
 **Psychology:** Warmth, luxury, celebration, intimacy
 
 **Usage Recommendations:**
+
 - Champagne/cream as primary backgrounds
 - Muted gold for accents and highlights
 - Deep plum for text and contrast elements
@@ -185,6 +204,7 @@ Dark Contrast: #422941 (Deep Plum)
 #### 3. **Modern Minimalist - Monochromatic Grays**
 
 **Palette:**
+
 ```
 Lightest: #F0EFEE (Off-White)
 Light Gray: #D4CDCB (Light Stone)
@@ -194,6 +214,7 @@ Darkest: #17181F (Charcoal)
 ```
 
 **Characteristics:**
+
 - Clean, contemporary aesthetic
 - Sophisticated gradations
 - Highly versatile
@@ -202,6 +223,7 @@ Darkest: #17181F (Charcoal)
 **Psychology:** Modernity, sophistication, professionalism, timelessness
 
 **Usage Recommendations:**
+
 - Create depth through subtle gray gradations
 - Excellent for showcasing vibrant food photography
 - Use darker grays for text and important elements
@@ -212,6 +234,7 @@ Darkest: #17181F (Charcoal)
 #### 4. **Burgundy & Ivory Luxury**
 
 **Palette:**
+
 ```
 Primary Light: #FFFCFC (Ivory)
 Secondary Light: #BCABB0 (Dusty Rose)
@@ -221,6 +244,7 @@ Dark: #080808 (Black)
 ```
 
 **Characteristics:**
+
 - Rich and exclusive
 - Creates atmosphere of luxury
 - Warm but sophisticated
@@ -229,6 +253,7 @@ Dark: #080808 (Black)
 **Psychology:** Exclusivity, richness, warmth, premium quality
 
 **Usage Recommendations:**
+
 - Ivory backgrounds for elegance
 - Burgundy for CTAs, important elements
 - Excellent for wine-focused catering
@@ -239,6 +264,7 @@ Dark: #080808 (Black)
 #### 5. **Earthy Organic - Natural Neutrals**
 
 **Palette:**
+
 ```
 Base: #FFFEF9 (Warm White)
 Light Earth: #E8D6B2 (Wheat)
@@ -248,6 +274,7 @@ Dark: #3D3026 (Deep Brown)
 ```
 
 **Characteristics:**
+
 - Natural, authentic feel
 - Conveys sustainability
 - Warm and welcoming
@@ -256,6 +283,7 @@ Dark: #3D3026 (Deep Brown)
 **Psychology:** Nature, authenticity, sustainability, wholesome quality
 
 **Usage Recommendations:**
+
 - Warm backgrounds for inviting feel
 - Olive green for fresh produce emphasis
 - Deep brown for grounding elements
@@ -266,6 +294,7 @@ Dark: #3D3026 (Deep Brown)
 #### 6. **Navy & Gold Prestige**
 
 **Palette:**
+
 ```
 Deep Navy: #073A3A (Teal Navy)
 Medium Navy: #1B3B5F (Classic Navy)
@@ -275,6 +304,7 @@ Light Accent: #E6D4AA (Light Gold)
 ```
 
 **Characteristics:**
+
 - Nautical luxury
 - Strong, professional presence
 - Versatile and timeless
@@ -283,6 +313,7 @@ Light Accent: #E6D4AA (Light Gold)
 **Psychology:** Trust, professionalism, prestige, stability
 
 **Usage Recommendations:**
+
 - Navy for headers, hero sections
 - Off-white for content backgrounds
 - Gold for CTAs, highlights
@@ -293,6 +324,7 @@ Light Accent: #E6D4AA (Light Gold)
 #### 7. **Blush & Charcoal Sophistication**
 
 **Palette:**
+
 ```
 Light Base: #F0EFEE (Soft White)
 Blush: #EFD0D0 (Blush Pink)
@@ -302,6 +334,7 @@ Charcoal: #091E1D (Almost Black)
 ```
 
 **Characteristics:**
+
 - Bold yet sophisticated
 - High contrast for impact
 - Modern and fresh
@@ -310,6 +343,7 @@ Charcoal: #091E1D (Almost Black)
 **Psychology:** Modern luxury, creative confidence, sophistication
 
 **Usage Recommendations:**
+
 - Blush for soft, approachable sections
 - Deep teal/burgundy for dramatic contrast
 - Charcoal for text and grounding
@@ -320,6 +354,7 @@ Charcoal: #091E1D (Almost Black)
 #### 8. **Lilac & Copper Luxury**
 
 **Palette:**
+
 ```
 Base: #F3F1EB (Warm Off-White)
 Soft Accent: #E5D6E5 (Soft Lilac)
@@ -329,6 +364,7 @@ Deep Accent: #422941 (Deep Plum)
 ```
 
 **Characteristics:**
+
 - Unique and memorable
 - Soft yet luxurious
 - Perfect for creating distinctive brand identity
@@ -337,6 +373,7 @@ Deep Accent: #422941 (Deep Plum)
 **Psychology:** Creativity, luxury, uniqueness, refinement
 
 **Usage Recommendations:**
+
 - Off-white base for elegance
 - Lilac for distinctive branding elements
 - Copper for metallic luxury touches
@@ -349,33 +386,39 @@ Deep Accent: #422941 (Deep Plum)
 #### WCAG 2025 Standards
 
 **Level AA (Standard):**
+
 - Normal Text: 4.5:1 contrast ratio minimum
 - Large Text (18pt+): 3:1 contrast ratio minimum
 - Essential for most users
 
 **Level AAA (Enhanced):**
+
 - Normal Text: 7:1 contrast ratio minimum
 - Large Text: 4.5:1 contrast ratio minimum
 - Highest readability for users with visual impairments
 
 **Important Statistics:**
+
 - 83.6% of websites fail color contrast accessibility (WebAIM 2024)
 - Color contrast is the #1 web accessibility violation
 
 #### Accessible Color Combinations
 
 **High Contrast Luxury Pairings:**
+
 1. **Navy (#1B3B5F) on White (#FFFFFF)** - 12.6:1 ratio ✓ AAA
 2. **Charcoal (#17181F) on Cream (#FFFDD0)** - 15.2:1 ratio ✓ AAA
 3. **Deep Burgundy (#5D1B34) on Off-White (#F0EFEE)** - 10.8:1 ratio ✓ AAA
 4. **Black (#080808) on Champagne (#F7E6CA)** - 16.5:1 ratio ✓ AAA
 
 **Caution Areas:**
+
 - Gold text on white backgrounds (often fails AA)
 - Light gray text on white (common failure)
 - Purple/Plum on dark backgrounds (check carefully)
 
 **Tools for Checking:**
+
 - WebAIM Contrast Checker
 - Color Safe (colorsafe.co)
 - Adobe Color Accessibility Tools
@@ -404,18 +447,21 @@ Deep Accent: #422941 (Deep Plum)
 ### Color Application Strategy
 
 #### Primary Colors (60% of design)
+
 - Main background colors
 - Large sections and content areas
 - Should be neutral or very light
 - Examples: White, cream, light gray
 
 #### Secondary Colors (30% of design)
+
 - Supporting backgrounds
 - Section dividers
 - Alternate content areas
 - Examples: Light neutrals, soft accents
 
 #### Accent Colors (10% of design)
+
 - CTAs and buttons
 - Important highlights
 - Interactive elements
@@ -426,24 +472,28 @@ Deep Accent: #422941 (Deep Plum)
 ### Seasonal & Occasion-Based Color Variations
 
 #### Spring/Summer Events
+
 - Lighter, brighter variations
 - More whites, creams, soft pastels
 - Fresh green accents
 - Conveys freshness, renewal
 
 #### Fall/Winter Events
+
 - Deeper, richer tones
 - Burgundy, deep navy, forest green
 - Warmer metallics (copper, bronze)
 - Conveys warmth, comfort, indulgence
 
 #### Corporate Events
+
 - Professional blues and grays
 - Subtle metallics
 - Conservative, trustworthy palette
 - Conveys professionalism, reliability
 
 #### Weddings & Celebrations
+
 - Romantic soft tones
 - Champagne, blush, soft gold
 - Elegant and celebratory
@@ -456,23 +506,27 @@ Deep Accent: #422941 (Deep Plum)
 ### Font Selection Strategy
 
 **Serif Fonts** (Headlines, Luxury Feel)
+
 - Convey tradition and sophistication
 - Perfect for gourmet catering brands
 - Clean, elegant typefaces with finesse
 - Avoid overly decorative fonts
 
 **Popular Luxury Serif Fonts:**
+
 - **Cinzel** - Sophisticated, perfect for menus (Cinzel Bold for headings, Cinzel Black for emphasis)
 - **Playfair Display** - Elegant, high-fashion feel
 - **Cormorant Garamond** - Classic, refined
 - **Baskerville** - Timeless, professional
 
 **Sans-Serif Fonts** (Body Text, Modern Feel)
+
 - Clean, readable, contemporary
 - Excellent for descriptions and body content
 - Pairs well with serif headlines
 
 **Popular Premium Sans-Serif Fonts:**
+
 - **Raleway** - Clean, elegant (perfect pairing with Cinzel)
 - **Montserrat** - Modern, versatile, professional
 - **Futura** - Geometric, sophisticated
@@ -482,21 +536,25 @@ Deep Accent: #422941 (Deep Plum)
 ### Recommended Font Pairings
 
 **1. Cinzel + Raleway** (Classic Luxury)
+
 - Headers: Cinzel Bold/Black
 - Body: Raleway Regular
 - Perfect for: Fine dining menus, upscale events
 
 **2. Playfair Display + Montserrat** (Editorial Elegance)
+
 - Headers: Playfair Display Bold
 - Body: Montserrat Regular/Light
 - Perfect for: Wedding catering, boutique services
 
 **3. Cormorant Garamond + Lato** (Warm Sophistication)
+
 - Headers: Cormorant Garamond Bold
 - Body: Lato Regular
 - Perfect for: Family-style catering, warm brand personality
 
 **4. Futura + Nunito** (Modern Minimalist)
+
 - Headers: Futura Bold
 - Body: Nunito Regular
 - Perfect for: Contemporary, urban catering brands
@@ -504,29 +562,34 @@ Deep Accent: #422941 (Deep Plum)
 ### Typography Hierarchy
 
 **H1 - Main Headlines**
+
 - Size: 48-72px desktop, 32-48px mobile
 - Weight: Bold or Black
 - Line Height: 1.2
 - Letter Spacing: -1 to -2%
 
 **H2 - Section Headers**
+
 - Size: 36-48px desktop, 28-36px mobile
 - Weight: Bold
 - Line Height: 1.3
 - Letter Spacing: -0.5 to -1%
 
 **H3 - Subsection Headers**
+
 - Size: 24-32px desktop, 20-24px mobile
 - Weight: Semibold/Bold
 - Line Height: 1.4
 
 **Body Text**
+
 - Size: 16-18px (minimum 16px for accessibility)
 - Weight: Regular
 - Line Height: 1.6-1.8 (crucial for readability)
 - Letter Spacing: Normal
 
 **Small Text** (Captions, Fine Print)
+
 - Size: 14px minimum
 - Weight: Regular or Light
 - Use sparingly
@@ -534,12 +597,14 @@ Deep Accent: #422941 (Deep Plum)
 ### 2025 Typography Trends
 
 **Variable Fonts:**
+
 - Revolutionary for responsive design
 - Adjust weight, width within single font file
 - Better performance, more design flexibility
 - Allows smooth transitions and animations
 
 **Best Practices:**
+
 - Maximum 2 font families per site
 - Establish clear hierarchy
 - Maintain consistent spacing
@@ -553,35 +618,41 @@ Deep Accent: #422941 (Deep Plum)
 ### Photography Guidelines
 
 **Critical Importance:**
+
 > "The key to a good food website is photography. A good food website design doesn't need to be ornamental—it can be simple and straightforward to let the food photography shine."
 
 **Essential Photography Elements:**
 
 **1. Professional Quality**
+
 - High-resolution images (minimum 1920px width for hero images)
 - Professional photographer recommended
 - Proper lighting (natural or studio)
 - No blurry iPhone shots or amateur compositions
 
 **2. Food Photography Specifics**
+
 - Capture texture, color, freshness in close-ups
 - Showcase individual dishes at their most appetizing
 - High-definition detail work
 - Proper food styling
 
 **3. Event & Table Setting Photography**
+
 - Elegant table arrangements
 - Full event setups
 - Ambient shots showing atmosphere
 - People enjoying events (but keep minimal for minimalist aesthetic)
 
 **4. Lifestyle & Context Shots**
+
 - Real events you've catered
 - Happy clients (with permission)
 - Behind-the-scenes preparation (selective use)
 - Team in action (builds trust)
 
 **Photography Style for Minimalist Design:**
+
 - Clean compositions
 - Minimal props
 - Focus on the food/event
@@ -592,18 +663,21 @@ Deep Accent: #422941 (Deep Plum)
 ### Image Layout Patterns
 
 **Hero Section:**
+
 - Full-width, high-impact image or video
 - Minimum 1920x1080px (desktop)
 - Focus on your signature dish or stunning event
 - Subtle overlay for text readability (if needed)
 
 **Gallery Layouts:**
+
 - **Masonry Grid** - Pinterest-style, dynamic
 - **Classic Grid** - 3-4 columns, uniform size
 - **Featured + Grid** - One large image + smaller grid items
 - **Slider/Carousel** - For sequential storytelling
 
 **Content Section Images:**
+
 - Side-by-side text and image
 - Alternating layout (image left, then right)
 - Generous white space around images
@@ -612,12 +686,14 @@ Deep Accent: #422941 (Deep Plum)
 ### Video Content
 
 **Hero Video:**
+
 - 10-20 seconds looping background video
 - Silent or subtle audio option
 - Shows kitchen action, plating, or event ambiance
 - Mobile optimization crucial
 
 **Testimonial Videos:**
+
 - Short client testimonials (30-60 seconds)
 - Professional quality or authentic smartphone (depending on brand)
 - Captions for accessibility
@@ -632,6 +708,7 @@ Deep Accent: #422941 (Deep Plum)
 #### 1. **Homepage**
 
 **Hero Section** (Above the Fold)
+
 - Eye-catching, high-quality hero image or video
 - Powerful headline conveying core value proposition
 - Sub-headline providing context (1-2 sentences)
@@ -639,34 +716,40 @@ Deep Accent: #422941 (Deep Plum)
 - Clean navigation bar (sticky recommended)
 
 **Example Headlines:**
+
 - "Elevated Cuisine for Life's Most Important Moments"
 - "Where Culinary Artistry Meets Impeccable Service"
 - "Bespoke Catering for Discerning Tastes"
 
 **Introduction Section**
+
 - Brief brand story (2-3 paragraphs)
 - What makes you different/premium
 - Your approach to catering
 - Supporting imagery
 
 **Featured Services**
+
 - 3-4 main service categories
 - Icon or image for each
 - Brief description
 - Link to detailed service pages
 
 **Social Proof Section**
+
 - Client testimonials (2-3 featured)
 - Star ratings/reviews
 - Client logos (if corporate)
 - "As Featured In" press mentions (if applicable)
 
 **Gallery Preview**
+
 - Curated selection of best work
 - Link to full portfolio/gallery
 - Showcases range and quality
 
 **Final CTA Section**
+
 - Compelling reason to contact
 - Secondary CTA
 - Contact information visible
@@ -676,24 +759,28 @@ Deep Accent: #422941 (Deep Plum)
 #### 2. **About Page**
 
 **Founder's Story**
+
 - Personal, authentic narrative
 - Why you started the business
 - Your philosophy and values
 - Professional photo of you/team
 
 **Team Section**
+
 - Chef credentials and background
 - Key team members
 - Professional headshots
 - Certifications and awards
 
 **Your Approach**
+
 - Quality standards
 - Sourcing practices
 - Preparation methods
 - What premium means to you
 
 **Credentials**
+
 - Professional certifications
 - Health and safety compliance
 - Awards and recognition
@@ -704,6 +791,7 @@ Deep Accent: #422941 (Deep Plum)
 #### 3. **Services/Menus**
 
 **Service Categories**
+
 - Wedding Catering
 - Corporate Events
 - Private Dining
@@ -711,6 +799,7 @@ Deep Accent: #422941 (Deep Plum)
 - Etc.
 
 **Menu Presentation**
+
 - High-quality photos for each category
 - Clear pricing packages (or "inquire for pricing")
 - Seasonal menu options
@@ -718,6 +807,7 @@ Deep Accent: #422941 (Deep Plum)
 - Customization options emphasized
 
 **Pricing Structure**
+
 - Transparent but elegant presentation
 - Package tiers (Good/Better/Best)
 - What's included in each
@@ -730,12 +820,14 @@ Deep Accent: #422941 (Deep Plum)
 #### 4. **Portfolio/Gallery**
 
 **Organization:**
+
 - Filter by event type
 - Grid or masonry layout
 - Lightbox viewing
 - Professional photography only
 
 **Content:**
+
 - Past events you've catered
 - Food close-ups
 - Table settings and decor
@@ -747,18 +839,21 @@ Deep Accent: #422941 (Deep Plum)
 #### 5. **Testimonials/Reviews**
 
 **Video Testimonials**
+
 - 3-5 featured clients
 - 30-60 seconds each
 - Professional editing
 - Captions for accessibility
 
 **Written Reviews**
+
 - Client name and event type
 - Quote highlighting key benefit
 - Photo from their event (if available)
 - Star ratings
 
 **Third-Party Reviews**
+
 - Link to Google Reviews, Yelp, etc.
 - Display aggregate ratings
 - Recent reviews highlighted
@@ -768,6 +863,7 @@ Deep Accent: #422941 (Deep Plum)
 #### 6. **Contact/Booking**
 
 **Inquiry Form**
+
 - Event date
 - Event type
 - Guest count estimate
@@ -778,11 +874,13 @@ Deep Accent: #422941 (Deep Plum)
 - Preferred contact method
 
 **Availability Calendar**
+
 - Shows your booked dates
 - Helps set expectations
 - Reduces back-and-forth
 
 **Contact Information**
+
 - Phone number (clickable on mobile)
 - Email address
 - Physical address (if applicable)
@@ -790,6 +888,7 @@ Deep Accent: #422941 (Deep Plum)
 - Expected response time
 
 **Map** (if applicable)
+
 - Your location or service area
 - Embedded Google Map
 
@@ -798,6 +897,7 @@ Deep Accent: #422941 (Deep Plum)
 #### 7. **FAQ Section**
 
 **Essential Questions:**
+
 - How far in advance should I book?
 - What's your minimum guest count?
 - Do you handle dietary restrictions?
@@ -810,6 +910,7 @@ Deep Accent: #422941 (Deep Plum)
 - How is pricing determined?
 
 **Benefits:**
+
 - Saves time for both parties
 - Addresses objections preemptively
 - Improves SEO with relevant keywords
@@ -820,6 +921,7 @@ Deep Accent: #422941 (Deep Plum)
 ### Navigation Structure
 
 **Primary Navigation** (Main Menu)
+
 - Home
 - About
 - Services/Menus
@@ -828,12 +930,14 @@ Deep Accent: #422941 (Deep Plum)
 - Contact
 
 **Keep it Simple:**
+
 - 5-7 items maximum
 - Clear, descriptive labels
 - Logical hierarchy
 - Sticky header for easy access
 
 **Mobile Navigation:**
+
 - Hamburger menu
 - Full-screen overlay or slide-out
 - Large touch targets
@@ -846,12 +950,14 @@ Deep Accent: #422941 (Deep Plum)
 ### Essential Features Checklist
 
 ✅ **Responsive, Mobile-Friendly Design**
+
 - Mobile-first approach
 - Touch-friendly buttons (minimum 44x44px)
 - Readable text on small screens
 - Optimized images for mobile
 
 ✅ **Fast Loading Times**
+
 - Optimized images (WebP format)
 - Lazy loading for images
 - Minimal JavaScript
@@ -859,24 +965,28 @@ Deep Accent: #422941 (Deep Plum)
 - Target: Under 3 seconds load time
 
 ✅ **Clear Navigation Structure**
+
 - Intuitive menu organization
 - Breadcrumbs for deeper pages
 - Sticky navigation
 - Clear current page indicator
 
 ✅ **Effective CTA Buttons**
+
 - Strategic placement throughout
 - High-contrast, visible design
 - Action-oriented text
 - Hover states for interactivity
 
 ✅ **Integrated Booking/Inquiry System**
+
 - Simple, short form
 - Clear required fields
 - Confirmation message
 - Auto-responder email
 
 ✅ **SEO Optimization**
+
 - Semantic HTML structure
 - Meta titles and descriptions
 - Alt text for all images
@@ -885,6 +995,7 @@ Deep Accent: #422941 (Deep Plum)
 - Mobile optimization
 
 ✅ **Accessibility**
+
 - WCAG 2.1 AA compliance minimum
 - Color contrast standards
 - Keyboard navigation
@@ -897,24 +1008,28 @@ Deep Accent: #422941 (Deep Plum)
 ### Layout Principles
 
 **White Space Management:**
+
 - Minimum 60-80px between major sections
 - Generous margins (10-15% on desktop)
 - Breathing room around all elements
 - Don't fear empty space—it signals luxury
 
 **Grid System:**
+
 - 12-column grid (standard)
 - Consistent gutters
 - Alignment to grid for visual harmony
 - Break grid intentionally for impact
 
 **Content Width:**
+
 - Max content width: 1200-1400px
 - Text content max: 700-800px for readability
 - Full-width sections for visual impact
 - Centered layout with margins
 
 **Vertical Rhythm:**
+
 - Consistent spacing scale (e.g., 8px base unit)
 - Multiples of base unit (8, 16, 24, 32, 48, 64, 96, 128px)
 - Creates visual harmony
@@ -925,6 +1040,7 @@ Deep Accent: #422941 (Deep Plum)
 ### User Experience (UX) Best Practices
 
 **Above the Fold:**
+
 - Clear value proposition
 - Compelling visual
 - Primary CTA
@@ -932,6 +1048,7 @@ Deep Accent: #422941 (Deep Plum)
 - All visible without scrolling
 
 **Conversion Optimization:**
+
 - Multiple CTAs throughout (every 2-3 scrolls)
 - Different CTA types (primary: "Book Now", secondary: "View Menus")
 - Remove friction from inquiry process
@@ -939,6 +1056,7 @@ Deep Accent: #422941 (Deep Plum)
 - Clear next steps
 
 **Trust Signals:**
+
 - Client testimonials throughout
 - Professional photography
 - Certifications and awards
@@ -947,6 +1065,7 @@ Deep Accent: #422941 (Deep Plum)
 - Real contact information
 
 **Accessibility:**
+
 - High color contrast
 - Resizable text
 - Keyboard navigation
@@ -959,6 +1078,7 @@ Deep Accent: #422941 (Deep Plum)
 ### Technical Considerations
 
 **Performance:**
+
 - Optimize all images (compression, modern formats)
 - Minimize HTTP requests
 - Use CSS instead of images where possible
@@ -967,6 +1087,7 @@ Deep Accent: #422941 (Deep Plum)
 - Enable browser caching
 
 **SEO Fundamentals:**
+
 - Keyword research for catering in your area
 - Local SEO optimization
 - Schema markup
@@ -976,6 +1097,7 @@ Deep Accent: #422941 (Deep Plum)
 - Internal linking
 
 **Analytics:**
+
 - Google Analytics setup
 - Track conversions (form submissions)
 - Monitor user behavior
@@ -989,26 +1111,31 @@ Deep Accent: #422941 (Deep Plum)
 ### Exemplary Premium Catering Websites
 
 **1. Abigail Kirsch**
+
 - **Strengths:** Sleek, minimalist design with large high-quality images
 - **Key Features:** Showcases event expertise, elegant layout
 - **Takeaway:** Let photography tell the story
 
 **2. The Little Wolf**
+
 - **Strengths:** Minimalist elements, exceptional imagery, bold typography
 - **Key Features:** Commitment to quality visible in design choices
 - **Takeaway:** Bold typography can create visual interest in minimal design
 
 **3. Très L.A. Group**
+
 - **Strengths:** Clean, elegant design with neutral palette
 - **Key Features:** Vibrant photography contrasts beautifully with neutrals
 - **Takeaway:** Neutral backgrounds make colorful food photos pop
 
 **4. Sterling Catering**
+
 - **Strengths:** Epitome of professionalism and luxury
 - **Key Features:** Sophisticated fonts, high-quality imagery
 - **Takeaway:** Typography choices significantly impact luxury perception
 
 **5. Proof of the Pudding**
+
 - **Strengths:** Modern, minimalist design
 - **Key Features:** Customizable menus showcased clearly
 - **Takeaway:** Complex information can be presented simply
@@ -1018,24 +1145,28 @@ Deep Accent: #422941 (Deep Plum)
 ### Design Inspiration from Food Industry Leaders
 
 **Graza**
+
 - Minimalist yet vibrant
 - Neutral colors with sleek typography
 - Funny animated graphics add personality
 - Modern feel without sacrificing clarity
 
 **Supernormal Greens**
+
 - Minimalist, easy-to-follow layout
 - Engaging animations enhance experience
 - Comprehensive messaging doesn't overwhelm
 - User journey is enjoyable and intuitive
 
 **Tala**
+
 - Clean, modern vibe
 - Minimalist color scheme
 - Focus on natural ingredients and sourcing visible
 - Community engagement highlighted
 
 **Joon Gourmet**
+
 - Minimalist elegance
 - Rich photography highlights artisanal quality
 - Balance of white space and visual interest
@@ -1046,11 +1177,13 @@ Deep Accent: #422941 (Deep Plum)
 ### Template Recommendations
 
 **Squarespace Templates:**
+
 - **Auburn** - Full-width food photography + elegant minimalist typography
 - **Hemlock** - Minimalist design keeps focus on menu and offerings
 - Other premium templates with catering focus
 
 **WordPress Themes:**
+
 - Look for themes with:
   - Portfolio/gallery focus
   - Restaurant/catering specific features
@@ -1064,6 +1197,7 @@ Deep Accent: #422941 (Deep Plum)
 ## Implementation Checklist
 
 ### Phase 1: Planning & Research ✓
+
 - [x] Research completed
 - [ ] Brand positioning defined
 - [ ] Target audience identified
@@ -1072,6 +1206,7 @@ Deep Accent: #422941 (Deep Plum)
 - [ ] Photography plan created
 
 ### Phase 2: Design
+
 - [ ] Color palette selected (from research above)
 - [ ] Typography pairing chosen
 - [ ] Wireframes created
@@ -1080,6 +1215,7 @@ Deep Accent: #422941 (Deep Plum)
 - [ ] Client approval on designs
 
 ### Phase 3: Content Creation
+
 - [ ] Professional photography commissioned
 - [ ] Menu content written
 - [ ] About/story content written
@@ -1089,6 +1225,7 @@ Deep Accent: #422941 (Deep Plum)
 - [ ] Video content produced (optional but recommended)
 
 ### Phase 4: Development
+
 - [ ] Development environment set up
 - [ ] Template/framework selected
 - [ ] Responsive layout coded
@@ -1100,6 +1237,7 @@ Deep Accent: #422941 (Deep Plum)
 - [ ] Accessibility testing
 
 ### Phase 5: Testing
+
 - [ ] Cross-browser testing
 - [ ] Mobile device testing
 - [ ] Load speed optimization
@@ -1110,6 +1248,7 @@ Deep Accent: #422941 (Deep Plum)
 - [ ] Final content review
 
 ### Phase 6: Launch
+
 - [ ] Domain configured
 - [ ] SSL certificate installed
 - [ ] Final backup created
@@ -1119,6 +1258,7 @@ Deep Accent: #422941 (Deep Plum)
 - [ ] Monitor analytics and forms
 
 ### Phase 7: Post-Launch
+
 - [ ] Regular content updates
 - [ ] Photo gallery updates with new events
 - [ ] Testimonials added regularly
@@ -1188,52 +1328,61 @@ Deep Accent: #422941 (Deep Plum)
 ### Design Don'ts:
 
 ❌ **Cluttered Layouts**
+
 - Too many elements competing for attention
 - Insufficient white space
 - Overwhelming the user
 
 ❌ **Too Many Colors or Fonts**
+
 - More than 3 colors (plus neutrals)
 - More than 2 font families
 - Inconsistent application
 
 ❌ **Low-Quality or Stock Photos**
+
 - Generic stock photography
 - Amateur, blurry images
 - Inconsistent image quality
 - Food that doesn't look appetizing
 
 ❌ **Overly Decorative Fonts**
+
 - Hard-to-read script fonts
 - Novelty fonts
 - All caps body text
 - Insufficient contrast
 
 ❌ **Complex Navigation**
+
 - Too many menu items
 - Unclear hierarchy
 - Hidden navigation
 - Confusing labels
 
 ❌ **Hidden Contact Information**
+
 - Burying contact details
 - Contact page only
 - No phone number visible
 - Unclear how to inquire
 
 ❌ **Slow Loading Times**
+
 - Unoptimized images
 - Too many scripts
 - Heavy animations
 - Poor hosting
 
 ❌ **Poor Mobile Experience**
+
 - Not responsive
 - Tiny text on mobile
 - Difficult navigation
 - Slow mobile load times
 
 ❌ **Accessibility Issues**
+
 - Poor color contrast
 - No alt text
 - Keyboard navigation broken
@@ -1244,39 +1393,46 @@ Deep Accent: #422941 (Deep Plum)
 ## Resources & Tools
 
 ### Design Tools
+
 - **Figma** - Design and prototyping
 - **Adobe XD** - UX/UI design
 - **Canva** - Quick graphics (use professionally)
 
 ### Color Tools
+
 - **Coolors.co** - Color palette generation
 - **Adobe Color** - Color wheel and palettes
 - **Color Safe** - Accessible color combinations
 - **WebAIM Contrast Checker** - Accessibility testing
 
 ### Typography Tools
+
 - **Google Fonts** - Free web fonts
 - **Font Pair** - Font combination suggestions
 - **Type Scale** - Typography sizing
 
 ### Image Optimization
+
 - **TinyPNG** - Image compression
 - **Squoosh** - Advanced image optimization
 - **ImageOptim** - Mac image optimizer
 
 ### Development
+
 - **WordPress** - CMS platform
 - **Squarespace** - All-in-one platform
 - **Webflow** - Visual development
 - **Netlify** - Hosting and deployment
 
 ### SEO & Analytics
+
 - **Google Analytics** - Traffic analysis
 - **Google Search Console** - SEO monitoring
 - **Yoast SEO** - WordPress SEO plugin
 - **Semrush** - Comprehensive SEO tool
 
 ### Accessibility
+
 - **WAVE** - Accessibility evaluation
 - **axe DevTools** - Accessibility testing
 - **Lighthouse** - Performance and accessibility audit
@@ -1288,6 +1444,7 @@ Deep Accent: #422941 (Deep Plum)
 Creating a premium minimalist food catering website is about balance—balancing sophistication with simplicity, visual appeal with functionality, and brand personality with user needs.
 
 **Remember:**
+
 - Less is more, but every element must earn its place
 - Quality over quantity in all aspects
 - Let your food and events speak through exceptional photography
@@ -1302,6 +1459,7 @@ The goal is to create an online experience that mirrors the premium, thoughtful 
 ---
 
 **Next Steps:**
+
 1. Select your color palette from the options researched
 2. Choose your typography pairing
 3. Commission professional photography if needed
@@ -1312,6 +1470,6 @@ Good luck with your premium catering website! 🍽️✨
 
 ---
 
-*Document created: 2025-11-17*
-*Last updated: 2025-11-17*
-*Version: 1.0*
+_Document created: 2025-11-17_
+_Last updated: 2025-11-17_
+_Version: 1.0_

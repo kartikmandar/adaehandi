@@ -1,4 +1,5 @@
 # Design Patterns & Mobile Optimization Guide
+
 ## Premium Catering Website - Complete Design System
 
 **Date:** 2025-11-17
@@ -32,12 +33,14 @@
 ### Why Mobile-First Matters
 
 **Critical Statistics:**
+
 - **60-70%** of restaurant/catering website traffic is mobile
 - **40%** of users abandon sites that take >3 seconds to load
 - **70%+** of diners search on phones before deciding
 - **96.3%** of users access internet via mobile phone
 
 **Mobile-First Means:**
+
 - Design for smallest screen first, then scale up
 - Touch-friendly interfaces (44x44px minimum targets)
 - Fast loading on 4G/3G networks
@@ -47,6 +50,7 @@
 ### Design Goals
 
 **Performance Targets:**
+
 - Load time: <3 seconds on 4G
 - Lighthouse score: 90+ all metrics
 - Core Web Vitals: All green
@@ -54,6 +58,7 @@
 - Minimal JavaScript bundle
 
 **UX Targets:**
+
 - One-thumb navigation
 - Clear visual hierarchy
 - Instant feedback on actions
@@ -69,6 +74,7 @@
 **Definition:** Design and develop for mobile devices first, then progressively enhance for larger screens.
 
 **Why Mobile-First?**
+
 1. Forces focus on essential content
 2. Easier to scale up than scale down
 3. Better performance baseline
@@ -87,26 +93,39 @@
 /* 2xl: 1536px+ (large screens) */
 
 /* Tailwind CSS Default Breakpoints */
-@media (min-width: 640px) { /* sm */ }
-@media (min-width: 768px) { /* md */ }
-@media (min-width: 1024px) { /* lg */ }
-@media (min-width: 1280px) { /* xl */ }
-@media (min-width: 1536px) { /* 2xl */ }
+@media (min-width: 640px) {
+  /* sm */
+}
+@media (min-width: 768px) {
+  /* md */
+}
+@media (min-width: 1024px) {
+  /* lg */
+}
+@media (min-width: 1280px) {
+  /* xl */
+}
+@media (min-width: 1536px) {
+  /* 2xl */
+}
 ```
 
 ### Touch Target Sizing
 
 **Minimum Touch Targets:**
+
 - **Apple:** 44x44 pixels
 - **Google Material Design:** 48x48 pixels
 - **Research Optimal:** 42-72 pixels
 - **Most Preferred:** 60 pixels
 
 **Spacing Between Targets:**
+
 - Minimum: 8px (Material Design)
 - Recommended: 12-16px for critical actions
 
 **Example Implementation:**
+
 ```css
 /* Touch-friendly button */
 .btn-primary {
@@ -129,17 +148,20 @@
 ### Thumb Zone Design
 
 **Thumb Zone Areas:**
+
 - **Natural (Green):** Bottom center - easiest to reach
 - **Stretch (Yellow):** Top and sides - requires stretching
 - **Hard to Reach (Red):** Top corners - avoid placing important actions
 
 **Best Practices:**
+
 - Place primary CTAs in bottom 1/3 of screen
 - Use bottom navigation bars for key functions
 - Keep hamburger menu accessible (top-left or bottom)
 - Avoid placing critical actions in top corners
 
 **Example Layout:**
+
 ```
 ┌─────────────────┐
 │  Logo   Menu ☰ │  ← Stretch Zone
@@ -163,16 +185,14 @@
 **Mobile Optimization:** Vertical images, text overlay contrast
 
 **Structure:**
+
 ```html
-<section class="hero h-screen relative">
-  <img src="hero-biryani.jpg" alt="Signature biryani"
-       class="object-cover w-full h-full" />
-  <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
-    <div class="text-center text-white px-4">
-      <h1 class="text-4xl md:text-6xl font-bold mb-4">
-        Authentic North Indian Catering
-      </h1>
-      <p class="text-xl mb-8">Delhi's Premier Catering Service</p>
+<section class="hero relative h-screen">
+  <img src="hero-biryani.jpg" alt="Signature biryani" class="h-full w-full object-cover" />
+  <div class="absolute inset-0 flex items-center justify-center bg-black/40">
+    <div class="px-4 text-center text-white">
+      <h1 class="mb-4 text-4xl font-bold md:text-6xl">Authentic North Indian Catering</h1>
+      <p class="mb-8 text-xl">Delhi's Premier Catering Service</p>
       <button class="btn-primary">Request Quote</button>
     </div>
   </div>
@@ -180,6 +200,7 @@
 ```
 
 **Mobile Considerations:**
+
 - Use `vh` units for full-screen on mobile
 - Optimize image for portrait orientation
 - Ensure text contrast (40-60% overlay opacity)
@@ -194,6 +215,7 @@
 **Mobile Optimization:** Stack vertically on mobile
 
 **Desktop Layout:**
+
 ```
 ┌──────────┬──────────┐
 │          │          │
@@ -203,6 +225,7 @@
 ```
 
 **Mobile Layout:**
+
 ```
 ┌──────────┐
 │  Image   │
@@ -212,24 +235,20 @@
 ```
 
 **Implementation:**
+
 ```html
 <section class="hero">
   <div class="container mx-auto">
-    <div class="flex flex-col md:flex-row gap-8 items-center">
+    <div class="flex flex-col items-center gap-8 md:flex-row">
       <!-- Content (first on mobile) -->
-      <div class="w-full md:w-1/2 order-2 md:order-1 px-4">
-        <h1 class="text-3xl md:text-5xl font-bold mb-4">
-          Elevate Your Events
-        </h1>
-        <p class="text-lg mb-6">
-          From intimate gatherings to grand celebrations
-        </p>
+      <div class="order-2 w-full px-4 md:order-1 md:w-1/2">
+        <h1 class="mb-4 text-3xl font-bold md:text-5xl">Elevate Your Events</h1>
+        <p class="mb-6 text-lg">From intimate gatherings to grand celebrations</p>
         <button class="btn-primary">View Packages</button>
       </div>
       <!-- Image (second on mobile) -->
-      <div class="w-full md:w-1/2 order-1 md:order-2">
-        <img src="event-setup.jpg" alt="Event setup"
-             class="rounded-lg shadow-xl" />
+      <div class="order-1 w-full md:order-2 md:w-1/2">
+        <img src="event-setup.jpg" alt="Event setup" class="rounded-lg shadow-xl" />
       </div>
     </div>
   </div>
@@ -244,20 +263,29 @@
 **Mobile Optimization:** Critical - use static image fallback
 
 **Implementation:**
+
 ```html
-<section class="hero h-screen relative">
+<section class="hero relative h-screen">
   <!-- Video for desktop -->
-  <video autoplay muted loop playsinline
-         class="hidden md:block absolute inset-0 w-full h-full object-cover">
-    <source src="cooking-video.mp4" type="video/mp4">
+  <video
+    autoplay
+    muted
+    loop
+    playsinline
+    class="absolute inset-0 hidden h-full w-full object-cover md:block"
+  >
+    <source src="cooking-video.mp4" type="video/mp4" />
   </video>
 
   <!-- Static image for mobile -->
-  <img src="cooking-poster.jpg" alt="Our kitchen"
-       class="md:hidden absolute inset-0 w-full h-full object-cover" />
+  <img
+    src="cooking-poster.jpg"
+    alt="Our kitchen"
+    class="absolute inset-0 h-full w-full object-cover md:hidden"
+  />
 
-  <div class="relative z-10 h-full flex items-center justify-center">
-    <div class="text-center text-white px-4">
+  <div class="relative z-10 flex h-full items-center justify-center">
+    <div class="px-4 text-center text-white">
       <h1>Experience Culinary Excellence</h1>
       <button class="btn-primary">Book Now</button>
     </div>
@@ -266,6 +294,7 @@
 ```
 
 **Video Best Practices:**
+
 - **File Size:** <5MB (compress heavily)
 - **Duration:** 10-20 seconds loop
 - **Format:** MP4 (H.264 codec)
@@ -281,16 +310,13 @@
 **Mobile Optimization:** Large, readable text
 
 **Example:**
+
 ```html
-<section class="hero h-screen flex items-center justify-center bg-cream">
-  <div class="text-center px-4">
-    <h1 class="text-5xl md:text-7xl font-serif mb-4">
-      Adaehandi
-    </h1>
-    <p class="text-xl md:text-2xl text-gray-600 mb-8">
-      North Indian Catering, Redefined
-    </p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+<section class="hero bg-cream flex h-screen items-center justify-center">
+  <div class="px-4 text-center">
+    <h1 class="mb-4 font-serif text-5xl md:text-7xl">Adaehandi</h1>
+    <p class="mb-8 text-xl text-gray-600 md:text-2xl">North Indian Catering, Redefined</p>
+    <div class="flex flex-col justify-center gap-4 sm:flex-row">
       <button class="btn-primary">View Menus</button>
       <button class="btn-secondary">Contact Us</button>
     </div>
@@ -308,6 +334,7 @@
 **Caution:** Can impact performance - use sparingly
 
 **Best Practices:**
+
 - Max 3-5 slides
 - Auto-advance every 5-7 seconds
 - Pause on hover/tap
@@ -337,18 +364,19 @@ Is your site content-focused with <5 main sections?
 **Cons:** Less discoverable, requires extra tap
 
 **Implementation:**
+
 ```html
 <!-- Mobile Header -->
-<header class="sticky top-0 bg-white shadow-md z-50">
-  <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+<header class="sticky top-0 z-50 bg-white shadow-md">
+  <div class="container mx-auto flex items-center justify-between px-4 py-3">
     <div class="logo">
       <img src="logo.svg" alt="Brand" class="h-10" />
     </div>
     <button class="hamburger md:hidden" aria-label="Menu">
-      <svg class="w-6 h-6"><!-- hamburger icon --></svg>
+      <svg class="h-6 w-6"><!-- hamburger icon --></svg>
     </button>
     <!-- Desktop Nav -->
-    <nav class="hidden md:flex gap-6">
+    <nav class="hidden gap-6 md:flex">
       <a href="#home">Home</a>
       <a href="#services">Services</a>
       <a href="#gallery">Gallery</a>
@@ -358,8 +386,8 @@ Is your site content-focused with <5 main sections?
 </header>
 
 <!-- Mobile Drawer -->
-<div class="drawer fixed inset-0 bg-black/50 z-50 transform translate-x-full transition-transform">
-  <div class="drawer-content bg-white w-4/5 h-full ml-auto p-6">
+<div class="drawer fixed inset-0 z-50 translate-x-full transform bg-black/50 transition-transform">
+  <div class="drawer-content ml-auto h-full w-4/5 bg-white p-6">
     <button class="close mb-8">✕</button>
     <nav class="flex flex-col gap-6 text-xl">
       <a href="#home">Home</a>
@@ -373,6 +401,7 @@ Is your site content-focused with <5 main sections?
 ```
 
 **Animation Best Practices:**
+
 ```css
 /* Slide-in animation */
 .drawer {
@@ -388,6 +417,7 @@ Is your site content-focused with <5 main sections?
 ```
 
 **Drawer Width Guidelines:**
+
 - Mobile: 70-85% of screen width
 - Tablet: 250-300px fixed width
 
@@ -402,30 +432,34 @@ Is your site content-focused with <5 main sections?
 **Perfect For Food Apps:** Home, Menu, Orders, Account, More
 
 **Implementation:**
+
 ```html
-<nav class="bottom-nav fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 md:hidden z-50">
+<nav
+  class="bottom-nav fixed right-0 bottom-0 left-0 z-50 border-t border-gray-200 bg-white md:hidden"
+>
   <div class="flex justify-around">
-    <a href="#home" class="nav-item flex flex-col items-center py-2 px-3">
-      <svg class="w-6 h-6"><!-- home icon --></svg>
-      <span class="text-xs mt-1">Home</span>
+    <a href="#home" class="nav-item flex flex-col items-center px-3 py-2">
+      <svg class="h-6 w-6"><!-- home icon --></svg>
+      <span class="mt-1 text-xs">Home</span>
     </a>
-    <a href="#menu" class="nav-item flex flex-col items-center py-2 px-3">
-      <svg class="w-6 h-6"><!-- menu icon --></svg>
-      <span class="text-xs mt-1">Menu</span>
+    <a href="#menu" class="nav-item flex flex-col items-center px-3 py-2">
+      <svg class="h-6 w-6"><!-- menu icon --></svg>
+      <span class="mt-1 text-xs">Menu</span>
     </a>
-    <a href="#gallery" class="nav-item flex flex-col items-center py-2 px-3">
-      <svg class="w-6 h-6"><!-- gallery icon --></svg>
-      <span class="text-xs mt-1">Gallery</span>
+    <a href="#gallery" class="nav-item flex flex-col items-center px-3 py-2">
+      <svg class="h-6 w-6"><!-- gallery icon --></svg>
+      <span class="mt-1 text-xs">Gallery</span>
     </a>
-    <a href="#contact" class="nav-item flex flex-col items-center py-2 px-3">
-      <svg class="w-6 h-6"><!-- contact icon --></svg>
-      <span class="text-xs mt-1">Contact</span>
+    <a href="#contact" class="nav-item flex flex-col items-center px-3 py-2">
+      <svg class="h-6 w-6"><!-- contact icon --></svg>
+      <span class="mt-1 text-xs">Contact</span>
     </a>
   </div>
 </nav>
 ```
 
 **Design Specifications:**
+
 - Height: 56-64px
 - Icon size: 24x24px
 - Text: 10-12px
@@ -439,16 +473,17 @@ Is your site content-focused with <5 main sections?
 **Mobile Optimization:** Compact, single-row
 
 **Implementation:**
+
 ```html
-<header class="sticky top-0 bg-white shadow-md z-50 py-3">
-  <div class="container mx-auto px-4 flex justify-between items-center">
+<header class="sticky top-0 z-50 bg-white py-3 shadow-md">
+  <div class="container mx-auto flex items-center justify-between px-4">
     <img src="logo.svg" alt="Brand" class="h-8" />
     <div class="flex items-center gap-3">
       <button class="hamburger md:hidden">
-        <svg class="w-6 h-6"><!-- menu icon --></svg>
+        <svg class="h-6 w-6"><!-- menu icon --></svg>
       </button>
       <a href="tel:+91XXXXXXXXXX" class="md:hidden">
-        <svg class="w-6 h-6"><!-- phone icon --></svg>
+        <svg class="h-6 w-6"><!-- phone icon --></svg>
       </a>
       <button class="btn-primary hidden md:block">Book Now</button>
     </div>
@@ -464,6 +499,7 @@ Is your site content-focused with <5 main sections?
 **Example:** Wedding Catering > North Indian > Vegetarian > Punjabi
 
 **Mobile Strategy:**
+
 - Use accordion/collapsible sections
 - Breadcrumbs for current location
 - Back button for navigation
@@ -475,6 +511,7 @@ Is your site content-focused with <5 main sections?
 ### Grid System Overview
 
 **12-Column Grid (Standard):**
+
 ```
 Mobile:     1 column  (stacked)
 Tablet:     2-3 columns
@@ -504,21 +541,21 @@ Large:      4-6 columns
 **Best For:** Menu items, services, packages
 
 **Mobile-Optimized Card:**
+
 ```html
-<div class="card bg-white rounded-lg shadow-md overflow-hidden">
+<div class="card overflow-hidden rounded-lg bg-white shadow-md">
   <!-- Image -->
-  <div class="aspect-[4/3] relative">
-    <img src="dal-makhani.jpg" alt="Dal Makhani"
-         class="object-cover w-full h-full" />
+  <div class="relative aspect-[4/3]">
+    <img src="dal-makhani.jpg" alt="Dal Makhani" class="h-full w-full object-cover" />
   </div>
 
   <!-- Content -->
   <div class="p-4">
-    <h3 class="text-xl font-bold mb-2">Dal Makhani</h3>
-    <p class="text-gray-600 text-sm mb-3">
+    <h3 class="mb-2 text-xl font-bold">Dal Makhani</h3>
+    <p class="mb-3 text-sm text-gray-600">
       Creamy black lentils slow-cooked with butter and spices
     </p>
-    <div class="flex justify-between items-center">
+    <div class="flex items-center justify-between">
       <span class="text-lg font-bold">₹350</span>
       <span class="text-sm text-green-600">✓ Vegetarian</span>
     </div>
@@ -527,8 +564,9 @@ Large:      4-6 columns
 ```
 
 **Grid Implementation:**
+
 ```html
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
   <!-- Cards repeat -->
 </div>
 ```
@@ -542,14 +580,17 @@ Large:      4-6 columns
 ```html
 <div class="container mx-auto px-4">
   <!-- Mobile: Stacked, Desktop: 2-column -->
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+  <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
     <!-- Featured (2 columns on desktop) -->
     <div class="lg:col-span-2">
-      <div class="featured-card rounded-lg overflow-hidden">
-        <img src="featured-event.jpg" alt="Wedding catering"
-             class="w-full aspect-video object-cover" />
+      <div class="featured-card overflow-hidden rounded-lg">
+        <img
+          src="featured-event.jpg"
+          alt="Wedding catering"
+          class="aspect-video w-full object-cover"
+        />
         <div class="p-6">
-          <h2 class="text-3xl font-bold mb-2">Wedding Packages</h2>
+          <h2 class="mb-2 text-3xl font-bold">Wedding Packages</h2>
           <p>Start from ₹999 per guest</p>
         </div>
       </div>
@@ -571,6 +612,7 @@ Large:      4-6 columns
 **Best For:** Long-form content, about pages
 
 **Pattern:**
+
 ```
 ┌─────────────────┐
 │  Image   Text   │  Section 1
@@ -584,10 +626,11 @@ Large:      4-6 columns
 **Mobile: Always Image → Text**
 
 **Implementation:**
+
 ```html
 <section class="py-12">
   <div class="container mx-auto px-4">
-    <div class="flex flex-col md:flex-row gap-8 items-center">
+    <div class="flex flex-col items-center gap-8 md:flex-row">
       <div class="w-full md:w-1/2">
         <img src="section1.jpg" class="rounded-lg" />
       </div>
@@ -600,9 +643,9 @@ Large:      4-6 columns
 </section>
 
 <!-- Next section: reverse on desktop -->
-<section class="py-12 bg-gray-50">
+<section class="bg-gray-50 py-12">
   <div class="container mx-auto px-4">
-    <div class="flex flex-col md:flex-row-reverse gap-8 items-center">
+    <div class="flex flex-col items-center gap-8 md:flex-row-reverse">
       <!-- Image and content swap positions on desktop -->
     </div>
   </div>
@@ -621,7 +664,7 @@ Large:      4-6 columns
 ```html
 <div class="menu-section">
   <!-- Category Tabs -->
-  <div class="tabs overflow-x-auto flex gap-4 border-b mb-6">
+  <div class="tabs mb-6 flex gap-4 overflow-x-auto border-b">
     <button class="tab active">Appetizers</button>
     <button class="tab">Main Course</button>
     <button class="tab">Desserts</button>
@@ -629,13 +672,14 @@ Large:      4-6 columns
   </div>
 
   <!-- Menu Items Grid -->
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
     <!-- Menu item cards -->
   </div>
 </div>
 ```
 
 **Mobile Tab Styling:**
+
 ```css
 .tabs {
   -webkit-overflow-scrolling: touch;
@@ -663,9 +707,9 @@ Large:      4-6 columns
 ```html
 <div class="menu-accordion">
   <div class="accordion-item border-b">
-    <button class="accordion-header w-full py-4 flex justify-between items-center">
-      <span class="font-bold text-lg">North Indian Specialties</span>
-      <svg class="w-5 h-5 transform transition-transform">
+    <button class="accordion-header flex w-full items-center justify-between py-4">
+      <span class="text-lg font-bold">North Indian Specialties</span>
+      <svg class="h-5 w-5 transform transition-transform">
         <!-- chevron -->
       </svg>
     </button>
@@ -695,12 +739,14 @@ Large:      4-6 columns
 ```html
 <div class="menu-with-filters">
   <!-- Search & Filters (sticky on mobile) -->
-  <div class="sticky top-16 bg-white z-40 py-4 border-b">
+  <div class="sticky top-16 z-40 border-b bg-white py-4">
     <div class="container mx-auto px-4">
       <!-- Search -->
-      <input type="search"
-             placeholder="Search dishes..."
-             class="w-full mb-3 p-3 border rounded-lg" />
+      <input
+        type="search"
+        placeholder="Search dishes..."
+        class="mb-3 w-full rounded-lg border p-3"
+      />
 
       <!-- Filter Chips -->
       <div class="flex gap-2 overflow-x-auto">
@@ -715,7 +761,7 @@ Large:      4-6 columns
 
   <!-- Menu Grid -->
   <div class="container mx-auto px-4 py-6">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
       <!-- Filterable menu items -->
     </div>
   </div>
@@ -723,6 +769,7 @@ Large:      4-6 columns
 ```
 
 **Filter Chip Styling:**
+
 ```css
 .chip {
   padding: 8px 16px;
@@ -747,9 +794,10 @@ Large:      4-6 columns
 **Mobile: Horizontal scroll or stacked**
 
 **Option A: Horizontal Scroll (3+ columns)**
+
 ```html
 <div class="overflow-x-auto">
-  <div class="flex gap-4 min-w-max p-4">
+  <div class="flex min-w-max gap-4 p-4">
     <div class="pricing-card min-w-[280px]"><!-- Package 1 --></div>
     <div class="pricing-card min-w-[280px]"><!-- Package 2 --></div>
     <div class="pricing-card min-w-[280px]"><!-- Package 3 --></div>
@@ -758,8 +806,9 @@ Large:      4-6 columns
 ```
 
 **Option B: Stacked (Mobile)**
+
 ```html
-<div class="flex flex-col md:flex-row gap-6">
+<div class="flex flex-col gap-6 md:flex-row">
   <div class="pricing-card flex-1">
     <h3>Peshkash</h3>
     <div class="price">₹999/person</div>
@@ -779,22 +828,26 @@ Large:      4-6 columns
 ### Digital Menu Best Practices (2025 Trends)
 
 **Minimalist Layouts:**
+
 - Plenty of white space
 - Consistent fonts
 - Clean lines
 - Focus customers on key items
 
 **Visual Hierarchy:**
+
 - Arrange by profitability/popularity
 - Eye naturally goes to: Top-right, center, top-left
 - Use boxes, colors, icons to highlight
 
 **Pricing Psychology:**
+
 - Remove currency symbols (₹) → Higher order value
 - Use charm pricing (.99 endings)
 - Anchor pricing (expensive item makes others seem reasonable)
 
 **Mobile Optimization:**
+
 - Readable font size (minimum 16px)
 - Touch-friendly spacing
 - Easy-to-scan categories
@@ -810,12 +863,14 @@ Large:      4-6 columns
 **Mobile: 1-2 columns, Desktop: 3-4 columns**
 
 **Characteristics:**
+
 - Images maintain original aspect ratio
 - No cropping
 - Efficient space usage
 - Dynamic, interesting layout
 
 **Implementation with CSS Grid:**
+
 ```css
 .masonry-grid {
   display: grid;
@@ -844,27 +899,30 @@ Large:      4-6 columns
 **Mobile: 2 columns, Desktop: 3-4 columns**
 
 ```html
-<div class="gallery grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-  <button class="gallery-item aspect-square relative overflow-hidden rounded-lg group">
-    <img src="dish1.jpg" alt="Biryani"
-         class="object-cover w-full h-full transition-transform group-hover:scale-110" />
-    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors">
-    </div>
+<div class="gallery grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+  <button class="gallery-item group relative aspect-square overflow-hidden rounded-lg">
+    <img
+      src="dish1.jpg"
+      alt="Biryani"
+      class="h-full w-full object-cover transition-transform group-hover:scale-110"
+    />
+    <div class="absolute inset-0 bg-black/0 transition-colors group-hover:bg-black/20"></div>
   </button>
   <!-- More items -->
 </div>
 
 <!-- Lightbox Modal -->
-<div class="lightbox fixed inset-0 bg-black/90 z-50 hidden">
-  <button class="close absolute top-4 right-4 text-white text-4xl">×</button>
-  <div class="flex items-center justify-center h-full p-4">
-    <img src="" alt="" class="max-w-full max-h-full" />
+<div class="lightbox fixed inset-0 z-50 hidden bg-black/90">
+  <button class="close absolute top-4 right-4 text-4xl text-white">×</button>
+  <div class="flex h-full items-center justify-center p-4">
+    <img src="" alt="" class="max-h-full max-w-full" />
   </div>
   <!-- Prev/Next arrows -->
 </div>
 ```
 
 **Lightbox Features:**
+
 - Click image to open full-screen
 - Prev/Next navigation
 - Swipe gestures on mobile
@@ -881,7 +939,7 @@ Large:      4-6 columns
 
 ```html
 <div class="carousel relative">
-  <div class="carousel-track flex overflow-x-auto snap-x snap-mandatory">
+  <div class="carousel-track flex snap-x snap-mandatory overflow-x-auto">
     <div class="carousel-slide min-w-full snap-start">
       <img src="slide1.jpg" alt="" class="w-full" />
     </div>
@@ -892,15 +950,16 @@ Large:      4-6 columns
   </div>
 
   <!-- Navigation Dots -->
-  <div class="dots flex justify-center gap-2 mt-4">
-    <button class="dot w-2 h-2 rounded-full bg-gray-300"></button>
-    <button class="dot w-2 h-2 rounded-full bg-gray-800"></button>
+  <div class="dots mt-4 flex justify-center gap-2">
+    <button class="dot h-2 w-2 rounded-full bg-gray-300"></button>
+    <button class="dot h-2 w-2 rounded-full bg-gray-800"></button>
     <!-- More dots -->
   </div>
 </div>
 ```
 
 **CSS for smooth scrolling:**
+
 ```css
 .carousel-track {
   scroll-behavior: smooth;
@@ -923,7 +982,7 @@ Large:      4-6 columns
 ```html
 <div class="filtered-gallery">
   <!-- Category Filters -->
-  <div class="filters flex gap-3 overflow-x-auto mb-6 pb-2">
+  <div class="filters mb-6 flex gap-3 overflow-x-auto pb-2">
     <button class="filter-btn active" data-category="all">All</button>
     <button class="filter-btn" data-category="weddings">Weddings</button>
     <button class="filter-btn" data-category="corporate">Corporate</button>
@@ -931,9 +990,9 @@ Large:      4-6 columns
   </div>
 
   <!-- Gallery Grid -->
-  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+  <div class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
     <div class="gallery-item" data-category="weddings">
-      <img src="wedding1.jpg" alt="" class="w-full aspect-square object-cover rounded-lg" />
+      <img src="wedding1.jpg" alt="" class="aspect-square w-full rounded-lg object-cover" />
     </div>
     <!-- More items -->
   </div>
@@ -966,9 +1025,10 @@ Large:      4-6 columns
 ```
 
 **Intersection Observer (Custom Implementation):**
+
 ```javascript
 const imageObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
+  entries.forEach((entry) => {
     if (entry.isIntersecting) {
       const img = entry.target
       img.src = img.dataset.src
@@ -978,7 +1038,7 @@ const imageObserver = new IntersectionObserver((entries) => {
   })
 })
 
-document.querySelectorAll('img[data-src]').forEach(img => {
+document.querySelectorAll('img[data-src]').forEach((img) => {
   imageObserver.observe(img)
 })
 ```
@@ -990,6 +1050,7 @@ document.querySelectorAll('img[data-src]').forEach(img => {
 ### Pattern 1: Simple Contact Form
 
 **Mobile Optimization:**
+
 - Vertical layout (always stacked)
 - Large input fields (min 44px height)
 - Clear labels
@@ -997,67 +1058,66 @@ document.querySelectorAll('img[data-src]').forEach(img => {
 - Autocomplete attributes
 
 ```html
-<form class="contact-form max-w-lg mx-auto p-6">
+<form class="contact-form mx-auto max-w-lg p-6">
   <!-- Name -->
   <div class="form-group mb-4">
-    <label for="name" class="block text-sm font-medium mb-2">
-      Your Name *
-    </label>
-    <input type="text"
-           id="name"
-           name="name"
-           required
-           autocomplete="name"
-           class="input-field w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-saffron focus:border-saffron" />
+    <label for="name" class="mb-2 block text-sm font-medium"> Your Name * </label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      required
+      autocomplete="name"
+      class="input-field focus:ring-saffron focus:border-saffron w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2"
+    />
   </div>
 
   <!-- Email -->
   <div class="form-group mb-4">
-    <label for="email" class="block text-sm font-medium mb-2">
-      Email Address *
-    </label>
-    <input type="email"
-           id="email"
-           name="email"
-           required
-           autocomplete="email"
-           class="input-field w-full px-4 py-3 border rounded-lg" />
+    <label for="email" class="mb-2 block text-sm font-medium"> Email Address * </label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      required
+      autocomplete="email"
+      class="input-field w-full rounded-lg border px-4 py-3"
+    />
   </div>
 
   <!-- Phone -->
   <div class="form-group mb-4">
-    <label for="phone" class="block text-sm font-medium mb-2">
-      Phone Number *
-    </label>
-    <input type="tel"
-           id="phone"
-           name="phone"
-           required
-           autocomplete="tel"
-           pattern="[0-9]{10}"
-           placeholder="10-digit mobile number"
-           class="input-field w-full px-4 py-3 border rounded-lg" />
+    <label for="phone" class="mb-2 block text-sm font-medium"> Phone Number * </label>
+    <input
+      type="tel"
+      id="phone"
+      name="phone"
+      required
+      autocomplete="tel"
+      pattern="[0-9]{10}"
+      placeholder="10-digit mobile number"
+      class="input-field w-full rounded-lg border px-4 py-3"
+    />
   </div>
 
   <!-- Message -->
   <div class="form-group mb-6">
-    <label for="message" class="block text-sm font-medium mb-2">
-      Message
-    </label>
-    <textarea id="message"
-              name="message"
-              rows="4"
-              class="input-field w-full px-4 py-3 border rounded-lg"></textarea>
+    <label for="message" class="mb-2 block text-sm font-medium"> Message </label>
+    <textarea
+      id="message"
+      name="message"
+      rows="4"
+      class="input-field w-full rounded-lg border px-4 py-3"
+    ></textarea>
   </div>
 
   <!-- Submit -->
-  <button type="submit" class="btn-primary w-full py-4 text-lg">
-    Send Message
-  </button>
+  <button type="submit" class="btn-primary w-full py-4 text-lg">Send Message</button>
 </form>
 ```
 
 **Form Best Practices:**
+
 - 3-5 fields maximum (completion rates drop with more)
 - Use proper input types (`email`, `tel`, `date`)
 - Enable autocomplete for faster filling
@@ -1152,6 +1212,7 @@ document.querySelectorAll('img[data-src]').forEach(img => {
 ```
 
 **Conditional Logic:**
+
 - Show different fields based on event type
 - Adjust menu options based on guest count
 - Show/hide catering options based on dietary needs
@@ -1167,26 +1228,26 @@ document.querySelectorAll('img[data-src]').forEach(img => {
 <div class="multi-step-form">
   <!-- Progress Indicator -->
   <div class="progress-bar mb-8">
-    <div class="flex justify-between mb-2">
+    <div class="mb-2 flex justify-between">
       <span class="step-indicator active">1. Event Details</span>
       <span class="step-indicator">2. Menu Selection</span>
       <span class="step-indicator">3. Contact Info</span>
     </div>
-    <div class="h-2 bg-gray-200 rounded-full">
-      <div class="h-full bg-saffron rounded-full" style="width: 33%"></div>
+    <div class="h-2 rounded-full bg-gray-200">
+      <div class="bg-saffron h-full rounded-full" style="width: 33%"></div>
     </div>
   </div>
 
   <!-- Step 1 -->
   <div class="step active" data-step="1">
-    <h2 class="text-2xl font-bold mb-6">Tell us about your event</h2>
+    <h2 class="mb-6 text-2xl font-bold">Tell us about your event</h2>
     <!-- Event type, date, guest count -->
     <button class="btn-primary w-full" onclick="nextStep()">Continue</button>
   </div>
 
   <!-- Step 2 -->
   <div class="step hidden" data-step="2">
-    <h2 class="text-2xl font-bold mb-6">Select your menu</h2>
+    <h2 class="mb-6 text-2xl font-bold">Select your menu</h2>
     <!-- Menu preferences -->
     <div class="flex gap-4">
       <button class="btn-secondary flex-1" onclick="prevStep()">Back</button>
@@ -1196,7 +1257,7 @@ document.querySelectorAll('img[data-src]').forEach(img => {
 
   <!-- Step 3 -->
   <div class="step hidden" data-step="3">
-    <h2 class="text-2xl font-bold mb-6">How can we reach you?</h2>
+    <h2 class="mb-6 text-2xl font-bold">How can we reach you?</h2>
     <!-- Contact details -->
     <button class="btn-primary w-full" type="submit">Submit Request</button>
   </div>
@@ -1204,6 +1265,7 @@ document.querySelectorAll('img[data-src]').forEach(img => {
 ```
 
 **Benefits:**
+
 - Less overwhelming
 - Higher completion rates
 - Better mobile UX
@@ -1214,19 +1276,18 @@ document.querySelectorAll('img[data-src]').forEach(img => {
 ### Form Validation Patterns
 
 **Inline Validation:**
+
 ```html
 <div class="form-group">
-  <input type="email"
-         id="email"
-         class="input-field"
-         aria-describedby="email-error" />
-  <p id="email-error" class="text-red-500 text-sm mt-1 hidden">
+  <input type="email" id="email" class="input-field" aria-describedby="email-error" />
+  <p id="email-error" class="mt-1 hidden text-sm text-red-500">
     Please enter a valid email address
   </p>
 </div>
 ```
 
 **Success State:**
+
 ```css
 .input-field.valid {
   border-color: #10b981; /* Green */
@@ -1247,36 +1308,40 @@ document.querySelectorAll('img[data-src]').forEach(img => {
 **Better than:** Spinners for wait times <10 seconds
 
 **Benefits:**
+
 - Creates illusion of faster loading
 - Shows page structure immediately
 - Reduces perceived wait time
 - Better UX than blank screen
 
 **Implementation:**
+
 ```html
 <!-- Skeleton for Menu Card -->
 <div class="skeleton-card animate-pulse">
-  <div class="aspect-[4/3] bg-gray-200 rounded-t-lg"></div>
+  <div class="aspect-[4/3] rounded-t-lg bg-gray-200"></div>
   <div class="p-4">
-    <div class="h-6 bg-gray-200 rounded mb-3 w-3/4"></div>
-    <div class="h-4 bg-gray-200 rounded mb-2 w-full"></div>
-    <div class="h-4 bg-gray-200 rounded w-5/6"></div>
-    <div class="flex justify-between mt-4">
-      <div class="h-6 bg-gray-200 rounded w-1/4"></div>
-      <div class="h-6 bg-gray-200 rounded w-1/3"></div>
+    <div class="mb-3 h-6 w-3/4 rounded bg-gray-200"></div>
+    <div class="mb-2 h-4 w-full rounded bg-gray-200"></div>
+    <div class="h-4 w-5/6 rounded bg-gray-200"></div>
+    <div class="mt-4 flex justify-between">
+      <div class="h-6 w-1/4 rounded bg-gray-200"></div>
+      <div class="h-6 w-1/3 rounded bg-gray-200"></div>
     </div>
   </div>
 </div>
 ```
 
 **Tailwind Animation:**
+
 ```css
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
-    opacity: .5;
+    opacity: 0.5;
   }
 }
 
@@ -1292,6 +1357,7 @@ document.querySelectorAll('img[data-src]').forEach(img => {
 **Strategy:** Load visible content first, then below-fold
 
 **Implementation:**
+
 ```javascript
 // Load critical content immediately
 async function loadCriticalContent() {
@@ -1326,15 +1392,19 @@ loadCriticalContent().then(() => {
 ```html
 <div class="image-container relative">
   <!-- Blur placeholder (tiny base64) -->
-  <img src="data:image/jpeg;base64,/9j/4AAQ..."
-       alt=""
-       class="absolute inset-0 w-full h-full object-cover blur-lg" />
+  <img
+    src="data:image/jpeg;base64,/9j/4AAQ..."
+    alt=""
+    class="absolute inset-0 h-full w-full object-cover blur-lg"
+  />
 
   <!-- Full resolution image -->
-  <img src="full-image.jpg"
-       alt="Biryani"
-       onload="this.style.opacity=1"
-       class="relative w-full h-full object-cover opacity-0 transition-opacity duration-500" />
+  <img
+    src="full-image.jpg"
+    alt="Biryani"
+    onload="this.style.opacity=1"
+    class="relative h-full w-full object-cover opacity-0 transition-opacity duration-500"
+  />
 </div>
 ```
 
@@ -1343,26 +1413,27 @@ loadCriticalContent().then(() => {
 ### Pattern 4: Infinite Scroll vs Pagination
 
 **Infinite Scroll:**
+
 - **Pros:** Seamless browsing, mobile-friendly
 - **Cons:** Difficult to return to position, footer inaccessible
 - **Best For:** Social feeds, discovery browsing
 
 **Pagination:**
+
 - **Pros:** User control, SEO-friendly, footer accessible
 - **Cons:** Extra clicks
 - **Best For:** Search results, catalogs
 
 **Hybrid: "Load More" Button**
+
 ```html
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="grid grid-cols-1 gap-6 md:grid-cols-3">
   <!-- Initial 12 items -->
 </div>
 
-<div class="text-center mt-8">
-  <button class="btn-secondary" onclick="loadMore()">
-    Load More Items
-  </button>
-  <p class="text-sm text-gray-500 mt-2">Showing 12 of 48</p>
+<div class="mt-8 text-center">
+  <button class="btn-secondary" onclick="loadMore()">Load More Items</button>
+  <p class="mt-2 text-sm text-gray-500">Showing 12 of 48</p>
 </div>
 ```
 
@@ -1375,6 +1446,7 @@ loadCriticalContent().then(() => {
 **Definition:** Small, subtle animations that provide feedback
 
 **Common Examples:**
+
 1. Button hover/active states
 2. Form input focus
 3. Card hover lift
@@ -1382,6 +1454,7 @@ loadCriticalContent().then(() => {
 5. Toggle switches
 
 **Button Micro-Interaction:**
+
 ```css
 .btn-primary {
   transition: all 0.2s ease;
@@ -1389,12 +1462,12 @@ loadCriticalContent().then(() => {
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .btn-primary:active {
   transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 ```
 
@@ -1403,11 +1476,14 @@ loadCriticalContent().then(() => {
 ### Scroll-Triggered Animations
 
 **Fade In on Scroll:**
+
 ```css
 .fade-in {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
 }
 
 .fade-in.visible {
@@ -1418,15 +1494,18 @@ loadCriticalContent().then(() => {
 
 ```javascript
 // Intersection Observer
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible')
-    }
-  })
-}, { threshold: 0.1 })
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible')
+      }
+    })
+  },
+  { threshold: 0.1 }
+)
 
-document.querySelectorAll('.fade-in').forEach(el => {
+document.querySelectorAll('.fade-in').forEach((el) => {
   observer.observe(el)
 })
 ```
@@ -1436,6 +1515,7 @@ document.querySelectorAll('.fade-in').forEach(el => {
 ### Mobile Menu Animations
 
 **Slide-In Drawer:**
+
 ```css
 .mobile-menu {
   position: fixed;
@@ -1457,7 +1537,7 @@ document.querySelectorAll('.fade-in').forEach(el => {
 .backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   opacity: 0;
   pointer-events: none;
   transition: opacity 250ms ease;
@@ -1471,6 +1551,7 @@ document.querySelectorAll('.fade-in').forEach(el => {
 ```
 
 **Performance Note:**
+
 - Use `transform` and `opacity` for animations (GPU-accelerated)
 - Avoid animating `width`, `height`, `left`, `top` (causes reflow)
 
@@ -1479,26 +1560,33 @@ document.querySelectorAll('.fade-in').forEach(el => {
 ### Toast Notification Pattern
 
 **Success Toast:**
+
 ```html
-<div class="toast toast-success fixed top-4 right-4 bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg transform translate-x-[400px] transition-transform">
+<div
+  class="toast toast-success fixed top-4 right-4 translate-x-[400px] transform rounded-lg bg-green-500 px-6 py-4 text-white shadow-lg transition-transform"
+>
   <div class="flex items-center gap-3">
-    <svg class="w-6 h-6"><!-- checkmark icon --></svg>
+    <svg class="h-6 w-6"><!-- checkmark icon --></svg>
     <p class="font-medium">Booking request sent successfully!</p>
   </div>
 </div>
 ```
 
 **Error Toast:**
+
 ```html
-<div class="toast toast-error fixed top-4 right-4 bg-red-500 text-white px-6 py-4 rounded-lg shadow-lg">
+<div
+  class="toast toast-error fixed top-4 right-4 rounded-lg bg-red-500 px-6 py-4 text-white shadow-lg"
+>
   <div class="flex items-center gap-3">
-    <svg class="w-6 h-6"><!-- error icon --></svg>
+    <svg class="h-6 w-6"><!-- error icon --></svg>
     <p class="font-medium">Please fill in all required fields</p>
   </div>
 </div>
 ```
 
 **JavaScript:**
+
 ```javascript
 function showToast(message, type = 'success') {
   const toast = document.createElement('div')
@@ -1524,15 +1612,18 @@ function showToast(message, type = 'success') {
 ### Pattern 1: Testimonial Carousel
 
 **Mobile-Optimized:**
-```html
-<section class="testimonials py-12 bg-gray-50">
-  <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold text-center mb-8">What Our Clients Say</h2>
 
-    <div class="testimonial-slider overflow-x-auto snap-x snap-mandatory flex gap-6 pb-4">
-      <div class="testimonial-card min-w-[300px] md:min-w-[400px] bg-white p-6 rounded-lg shadow-md snap-start">
-        <div class="flex items-center gap-4 mb-4">
-          <img src="client1.jpg" alt="Client" class="w-12 h-12 rounded-full" />
+```html
+<section class="testimonials bg-gray-50 py-12">
+  <div class="container mx-auto px-4">
+    <h2 class="mb-8 text-center text-3xl font-bold">What Our Clients Say</h2>
+
+    <div class="testimonial-slider flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4">
+      <div
+        class="testimonial-card min-w-[300px] snap-start rounded-lg bg-white p-6 shadow-md md:min-w-[400px]"
+      >
+        <div class="mb-4 flex items-center gap-4">
+          <img src="client1.jpg" alt="Client" class="h-12 w-12 rounded-full" />
           <div>
             <h4 class="font-bold">Priya Sharma</h4>
             <div class="text-yellow-500">★★★★★</div>
@@ -1553,24 +1644,25 @@ function showToast(message, type = 'success') {
 ### Pattern 2: Stats Counter
 
 **Show impressive numbers:**
+
 ```html
 <section class="stats py-12">
   <div class="container mx-auto px-4">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+    <div class="grid grid-cols-2 gap-6 text-center md:grid-cols-4">
       <div class="stat">
-        <div class="text-4xl md:text-5xl font-bold text-saffron mb-2">500+</div>
+        <div class="text-saffron mb-2 text-4xl font-bold md:text-5xl">500+</div>
         <div class="text-gray-600">Events Catered</div>
       </div>
       <div class="stat">
-        <div class="text-4xl md:text-5xl font-bold text-saffron mb-2">50K+</div>
+        <div class="text-saffron mb-2 text-4xl font-bold md:text-5xl">50K+</div>
         <div class="text-gray-600">Happy Guests</div>
       </div>
       <div class="stat">
-        <div class="text-4xl md:text-5xl font-bold text-saffron mb-2">15+</div>
+        <div class="text-saffron mb-2 text-4xl font-bold md:text-5xl">15+</div>
         <div class="text-gray-600">Years Experience</div>
       </div>
       <div class="stat">
-        <div class="text-4xl md:text-5xl font-bold text-saffron mb-2">4.9/5</div>
+        <div class="text-saffron mb-2 text-4xl font-bold md:text-5xl">4.9/5</div>
         <div class="text-gray-600">Average Rating</div>
       </div>
     </div>
@@ -1583,13 +1675,13 @@ function showToast(message, type = 'success') {
 ### Pattern 3: Badges & Certifications
 
 ```html
-<div class="badges flex flex-wrap gap-4 justify-center">
-  <div class="badge flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow">
-    <svg class="w-6 h-6 text-green-500"><!-- verified icon --></svg>
+<div class="badges flex flex-wrap justify-center gap-4">
+  <div class="badge flex items-center gap-2 rounded-lg bg-white px-4 py-2 shadow">
+    <svg class="h-6 w-6 text-green-500"><!-- verified icon --></svg>
     <span class="text-sm font-medium">FSSAI Certified</span>
   </div>
-  <div class="badge flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow">
-    <svg class="w-6 h-6 text-blue-500"><!-- award icon --></svg>
+  <div class="badge flex items-center gap-2 rounded-lg bg-white px-4 py-2 shadow">
+    <svg class="h-6 w-6 text-blue-500"><!-- award icon --></svg>
     <span class="text-sm font-medium">Best Caterer 2024</span>
   </div>
 </div>
@@ -1639,9 +1731,7 @@ function showToast(message, type = 'success') {
 </nav>
 
 <!-- Skip to main content -->
-<a href="#main-content" class="skip-link sr-only focus:not-sr-only">
-  Skip to main content
-</a>
+<a href="#main-content" class="skip-link sr-only focus:not-sr-only"> Skip to main content </a>
 
 <main id="main-content" role="main">
   <!-- Page content -->
@@ -1649,6 +1739,7 @@ function showToast(message, type = 'success') {
 ```
 
 **Screen Reader Only Class:**
+
 ```css
 .sr-only {
   position: absolute;
@@ -1682,24 +1773,24 @@ function showToast(message, type = 'success') {
 <form>
   <div class="form-group">
     <!-- Properly associated label -->
-    <label for="email" class="block mb-2">
+    <label for="email" class="mb-2 block">
       Email Address <span class="text-red-500" aria-label="required">*</span>
     </label>
-    <input type="email"
-           id="email"
-           name="email"
-           required
-           aria-required="true"
-           aria-describedby="email-help email-error"
-           class="input-field" />
+    <input
+      type="email"
+      id="email"
+      name="email"
+      required
+      aria-required="true"
+      aria-describedby="email-help email-error"
+      class="input-field"
+    />
 
     <!-- Help text -->
-    <p id="email-help" class="text-sm text-gray-500 mt-1">
-      We'll never share your email
-    </p>
+    <p id="email-help" class="mt-1 text-sm text-gray-500">We'll never share your email</p>
 
     <!-- Error message (hidden by default) -->
-    <p id="email-error" class="text-sm text-red-500 mt-1 hidden" role="alert">
+    <p id="email-error" class="mt-1 hidden text-sm text-red-500" role="alert">
       Please enter a valid email address
     </p>
   </div>
@@ -1783,6 +1874,7 @@ button:focus-visible {
 ### React Component Libraries
 
 **shadcn/ui** (Recommended)
+
 - Copy-paste components
 - Built with Radix UI + Tailwind
 - Highly customizable
@@ -1790,11 +1882,13 @@ button:focus-visible {
 - No package to install
 
 **Headless UI** (by Tailwind Labs)
+
 - Unstyled, accessible components
 - Perfect for custom designs
 - Menu, Dialog, Disclosure, etc.
 
 **Radix UI**
+
 - Low-level UI primitives
 - Fully accessible
 - Unstyled (bring your own styles)
@@ -1804,6 +1898,7 @@ button:focus-visible {
 ### UI Component Needs for Catering Site
 
 **Essential Components:**
+
 - [ ] Navigation (Drawer, Tab Bar)
 - [ ] Hero Section (variants)
 - [ ] Card (Menu items, Services)
@@ -1829,34 +1924,34 @@ button:focus-visible {
 **Mobile: Stacked sections, Desktop: Multi-column**
 
 ```html
-<footer class="bg-gray-900 text-white py-12">
+<footer class="bg-gray-900 py-12 text-white">
   <div class="container mx-auto px-4">
     <!-- Desktop: 4 columns, Mobile: Stacked -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-
+    <div class="mb-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
       <!-- Column 1: About -->
       <div>
-        <h3 class="text-xl font-bold mb-4">Adaehandi</h3>
-        <p class="text-gray-400 text-sm mb-4">
-          Premium North Indian catering for weddings, corporate events, and private celebrations in Delhi NCR.
+        <h3 class="mb-4 text-xl font-bold">Adaehandi</h3>
+        <p class="mb-4 text-sm text-gray-400">
+          Premium North Indian catering for weddings, corporate events, and private celebrations in
+          Delhi NCR.
         </p>
         <div class="flex gap-3">
           <a href="#" aria-label="Facebook" class="social-icon">
-            <svg class="w-6 h-6"><!-- FB icon --></svg>
+            <svg class="h-6 w-6"><!-- FB icon --></svg>
           </a>
           <a href="#" aria-label="Instagram" class="social-icon">
-            <svg class="w-6 h-6"><!-- IG icon --></svg>
+            <svg class="h-6 w-6"><!-- IG icon --></svg>
           </a>
           <a href="#" aria-label="YouTube" class="social-icon">
-            <svg class="w-6 h-6"><!-- YT icon --></svg>
+            <svg class="h-6 w-6"><!-- YT icon --></svg>
           </a>
         </div>
       </div>
 
       <!-- Column 2: Quick Links -->
       <div>
-        <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
-        <ul class="space-y-2 text-gray-400 text-sm">
+        <h3 class="mb-4 text-lg font-semibold">Quick Links</h3>
+        <ul class="space-y-2 text-sm text-gray-400">
           <li><a href="#about" class="hover:text-white">About Us</a></li>
           <li><a href="#services" class="hover:text-white">Services</a></li>
           <li><a href="#menu" class="hover:text-white">Menu</a></li>
@@ -1867,22 +1962,22 @@ button:focus-visible {
 
       <!-- Column 3: Contact -->
       <div>
-        <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
-        <ul class="space-y-3 text-gray-400 text-sm">
+        <h3 class="mb-4 text-lg font-semibold">Contact Us</h3>
+        <ul class="space-y-3 text-sm text-gray-400">
           <li class="flex items-start gap-2">
-            <svg class="w-5 h-5 mt-0.5"><!-- location icon --></svg>
-            <span>123 Main Street<br/>New Delhi 110001</span>
+            <svg class="mt-0.5 h-5 w-5"><!-- location icon --></svg>
+            <span>123 Main Street<br />New Delhi 110001</span>
           </li>
           <li class="flex items-center gap-2">
-            <svg class="w-5 h-5"><!-- phone icon --></svg>
+            <svg class="h-5 w-5"><!-- phone icon --></svg>
             <a href="tel:+91XXXXXXXXXX" class="hover:text-white">+91 XXXX-XXXXXX</a>
           </li>
           <li class="flex items-center gap-2">
-            <svg class="w-5 h-5"><!-- email icon --></svg>
+            <svg class="h-5 w-5"><!-- email icon --></svg>
             <a href="mailto:info@adaehandi.com" class="hover:text-white">info@adaehandi.com</a>
           </li>
           <li class="flex items-center gap-2">
-            <svg class="w-5 h-5"><!-- whatsapp icon --></svg>
+            <svg class="h-5 w-5"><!-- whatsapp icon --></svg>
             <a href="https://wa.me/91XXXXXXXXXX" class="hover:text-white">WhatsApp Us</a>
           </li>
         </ul>
@@ -1890,23 +1985,25 @@ button:focus-visible {
 
       <!-- Column 4: Newsletter -->
       <div>
-        <h3 class="text-lg font-semibold mb-4">Stay Updated</h3>
-        <p class="text-gray-400 text-sm mb-4">
+        <h3 class="mb-4 text-lg font-semibold">Stay Updated</h3>
+        <p class="mb-4 text-sm text-gray-400">
           Get special offers and event tips delivered to your inbox.
         </p>
         <form class="flex flex-col gap-2">
-          <input type="email"
-                 placeholder="Your email"
-                 class="px-4 py-2 rounded bg-gray-800 text-white border border-gray-700 focus:border-saffron" />
-          <button type="submit" class="btn-primary py-2">
-            Subscribe
-          </button>
+          <input
+            type="email"
+            placeholder="Your email"
+            class="focus:border-saffron rounded border border-gray-700 bg-gray-800 px-4 py-2 text-white"
+          />
+          <button type="submit" class="btn-primary py-2">Subscribe</button>
         </form>
       </div>
     </div>
 
     <!-- Bottom Bar -->
-    <div class="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
+    <div
+      class="flex flex-col items-center justify-between gap-4 border-t border-gray-800 pt-6 text-sm text-gray-400 md:flex-row"
+    >
       <p>&copy; 2025 Adaehandi. All rights reserved.</p>
       <div class="flex gap-6">
         <a href="#privacy" class="hover:text-white">Privacy Policy</a>
@@ -1921,19 +2018,17 @@ button:focus-visible {
 
 ### Pattern 2: Minimal Footer
 
-**Best For:** Clean, simple sites**
+**Best For:** Clean, simple sites\*\*
 
 ```html
-<footer class="bg-white border-t py-8">
+<footer class="border-t bg-white py-8">
   <div class="container mx-auto px-4">
-    <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-      <p class="text-gray-600 text-sm">
-        &copy; 2025 Adaehandi. Premium North Indian Catering.
-      </p>
+    <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
+      <p class="text-sm text-gray-600">&copy; 2025 Adaehandi. Premium North Indian Catering.</p>
       <div class="flex gap-6">
-        <a href="#" class="text-gray-600 hover:text-saffron">Facebook</a>
-        <a href="#" class="text-gray-600 hover:text-saffron">Instagram</a>
-        <a href="#" class="text-gray-600 hover:text-saffron">Contact</a>
+        <a href="#" class="hover:text-saffron text-gray-600">Facebook</a>
+        <a href="#" class="hover:text-saffron text-gray-600">Instagram</a>
+        <a href="#" class="hover:text-saffron text-gray-600">Contact</a>
       </div>
     </div>
   </div>
@@ -2037,8 +2132,9 @@ button:focus-visible {
 
 ```javascript
 // Check system preference or localStorage
-const theme = localStorage.getItem('theme') ||
-              (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+const theme =
+  localStorage.getItem('theme') ||
+  (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
 
 document.documentElement.classList.toggle('dark', theme === 'dark')
 
@@ -2054,14 +2150,19 @@ function toggleTheme() {
 ### Breadcrumbs Navigation
 
 **SEO & UX Benefits:**
+
 ```html
 <nav aria-label="Breadcrumb" class="mb-6">
   <ol class="flex items-center gap-2 text-sm text-gray-600">
     <li><a href="/" class="hover:text-saffron">Home</a></li>
-    <li><svg class="w-4 h-4"><!-- chevron --></svg></li>
+    <li>
+      <svg class="h-4 w-4"><!-- chevron --></svg>
+    </li>
     <li><a href="/services" class="hover:text-saffron">Services</a></li>
-    <li><svg class="w-4 h-4"><!-- chevron --></svg></li>
-    <li aria-current="page" class="text-gray-900 font-medium">Wedding Packages</li>
+    <li>
+      <svg class="h-4 w-4"><!-- chevron --></svg>
+    </li>
+    <li aria-current="page" class="font-medium text-gray-900">Wedding Packages</li>
   </ol>
 </nav>
 ```
@@ -2072,13 +2173,17 @@ function toggleTheme() {
 
 ```html
 <div class="search-wrapper relative">
-  <input type="search"
-         id="menuSearch"
-         placeholder="Search menu items..."
-         autocomplete="off"
-         class="w-full px-4 py-3 pr-10 border rounded-lg" />
+  <input
+    type="search"
+    id="menuSearch"
+    placeholder="Search menu items..."
+    autocomplete="off"
+    class="w-full rounded-lg border px-4 py-3 pr-10"
+  />
 
-  <div class="autocomplete-results absolute w-full bg-white border rounded-lg mt-1 shadow-lg hidden">
+  <div
+    class="autocomplete-results absolute mt-1 hidden w-full rounded-lg border bg-white shadow-lg"
+  >
     <!-- Results populated via JS -->
   </div>
 </div>
@@ -2091,29 +2196,34 @@ function toggleTheme() {
 This guide provides comprehensive patterns for building a modern, mobile-optimized premium catering website. Key takeaways:
 
 **Mobile-First is Essential:**
+
 - 60-70% of traffic is mobile
 - Design for smallest screen first
 - Progressive enhancement for larger screens
 
 **Performance Matters:**
+
 - <3s load time target
 - Optimize images aggressively
 - Use lazy loading extensively
 - Minimize JavaScript
 
 **User Experience:**
+
 - Touch-friendly (44px+ targets)
 - Clear visual hierarchy
 - Instant feedback
 - Seamless interactions
 
 **Accessibility:**
+
 - WCAG AA minimum
 - Screen reader support
 - Keyboard navigation
 - High contrast
 
 **Trust & Conversion:**
+
 - Social proof visible
 - Clear CTAs
 - Simple forms
@@ -2121,7 +2231,7 @@ This guide provides comprehensive patterns for building a modern, mobile-optimiz
 
 ---
 
-*Document created: 2025-11-17*
-*Focus: Mobile-First Design Patterns*
-*Target: Premium Catering Website*
-*Version: 1.0*
+_Document created: 2025-11-17_
+_Focus: Mobile-First Design Patterns_
+_Target: Premium Catering Website_
+_Version: 1.0_

@@ -1,4 +1,5 @@
 # Phase 1: Project Initialization & Setup
+
 ## Granular Implementation Guide - 2025 Best Practices
 
 **Status**: Ready to begin
@@ -13,6 +14,7 @@
 This phase sets up the foundation for the AdaEhandi catering website using Next.js 15 with the latest 2025 best practices, including Turbopack, flat ESLint config, TypeScript strict mode, and automated code quality tools.
 
 **Key Technologies**:
+
 - Next.js 15.5+ (App Router, Turbopack)
 - TypeScript 5+ (Strict mode)
 - Tailwind CSS 4.0+
@@ -43,9 +45,11 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
 ### 1.1 Check Node.js Version
 
 - [ ] **Open terminal and verify Node.js version**
+
   ```bash
   node --version
   ```
+
   **Required**: v18.17.0 or higher (v20.x or v22.x recommended)
 
 - [ ] **If Node.js version is too old, update:**
@@ -71,12 +75,15 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
 ### 1.3 Verify Git Installation
 
 - [ ] **Check Git is installed**
+
   ```bash
   git --version
   ```
+
   **Required**: Git 2.0+ (preferably 2.40+)
 
 - [ ] **Configure Git user info** (if not already set):
+
   ```bash
   git config --global user.name "Your Name"
   git config --global user.email "your.email@example.com"
@@ -94,11 +101,13 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
 ### 2.1 Create Next.js Application
 
 - [ ] **Navigate to parent directory** where you want to create the project:
+
   ```bash
   cd ~/projects  # or your preferred location
   ```
 
 - [ ] **Run create-next-app with all recommended flags**:
+
   ```bash
   npx create-next-app@latest adaehandi \
     --typescript \
@@ -117,7 +126,7 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
   - ✅ `src/` directory: **Yes**
   - ✅ App Router: **Yes**
   - ✅ Turbopack: **Yes**
-  - ✅ Import alias: **@/***
+  - ✅ Import alias: **@/\***
 
 - [ ] **Navigate into project directory**:
   ```bash
@@ -127,9 +136,11 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
 ### 2.2 Verify Initial Setup
 
 - [ ] **Check that project was created successfully**:
+
   ```bash
   ls -la
   ```
+
   **Expected files**:
   - `package.json`
   - `next.config.ts` (or .mjs)
@@ -139,14 +150,17 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
   - `.eslintrc.json` or `eslint.config.mjs`
 
 - [ ] **Install dependencies** (if not auto-installed):
+
   ```bash
   pnpm install  # or npm install
   ```
 
 - [ ] **Start development server to verify**:
+
   ```bash
   pnpm dev  # or npm run dev
   ```
+
   **Expected**: Server starts on http://localhost:3000
 
 - [ ] **Open browser and verify** Next.js welcome page loads
@@ -156,6 +170,7 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
 ### 2.3 Update Next.js Config for 2025 Best Practices
 
 - [ ] **Rename next.config.mjs to next.config.ts** (if not already TypeScript):
+
   ```bash
   mv next.config.mjs next.config.ts
   # OR if .js:
@@ -163,6 +178,7 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
   ```
 
 - [ ] **Update next.config.ts with production-ready settings**:
+
   ```typescript
   import type { NextConfig } from 'next'
 
@@ -232,6 +248,7 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
 ### 3.1 Initialize Git Repository
 
 - [ ] **Initialize Git** (if not already done by create-next-app):
+
   ```bash
   git init
   ```
@@ -244,6 +261,7 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
 ### 3.2 Enhance .gitignore
 
 - [ ] **Add additional entries to .gitignore**:
+
   ```bash
   cat >> .gitignore << 'EOF'
 
@@ -306,11 +324,13 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
 ### 3.3 Initial Git Commit
 
 - [ ] **Stage all files**:
+
   ```bash
   git add .
   ```
 
 - [ ] **Create initial commit**:
+
   ```bash
   git commit -m "Initial Next.js 15 project setup with TypeScript, Tailwind, and Turbopack"
   ```
@@ -323,6 +343,7 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
 ### 3.4 Set Default Branch Name
 
 - [ ] **Rename branch to main** (if it's master):
+
   ```bash
   git branch -M main
   ```
@@ -340,11 +361,13 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
 ### 4.1 Enable Strict TypeScript Mode
 
 - [ ] **Open tsconfig.json**:
+
   ```bash
   code tsconfig.json  # or your preferred editor
   ```
 
 - [ ] **Update compilerOptions with strict settings**:
+
   ```json
   {
     "compilerOptions": {
@@ -399,15 +422,8 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
         }
       ]
     },
-    "include": [
-      "next-env.d.ts",
-      "**/*.ts",
-      "**/*.tsx",
-      ".next/types/**/*.ts"
-    ],
-    "exclude": [
-      "node_modules"
-    ]
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+    "exclude": ["node_modules"]
   }
   ```
 
@@ -416,11 +432,13 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
 ### 4.2 Create Type Definitions Directory
 
 - [ ] **Create types directory**:
+
   ```bash
   mkdir -p src/types
   ```
 
 - [ ] **Create global type definitions file**:
+
   ```bash
   cat > src/types/index.ts << 'EOF'
   /**
@@ -447,12 +465,15 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
 ### 4.3 Verify TypeScript Configuration
 
 - [ ] **Run TypeScript compiler check**:
+
   ```bash
   pnpm tsc --noEmit  # or npx tsc --noEmit
   ```
+
   **Expected**: No errors (may have warnings about unused variables - that's okay for now)
 
 - [ ] **Check that path aliases work** by creating a test file:
+
   ```bash
   cat > src/app/test-types.ts << 'EOF'
   import type { ApiResponse } from '@/types'
@@ -468,9 +489,11 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
   ```
 
 - [ ] **Run type check again**:
+
   ```bash
   pnpm tsc --noEmit
   ```
+
   **Expected**: No errors
 
 - [ ] **Delete test file**:
@@ -485,6 +508,7 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
 ### 5.1 Create Core Directory Structure
 
 - [ ] **Create all required directories at once**:
+
   ```bash
   mkdir -p src/{components,lib,styles,types}
   mkdir -p src/components/{ui,sections,forms,layout}
@@ -501,6 +525,7 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
 ### 5.2 Create README Files for Each Directory
 
 - [ ] **Create README for components/ui**:
+
   ```bash
   cat > src/components/ui/README.md << 'EOF'
   # UI Components
@@ -523,6 +548,7 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
   ```
 
 - [ ] **Create README for components/sections**:
+
   ```bash
   cat > src/components/sections/README.md << 'EOF'
   # Section Components
@@ -538,6 +564,7 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
   ```
 
 - [ ] **Create README for components/forms**:
+
   ```bash
   cat > src/components/forms/README.md << 'EOF'
   # Form Components
@@ -552,6 +579,7 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
   ```
 
 - [ ] **Create README for lib**:
+
   ```bash
   cat > src/lib/README.md << 'EOF'
   # Library / Utilities
@@ -569,6 +597,7 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
 ### 5.3 Create Placeholder Files
 
 - [ ] **Create utils.ts with common utilities**:
+
   ```bash
   cat > src/lib/utils.ts << 'EOF'
   /**
@@ -615,6 +644,7 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
   ```
 
 - [ ] **Create constants.ts for app-wide constants**:
+
   ```bash
   cat > src/lib/constants.ts << 'EOF'
   /**
@@ -644,6 +674,7 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
 ### 5.4 Verify Project Structure
 
 - [ ] **Run tree command to visualize structure**:
+
   ```bash
   tree -L 3 -a -I 'node_modules|.next|.git'
   ```
@@ -662,6 +693,7 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
 ### 6.1 Install ESLint & Prettier Dependencies
 
 - [ ] **Install Prettier and ESLint plugins**:
+
   ```bash
   pnpm add -D prettier eslint-config-prettier eslint-plugin-prettier
   # or
@@ -669,6 +701,7 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
   ```
 
 - [ ] **Install additional ESLint plugins**:
+
   ```bash
   pnpm add -D @typescript-eslint/parser @typescript-eslint/eslint-plugin
   pnpm add -D eslint-plugin-react eslint-plugin-react-hooks
@@ -684,6 +717,7 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
 ### 6.2 Configure Prettier
 
 - [ ] **Create .prettierrc file**:
+
   ```bash
   cat > .prettierrc << 'EOF'
   {
@@ -701,6 +735,7 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
   ```
 
 - [ ] **Create .prettierignore file**:
+
   ```bash
   cat > .prettierignore << 'EOF'
   # Dependencies
@@ -733,11 +768,13 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
 ### 6.3 Configure ESLint for Next.js 15 (Flat Config)
 
 - [ ] **Check if eslint.config.mjs exists** (Next.js 15+ uses flat config):
+
   ```bash
   ls eslint.config.mjs
   ```
 
 - [ ] **If eslint.config.mjs exists, update it**:
+
   ```javascript
   import { FlatCompat } from '@eslint/eslintrc'
   import js from '@eslint/js'
@@ -825,6 +862,7 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
 ### 6.5 Verify ESLint & Prettier Work
 
 - [ ] **Run Prettier on all files**:
+
   ```bash
   pnpm prettier --write .
   # or
@@ -832,11 +870,13 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
   ```
 
 - [ ] **Run ESLint check**:
+
   ```bash
   pnpm next lint
   # or
   npm run lint
   ```
+
   **Expected**: No errors (warnings are acceptable at this stage)
 
 - [ ] **Test auto-fix**:
@@ -851,6 +891,7 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
 ### 7.1 Install Husky
 
 - [ ] **Install Husky 9.x**:
+
   ```bash
   pnpm add -D husky
   # or
@@ -858,11 +899,13 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
   ```
 
 - [ ] **Initialize Husky**:
+
   ```bash
   pnpm exec husky init
   # or
   npx husky init
   ```
+
   **This creates**: `.husky/` directory with a sample pre-commit hook
 
 - [ ] **Verify .husky directory was created**:
@@ -885,16 +928,12 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
 - [ ] **Add lint-staged config to package.json**:
 
   Open `package.json` and add this configuration at the root level:
+
   ```json
   {
     "lint-staged": {
-      "*.{js,jsx,ts,tsx}": [
-        "eslint --fix",
-        "prettier --write"
-      ],
-      "*.{json,md,mdx,css,html}": [
-        "prettier --write"
-      ]
+      "*.{js,jsx,ts,tsx}": ["eslint --fix", "prettier --write"],
+      "*.{json,md,mdx,css,html}": ["prettier --write"]
     }
   }
   ```
@@ -917,6 +956,7 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
 ### 7.4 Configure Pre-commit Hook
 
 - [ ] **Update .husky/pre-commit file**:
+
   ```bash
   cat > .husky/pre-commit << 'EOF'
   #!/usr/bin/env sh
@@ -939,6 +979,7 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
 ### 7.5 Test Git Hooks
 
 - [ ] **Create a test file with intentional formatting issues**:
+
   ```bash
   cat > src/test-hook.ts << 'EOF'
   const   badFormatting    =    "test"
@@ -950,20 +991,25 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
   ```
 
 - [ ] **Stage the file**:
+
   ```bash
   git add src/test-hook.ts
   ```
 
 - [ ] **Try to commit** (hook should fix formatting automatically):
+
   ```bash
   git commit -m "Test: Verify pre-commit hook works"
   ```
+
   **Expected**: Hook runs, fixes formatting, and completes commit
 
 - [ ] **Verify the file was formatted**:
+
   ```bash
   cat src/test-hook.ts
   ```
+
   **Expected**: Properly formatted code
 
 - [ ] **Remove test file**:
@@ -979,6 +1025,7 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
 ### 8.1 Add Custom Scripts
 
 - [ ] **Open package.json and add/update scripts section**:
+
   ```json
   {
     "scripts": {
@@ -1001,39 +1048,51 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
 ### 8.2 Test All Scripts
 
 - [ ] **Test type checking**:
+
   ```bash
   pnpm type-check
   ```
+
   **Expected**: No errors
 
 - [ ] **Test linting**:
+
   ```bash
   pnpm lint
   ```
+
   **Expected**: No errors
 
 - [ ] **Test formatting check**:
+
   ```bash
   pnpm format:check
   ```
+
   **Expected**: All files formatted
 
 - [ ] **Test dev server**:
+
   ```bash
   pnpm dev
   ```
+
   **Expected**: Server starts with Turbopack
 
 - [ ] **Stop dev server and test build**:
+
   ```bash
   pnpm build
   ```
+
   **Expected**: Build completes successfully
 
 - [ ] **Test production server**:
+
   ```bash
   pnpm start
   ```
+
   **Expected**: Production server starts on port 3000
 
 - [ ] **Stop production server** (Ctrl+C)
@@ -1045,6 +1104,7 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
 ### 9.1 Create Environment Variable Templates
 
 - [ ] **Create .env.example file** (template with no secrets):
+
   ```bash
   cat > .env.example << 'EOF'
   # Next.js Configuration
@@ -1071,6 +1131,7 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
   ```
 
 - [ ] **Create .env.local for development** (gitignored):
+
   ```bash
   cat > .env.local << 'EOF'
   # Development Environment Variables
@@ -1091,6 +1152,7 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
 ### 9.2 Create Environment Variable Type Definitions
 
 - [ ] **Create env.d.ts for type safety**:
+
   ```bash
   cat > src/types/env.d.ts << 'EOF'
   /**
@@ -1120,6 +1182,7 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
   ```
 
 - [ ] **Verify TypeScript recognizes env types**:
+
   ```bash
   cat > src/test-env.ts << 'EOF'
   // Test file to verify env types work
@@ -1131,6 +1194,7 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
   ```
 
 - [ ] **Run type check**:
+
   ```bash
   pnpm type-check
   ```
@@ -1143,7 +1207,8 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
 ### 9.3 Document Environment Variables
 
 - [ ] **Create ENV_VARIABLES.md documentation**:
-  ```bash
+
+  ````bash
   cat > ENV_VARIABLES.md << 'EOF'
   # Environment Variables Documentation
 
@@ -1154,7 +1219,7 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
   1. Copy `.env.example` to `.env.local`:
      ```bash
      cp .env.example .env.local
-     ```
+  ````
 
   2. Fill in the values in `.env.local` with your development credentials
 
@@ -1164,22 +1229,22 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
 
   ### Next.js Configuration
 
-  | Variable | Required | Description | Default |
-  |----------|----------|-------------|---------|
-  | `NEXT_PUBLIC_APP_URL` | Yes | Full URL of the application | `http://localhost:3000` |
-  | `NEXT_PUBLIC_SITE_NAME` | Yes | Name of the website | `AdaEhandi` |
+  | Variable                | Required | Description                 | Default                 |
+  | ----------------------- | -------- | --------------------------- | ----------------------- |
+  | `NEXT_PUBLIC_APP_URL`   | Yes      | Full URL of the application | `http://localhost:3000` |
+  | `NEXT_PUBLIC_SITE_NAME` | Yes      | Name of the website         | `AdaEhandi`             |
 
   ### Database (Phase 2)
 
-  | Variable | Required | Description |
-  |----------|----------|-------------|
-  | `DATABASE_URI` | Yes | PostgreSQL connection string |
+  | Variable       | Required | Description                  |
+  | -------------- | -------- | ---------------------------- |
+  | `DATABASE_URI` | Yes      | PostgreSQL connection string |
 
   ### Payload CMS (Phase 2)
 
-  | Variable | Required | Description |
-  |----------|----------|-------------|
-  | `PAYLOAD_SECRET` | Yes | Secret key for Payload (min 32 chars) |
+  | Variable         | Required | Description                           |
+  | ---------------- | -------- | ------------------------------------- |
+  | `PAYLOAD_SECRET` | Yes      | Secret key for Payload (min 32 chars) |
 
   ## Production Deployment
 
@@ -1189,12 +1254,14 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
   - Use different values for production (never use dev credentials)
 
   ## Security Notes
-
   - ✅ Variables prefixed with `NEXT_PUBLIC_` are exposed to the browser
   - ❌ Variables without `NEXT_PUBLIC_` are server-side only
   - 🔒 Never commit secrets to Git
   - 🔄 Rotate secrets regularly
-  EOF
+    EOF
+
+  ```
+
   ```
 
 ---
@@ -1204,6 +1271,7 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
 ### 10.1 Final Verification Checklist
 
 - [ ] **Verify all dependencies are installed**:
+
   ```bash
   pnpm list --depth=0
   # or
@@ -1211,11 +1279,13 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
   ```
 
 - [ ] **Verify Git status is clean** (or has expected uncommitted files):
+
   ```bash
   git status
   ```
 
 - [ ] **Run all quality checks in sequence**:
+
   ```bash
   echo "Running type check..." && pnpm type-check && \
   echo "Running lint..." && pnpm lint && \
@@ -1224,9 +1294,11 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
   ```
 
 - [ ] **Test development build**:
+
   ```bash
   pnpm dev
   ```
+
   - Open http://localhost:3000
   - Verify Next.js welcome page loads
   - Check console for no errors
@@ -1234,9 +1306,11 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
   - Stop server
 
 - [ ] **Test production build**:
+
   ```bash
   pnpm build && pnpm start
   ```
+
   - Verify build completes without errors
   - Open http://localhost:3000
   - Verify production build works
@@ -1245,17 +1319,20 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
 ### 10.2 Create Phase 1 Completion Commit
 
 - [ ] **Stage all changes**:
+
   ```bash
   git add .
   ```
 
 - [ ] **Review staged changes**:
+
   ```bash
   git status
   git diff --staged
   ```
 
 - [ ] **Create comprehensive commit**:
+
   ```bash
   git commit -m "Complete Phase 1: Project initialization
 
@@ -1281,6 +1358,7 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
 ### 10.3 Generate Project Report
 
 - [ ] **Create PHASE_01_COMPLETION_REPORT.md**:
+
   ```bash
   cat > PHASE_01_COMPLETION_REPORT.md << 'EOF'
   # Phase 1 Completion Report
@@ -1343,6 +1421,7 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
 ### 10.4 Optional: Push to Remote Repository
 
 - [ ] **If you have a GitHub repository, add remote**:
+
   ```bash
   git remote add origin https://github.com/YOUR_USERNAME/adaehandi.git
   # or SSH:
@@ -1361,6 +1440,7 @@ This phase sets up the foundation for the AdaEhandi catering website using Next.
 **Congratulations!** You've successfully completed Phase 1: Project Initialization & Setup.
 
 Your project now has:
+
 - ✅ Modern Next.js 15 setup with Turbopack
 - ✅ Strict TypeScript configuration
 - ✅ Automated code quality checks (ESLint + Prettier)
@@ -1383,6 +1463,7 @@ Your project now has:
 ### Issue: "Cannot find module 'next'"
 
 **Solution**:
+
 ```bash
 rm -rf node_modules pnpm-lock.yaml
 pnpm install
@@ -1395,6 +1476,7 @@ pnpm install
 ### Issue: Husky hooks not running
 
 **Solution**:
+
 ```bash
 pnpm exec husky install
 chmod +x .husky/pre-commit

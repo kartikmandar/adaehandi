@@ -1,4 +1,5 @@
 # AdaEhandi - Premium Indian Catering Website
+
 ## Complete Project Roadmap & Implementation Guide
 
 **Version:** 1.0
@@ -30,19 +31,22 @@
 ### 1.1 Repository & Environment Setup
 
 - [ ] **Initialize Next.js 15 project**
+
   ```bash
   npx create-next-app@latest adaehandi --typescript --tailwind --app --eslint
   cd adaehandi
   ```
+
   - Choose: TypeScript: Yes
   - Choose: ESLint: Yes
   - Choose: Tailwind CSS: Yes
   - Choose: `src/` directory: Yes
   - Choose: App Router: Yes
   - Choose: Turbopack: Yes
-  - Choose: Import alias: @/*
+  - Choose: Import alias: @/\*
 
 - [ ] **Configure package manager**
+
   ```bash
   # If using pnpm
   pnpm install
@@ -51,6 +55,7 @@
   ```
 
 - [ ] **Set up Git configuration**
+
   ```bash
   git init
   git add .
@@ -73,6 +78,7 @@
 ### 1.2 TypeScript Configuration
 
 - [ ] **Enable strict TypeScript mode**
+
   ```json
   // tsconfig.json
   {
@@ -111,6 +117,7 @@
 ### 1.3 Project Structure Setup
 
 - [ ] **Create core directory structure**
+
   ```
   src/
   ├── app/                    # Next.js App Router
@@ -145,18 +152,17 @@
 ### 1.4 Code Quality Tools
 
 - [ ] **Install and configure ESLint**
+
   ```bash
   pnpm add -D @typescript-eslint/parser @typescript-eslint/eslint-plugin
   pnpm add -D eslint-plugin-react eslint-plugin-react-hooks
   ```
 
 - [ ] **Create .eslintrc.json**
+
   ```json
   {
-    "extends": [
-      "next/core-web-vitals",
-      "plugin:@typescript-eslint/recommended"
-    ],
+    "extends": ["next/core-web-vitals", "plugin:@typescript-eslint/recommended"],
     "rules": {
       "@typescript-eslint/no-unused-vars": "error",
       "@typescript-eslint/no-explicit-any": "warn"
@@ -165,11 +171,13 @@
   ```
 
 - [ ] **Install Prettier**
+
   ```bash
   pnpm add -D prettier eslint-config-prettier
   ```
 
 - [ ] **Create .prettierrc**
+
   ```json
   {
     "semi": false,
@@ -181,6 +189,7 @@
   ```
 
 - [ ] **Set up Husky for pre-commit hooks**
+
   ```bash
   pnpm add -D husky lint-staged
   npx husky init
@@ -239,6 +248,7 @@
 - [ ] **Set up development database**
   - Create separate Neon project or branch for development
   - OR use local PostgreSQL:
+
     ```bash
     # Install PostgreSQL locally
     brew install postgresql@15  # macOS
@@ -253,6 +263,7 @@
     ```
 
 - [ ] **Configure database environment variables**
+
   ```env
   # .env.local (development)
   DATABASE_URI=postgresql://user:password@localhost:5432/adaehandi_dev
@@ -273,6 +284,7 @@
 ### 2.2 Install Payload CMS Dependencies
 
 - [ ] **Install Payload CMS 3.0 and PostgreSQL adapter**
+
   ```bash
   pnpm add payload@beta @payloadcms/db-postgres @payloadcms/richtext-lexical
   pnpm add @payloadcms/plugin-cloud-storage @payloadcms/plugin-seo
@@ -280,6 +292,7 @@
   ```
 
 - [ ] **Install database and validation dependencies**
+
   ```bash
   pnpm add drizzle-orm postgres
   pnpm add zod  # For schema validation
@@ -293,6 +306,7 @@
 ### 2.3 Payload Configuration File
 
 - [ ] **Create payload.config.ts in project root**
+
   ```typescript
   import { buildConfig } from 'payload/config'
   import { postgresAdapter } from '@payloadcms/db-postgres'
@@ -344,6 +358,7 @@
   ```
 
 - [ ] **Create next.config.mjs with Payload integration**
+
   ```javascript
   import { withPayload } from '@payloadcms/next/withPayload'
 
@@ -398,6 +413,7 @@
 ### 2.4 Payload Admin Route Setup
 
 - [ ] **Create Payload admin route handler**
+
   ```typescript
   // src/app/(admin)/admin/[[...segments]]/page.tsx
   import { AdminView } from '@payloadcms/next/views'
@@ -409,6 +425,7 @@
   ```
 
 - [ ] **Create admin layout**
+
   ```typescript
   // src/app/(admin)/layout.tsx
   import type { Metadata } from 'next'
@@ -418,11 +435,7 @@
     description: 'Content management system for AdaEhandi',
   }
 
-  export default function AdminLayout({
-    children,
-  }: {
-    children: React.ReactNode
-  }) {
+  export default function AdminLayout({ children }: { children: React.ReactNode }) {
     return children
   }
   ```
@@ -430,11 +443,13 @@
 ### 2.5 Database Migration Setup
 
 - [ ] **Create migrations directory**
+
   ```bash
   mkdir -p src/payload/migrations
   ```
 
 - [ ] **Create initial migration script**
+
   ```typescript
   // src/payload/migrations/2025-11-18-initial-setup.ts
   import type { MigrateUpArgs, MigrateDownArgs } from '@payloadcms/db-postgres'
@@ -469,6 +484,7 @@
 ### 3.1 Users Collection (Authentication)
 
 - [ ] **Create Users collection schema**
+
   ```typescript
   // src/payload/collections/Users.ts
   import type { CollectionConfig } from 'payload/types'
@@ -513,6 +529,7 @@
   ```
 
 - [ ] **Add Users collection to payload.config.ts**
+
   ```typescript
   import { Users } from './src/payload/collections/Users'
 
@@ -530,6 +547,7 @@
 ### 3.2 Menu Items Collection
 
 - [ ] **Create MenuItems collection schema**
+
   ```typescript
   // src/payload/collections/MenuItems.ts
   import type { CollectionConfig } from 'payload/types'
@@ -708,19 +726,20 @@
   ```
 
 - [ ] **Create database indexes for MenuItems**
+
   ```typescript
   // src/payload/migrations/2025-11-18-menu-indexes.ts
   export async function up({ payload }: MigrateUpArgs): Promise<void> {
     await payload.db.drizzle.execute(`
       CREATE INDEX IF NOT EXISTS idx_menu_items_category
       ON menu_items(category);
-
+  
       CREATE INDEX IF NOT EXISTS idx_menu_items_featured
       ON menu_items(featured);
-
+  
       CREATE INDEX IF NOT EXISTS idx_menu_items_slug
       ON menu_items(slug);
-
+  
       CREATE INDEX IF NOT EXISTS idx_menu_items_published
       ON menu_items(published_at);
     `)
@@ -730,6 +749,7 @@
 ### 3.3 Media Collection (File Uploads)
 
 - [ ] **Create Media collection schema**
+
   ```typescript
   // src/payload/collections/Media.ts
   import type { CollectionConfig } from 'payload/types'
@@ -816,6 +836,7 @@
 ### 3.4 Service Packages Collection
 
 - [ ] **Create ServicePackages collection schema**
+
   ```typescript
   // src/payload/collections/ServicePackages.ts
   import type { CollectionConfig } from 'payload/types'
@@ -948,6 +969,7 @@
 ### 3.5 Testimonials Collection
 
 - [ ] **Create Testimonials collection schema**
+
   ```typescript
   // src/payload/collections/Testimonials.ts
   import type { CollectionConfig } from 'payload/types'
@@ -1050,6 +1072,7 @@
 ### 3.6 Booking Inquiries Collection
 
 - [ ] **Create BookingInquiries collection schema**
+
   ```typescript
   // src/payload/collections/BookingInquiries.ts
   import type { CollectionConfig } from 'payload/types'
@@ -1176,6 +1199,7 @@
 ### 3.7 Global Settings
 
 - [ ] **Create Site Settings global schema**
+
   ```typescript
   // src/payload/globals/SiteSettings.ts
   import type { GlobalConfig } from 'payload/types'
@@ -1336,6 +1360,7 @@
   ```
 
 - [ ] **Create Navigation global schema**
+
   ```typescript
   // src/payload/globals/Navigation.ts
   import type { GlobalConfig } from 'payload/types'
@@ -1393,6 +1418,7 @@
 ### 3.8 Add All Collections & Globals to Config
 
 - [ ] **Update payload.config.ts with all schemas**
+
   ```typescript
   import { Users } from './src/payload/collections/Users'
   import { MenuItems } from './src/payload/collections/MenuItems'
@@ -1404,19 +1430,13 @@
   import { Navigation } from './src/payload/globals/Navigation'
 
   export default buildConfig({
-    collections: [
-      Users,
-      MenuItems,
-      Media,
-      ServicePackages,
-      Testimonials,
-      BookingInquiries,
-    ],
+    collections: [Users, MenuItems, Media, ServicePackages, Testimonials, BookingInquiries],
     globals: [SiteSettings, Navigation],
   })
   ```
 
 - [ ] **Generate TypeScript types**
+
   ```bash
   pnpm generate:types
   ```
@@ -1433,12 +1453,14 @@
 ### 4.1 Tailwind CSS Configuration
 
 - [ ] **Install Tailwind CSS dependencies**
+
   ```bash
   pnpm add -D @tailwindcss/typography @tailwindcss/forms @tailwindcss/aspect-ratio
   pnpm add tailwind-merge clsx
   ```
 
 - [ ] **Configure Tailwind with Indian color palettes**
+
   ```typescript
   // tailwind.config.ts
   import type { Config } from 'tailwindcss'
@@ -1542,9 +1564,9 @@
         },
         boxShadow: {
           // Premium shadows
-          'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
-          'premium': '0 10px 40px -10px rgba(139, 38, 53, 0.25)',
-          'gold': '0 10px 40px -10px rgba(212, 175, 55, 0.30)',
+          soft: '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
+          premium: '0 10px 40px -10px rgba(139, 38, 53, 0.25)',
+          gold: '0 10px 40px -10px rgba(212, 175, 55, 0.30)',
         },
         animation: {
           'fade-in': 'fadeIn 0.5s ease-in-out',
@@ -1580,11 +1602,13 @@
 ### 4.2 Custom Fonts Setup
 
 - [ ] **Install Google Fonts (Next.js font optimization)**
+
   ```bash
   # Fonts are included via next/font/google
   ```
 
 - [ ] **Configure fonts in layout**
+
   ```typescript
   // src/app/layout.tsx
   import { Inter, Playfair_Display, Cinzel, Noto_Sans_Devanagari, Hind } from 'next/font/google'
@@ -1640,6 +1664,7 @@
 ### 4.3 Global Styles & CSS Variables
 
 - [ ] **Create global styles**
+
   ```css
   /* src/styles/globals.css */
   @tailwind base;
@@ -1680,7 +1705,12 @@
       @apply bg-neutral-50 text-neutral-900;
     }
 
-    h1, h2, h3, h4, h5, h6 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
       @apply font-display;
     }
 
@@ -1691,36 +1721,31 @@
 
     /* Focus styles for accessibility */
     *:focus-visible {
-      @apply outline-2 outline-offset-2 outline-primary-500;
+      @apply outline-primary-500 outline-2 outline-offset-2;
     }
   }
 
   @layer components {
     /* Button base styles */
     .btn {
-      @apply inline-flex items-center justify-center px-6 py-3
-             font-medium rounded-lg transition-all duration-200
-             focus:outline-none focus:ring-2 focus:ring-offset-2;
+      @apply inline-flex items-center justify-center rounded-lg px-6 py-3 font-medium transition-all duration-200 focus:ring-2 focus:ring-offset-2 focus:outline-none;
     }
 
     .btn-primary {
-      @apply bg-primary-500 text-white hover:bg-primary-600
-             focus:ring-primary-500 shadow-md hover:shadow-lg;
+      @apply bg-primary-500 hover:bg-primary-600 focus:ring-primary-500 text-white shadow-md hover:shadow-lg;
     }
 
     .btn-secondary {
-      @apply bg-secondary-500 text-white hover:bg-secondary-600
-             focus:ring-secondary-500 shadow-md hover:shadow-lg;
+      @apply bg-secondary-500 hover:bg-secondary-600 focus:ring-secondary-500 text-white shadow-md hover:shadow-lg;
     }
 
     .btn-outline {
-      @apply border-2 border-primary-500 text-primary-600
-             hover:bg-primary-50 focus:ring-primary-500;
+      @apply border-primary-500 text-primary-600 hover:bg-primary-50 focus:ring-primary-500 border-2;
     }
 
     /* Container */
     .container-custom {
-      @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+      @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
     }
 
     /* Section spacing */
@@ -1730,8 +1755,7 @@
 
     /* Card styles */
     .card {
-      @apply bg-white rounded-xl shadow-soft overflow-hidden
-             transition-shadow duration-300 hover:shadow-premium;
+      @apply shadow-soft hover:shadow-premium overflow-hidden rounded-xl bg-white transition-shadow duration-300;
     }
 
     /* Premium gradient overlay */
@@ -1743,8 +1767,7 @@
   @layer utilities {
     /* Text gradient */
     .text-gradient {
-      @apply bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-500
-             bg-clip-text text-transparent;
+      @apply from-primary-500 via-secondary-500 to-accent-500 bg-gradient-to-r bg-clip-text text-transparent;
     }
 
     /* Aspect ratios */
@@ -1770,6 +1793,7 @@
 ### 4.4 Utility Functions
 
 - [ ] **Create className utility for Tailwind**
+
   ```typescript
   // src/lib/utils.ts
   import { type ClassValue, clsx } from 'clsx'
@@ -1836,6 +1860,7 @@
 ### 5.1 Base UI Components
 
 - [ ] **Create Button component**
+
   ```typescript
   // src/components/ui/Button.tsx
   import * as React from 'react'
@@ -1875,6 +1900,7 @@
   ```
 
 - [ ] **Create Container component**
+
   ```typescript
   // src/components/ui/Container.tsx
   import { cn } from '@/lib/utils'
@@ -1906,6 +1932,7 @@
   ```
 
 - [ ] **Create Section component**
+
   ```typescript
   // src/components/ui/Section.tsx
   import { cn } from '@/lib/utils'
@@ -1935,6 +1962,7 @@
 ### 5.2 Header & Navigation
 
 - [ ] **Create Header component**
+
   ```typescript
   // src/components/layout/Header.tsx
   'use client'
@@ -2046,6 +2074,7 @@
   ```
 
 - [ ] **Create Footer component**
+
   ```typescript
   // src/components/layout/Footer.tsx
   import Link from 'next/link'
@@ -2171,6 +2200,7 @@
 ### 5.3 Homepage
 
 - [ ] **Create Hero section component**
+
   ```typescript
   // src/components/sections/Hero.tsx
   'use client'
@@ -2301,6 +2331,7 @@
   - Step 5: Confirmation
 
 - [ ] **Form validation with Zod**
+
   ```typescript
   // src/lib/validations/booking.ts
   import { z } from 'zod'
@@ -2320,6 +2351,7 @@
   ```
 
 - [ ] **API route for form submission**
+
   ```typescript
   // src/app/api/booking/route.ts
   import { NextRequest, NextResponse } from 'next/server'
@@ -2346,10 +2378,7 @@
 
       return NextResponse.json({ success: true, booking })
     } catch (error) {
-      return NextResponse.json(
-        { success: false, error: 'Invalid request' },
-        { status: 400 }
-      )
+      return NextResponse.json({ success: false, error: 'Invalid request' }, { status: 400 })
     }
   }
   ```
@@ -2373,6 +2402,7 @@
 ### 6.3 WhatsApp Integration
 
 - [ ] **Add WhatsApp floating button**
+
   ```typescript
   // src/components/WhatsAppButton.tsx
   'use client'
@@ -2401,6 +2431,7 @@
 ### 6.4 Internationalization (Hindi/English)
 
 - [ ] **Install next-intl**
+
   ```bash
   pnpm add next-intl
   ```
@@ -2412,6 +2443,7 @@
 ### 6.5 Analytics & Tracking
 
 - [ ] **Install Vercel Analytics**
+
   ```bash
   pnpm add @vercel/analytics
   ```
@@ -2430,6 +2462,7 @@
 ### 7.1 Content Entry
 
 - [ ] **Create seed data for development**
+
   ```typescript
   // src/payload/seed/index.ts
   import type { Payload } from 'payload'
@@ -2454,6 +2487,7 @@
   - Team photos
 
 - [ ] **Optimize all images**
+
   ```bash
   # Use sharp CLI or ImageOptim
   # Target: <100KB for thumbnails, <300KB for full images
@@ -2475,12 +2509,14 @@
 ### 8.1 Unit Testing Setup
 
 - [ ] **Install Vitest**
+
   ```bash
   pnpm add -D vitest @testing-library/react @testing-library/jest-dom
   pnpm add -D @vitejs/plugin-react jsdom
   ```
 
 - [ ] **Create vitest.config.ts**
+
   ```typescript
   import { defineConfig } from 'vitest/config'
   import react from '@vitejs/plugin-react'
@@ -2515,6 +2551,7 @@
 ### 8.2 E2E Testing Setup
 
 - [ ] **Install Playwright**
+
   ```bash
   pnpm create playwright
   ```
@@ -2531,6 +2568,7 @@
 ### 8.3 Accessibility Testing
 
 - [ ] **Install axe-core**
+
   ```bash
   pnpm add -D @axe-core/playwright
   ```
@@ -2585,13 +2623,15 @@
 ### 9.1 On-Page SEO
 
 - [ ] **Add metadata to all pages**
+
   ```typescript
   // src/app/menu/page.tsx
   import type { Metadata } from 'next'
 
   export const metadata: Metadata = {
     title: 'Our Menu | AdaEhandi - Premium North Indian Catering',
-    description: 'Explore our authentic North Indian menu featuring Punjabi, Mughlai, and Awadhi cuisines. Perfect for weddings, corporate events, and private parties in Delhi.',
+    description:
+      'Explore our authentic North Indian menu featuring Punjabi, Mughlai, and Awadhi cuisines. Perfect for weddings, corporate events, and private parties in Delhi.',
     keywords: ['north indian catering', 'delhi catering', 'punjabi food', 'wedding catering'],
     openGraph: {
       title: 'Our Menu - AdaEhandi Catering',
@@ -2602,6 +2642,7 @@
   ```
 
 - [ ] **Implement JSON-LD structured data**
+
   ```typescript
   // src/components/StructuredData.tsx
   export function RestaurantSchema() {
@@ -2635,6 +2676,7 @@
   ```
 
 - [ ] **Generate dynamic sitemap**
+
   ```typescript
   // src/app/sitemap.ts
   import { MetadataRoute } from 'next'
@@ -2691,6 +2733,7 @@
   - Lazy load below-the-fold content
 
 - [ ] **Implement ISR (Incremental Static Regeneration)**
+
   ```typescript
   // src/app/menu/page.tsx
   export const revalidate = 3600 // Revalidate every hour
@@ -2711,6 +2754,7 @@
 ### 9.3 Caching Strategy
 
 - [ ] **Configure Next.js caching**
+
   ```typescript
   // next.config.mjs
   const nextConfig = {
@@ -2771,6 +2815,7 @@
 ### 10.2 Environment Variables Security
 
 - [ ] **Create .env.example with all required variables**
+
   ```env
   # Database
   DATABASE_URI=
@@ -2787,6 +2832,7 @@
   ```
 
 - [ ] **Add environment variable validation**
+
   ```typescript
   // src/lib/env.ts
   import { z } from 'zod'
@@ -2804,6 +2850,7 @@
 ### 10.3 API Route Protection
 
 - [ ] **Add rate limiting**
+
   ```bash
   pnpm add @upstash/ratelimit @upstash/redis
   ```
@@ -2863,6 +2910,7 @@
   - Copy connection string
 
 - [ ] **Run production migrations**
+
   ```bash
   DATABASE_URI=<production-url> pnpm migrate:up
   ```
@@ -2891,6 +2939,7 @@
 ### 11.4 CI/CD Pipeline
 
 - [ ] **Configure GitHub Actions**
+
   ```yaml
   # .github/workflows/ci.yml
   name: CI
@@ -2922,12 +2971,14 @@
 ### 11.5 Monitoring & Error Tracking
 
 - [ ] **Install Sentry**
+
   ```bash
   pnpm add @sentry/nextjs
   npx @sentry/wizard@latest -i nextjs
   ```
 
 - [ ] **Configure Sentry**
+
   ```typescript
   // sentry.client.config.ts
   import * as Sentry from '@sentry/nextjs'
@@ -2940,6 +2991,7 @@
   ```
 
 - [ ] **Set up Vercel Analytics**
+
   ```typescript
   // src/app/layout.tsx
   import { Analytics } from '@vercel/analytics/react'
@@ -2961,6 +3013,7 @@
 ### 11.6 Performance Monitoring
 
 - [ ] **Set up Vercel Speed Insights**
+
   ```bash
   pnpm add @vercel/speed-insights
   ```
@@ -3011,6 +3064,7 @@
 ### 12.2 Launch Day
 
 - [ ] **Deploy to production**
+
   ```bash
   git checkout main
   git merge develop
